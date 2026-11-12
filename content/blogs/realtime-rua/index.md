@@ -159,10 +159,10 @@ Our early towel-folding runs on the real robot took between 13 and 37 minutes. F
 <div class="rua-fig">
 <svg id="f3" viewBox="0 0 860 170" role="img" aria-label="Time breakdown of an early towel run"></svg>
 </div>
-<figcaption><b>Figure 4.</b> Where the time went in an early towel-folding run. The summary hold is the API holding each response until its reasoning summary was written; we turned summaries off for later runs. TTFT is estimated as request time minus decoding.</figcaption>
+<figcaption><b>Figure 4.</b> Where the time went in an early towel-folding run. The summary hold is the API holding each response until its reasoning summary was written; we turned summaries off for later runs. TTFT is estimated as model time minus decoding at the measured token rate.</figcaption>
 </figure>
 
-Very little of the model's time went to producing output. About two thirds of it passed before each response produced anything at all, in TTFT: upload, queueing, and prefill of a long, image-heavy context. TTFT is a per-request cost, and an agent pays it on every tool-call round trip. A response with fewer than 100 output tokens still had a median TTFT of about two seconds, and TTFT grew as images accumulated in the context. Many of these requests did very little: the agent would spend a whole round trip viewing an image, checking on a program it had started, or asking where an arm had ended up. On average it made several requests per robot action, and the robot was idle through all of them.
+Very little of the model's time went to producing output. About two thirds of it passed before each response produced anything at all. We call this wait TTFT and measure it from the harness, as API benchmarks do: from sending a request to the first output that comes back. That is more than prefill. It also includes the network, queueing and other work on the server, and since reasoning is hidden, any reasoning the model does before it starts writing. The network was a small part: the cell's round trip to the API endpoint is about 3 ms, and each request travels over an open WebSocket carrying only the new items. Most of the context was cached as well. About 99% of input tokens hit the prompt cache, so a typical request brought only about a thousand new tokens. Even so, TTFT grew with the length of the context, and much faster with images than with text. Through the API we can't tell how much of that growth is prefill over the cached context and how much is other time on the server. TTFT is a per-request cost, and an agent pays it on every tool-call round trip. A response with fewer than 100 output tokens still had a median TTFT of about two seconds, and TTFT grew as images accumulated in the context. Many of these requests did very little: the agent would spend a whole round trip viewing an image, checking on a program it had started, or asking where an arm had ended up. On average it made several requests per robot action, and the robot was idle through all of them.
 
 This is a different profile from chat, where output tokens usually dominate latency [[7]](#r7). An agent step emits a short tool call, often a couple of hundred tokens, so the fixed cost per request outweighs decoding. To go faster, we needed the agent to make fewer requests and make each one cheaper, and the requests that remained had to happen while the robot was moving rather than before it.
 
@@ -189,7 +189,7 @@ The same reasoning applies to approval. Early on, the agent often previewed an a
 
 ## 3. Keep the context short
 
-A robot agent looks at a lot of images, and as they pile up in the context, TTFT grows on every request. We handled this in two ways. First, we send the four camera views as a single tiled image instead of four separate ones, which keeps TTFT noticeably lower even at the same resolution (Figure 7). Second, once about 20 images have built up, the harness moves the conversation to a fresh thread in which older images are replaced by short text notes and only the newest few are kept (Figure 6). The first request after a prune can't use the prompt cache, so we prune between turns.
+A robot agent looks at a lot of images, and as they pile up in the context, TTFT grows on every request, even though the earlier context is cached. We handled this in two ways. First, we send the four camera views as a single tiled image instead of four separate ones, which keeps TTFT noticeably lower even at the same resolution (Figure 7). Second, once about 20 images have built up, the harness moves the conversation to a fresh thread in which older images are replaced by short text notes and only the newest few are kept (Figure 6). The first request after a prune can't use the prompt cache, so we prune between turns.
 
 <figure class="rua-wide">
 <div class="rua-fig">
@@ -338,7 +338,7 @@ Hiding the model's time behind motion is not the same as making the agent fast. 
   <circle cx="130" cy="53" r="6" fill="var(--r-fg)"/>
   <text x="130" y="28" text-anchor="middle" class="sm">observation</text>
   <text x="0" y="112" class="lbb">Model</text>
-  <rect x="130" y="96" width="250" height="26" rx="3" fill="var(--r-think-soft)"/><text x="255" y="114" text-anchor="middle" class="sm">TTFT (prefill, hidden reasoning)</text>
+  <rect x="130" y="96" width="250" height="26" rx="3" fill="var(--r-think-soft)"/><text x="255" y="114" text-anchor="middle" class="sm">TTFT (server wait, hidden reasoning)</text>
   <rect x="382" y="96" width="170" height="26" rx="3" fill="var(--r-think)"/><text x="467" y="114" text-anchor="middle" class="sm" style="fill:#fff">write the action</text>
   <rect x="554" y="96" width="30" height="26" rx="3" fill="var(--r-tool)"/>
   <line x1="590" y1="109" x2="680" y2="66" stroke="var(--r-muted)" marker-end="url(#ar3)"/>
@@ -365,7 +365,7 @@ Closing this gap needs a shorter loop from observation to action. That means low
 
 ## What's next
 
-We treated the model server as a black box throughout this work, and much of the remaining latency comes from it. With a model we serve ourselves, we can work on that side too, for example by starting to process the next camera view while the arm is still moving, before the model is asked about it. We think designing the serving stack and the harness together can take this a good deal further.
+Throughout this work we treated Codex and OpenAI's serving as a black box. We could change only what the harness sends and when, and we could not even see how the time before the first output splits between prefill, queueing and the rest of the server. Much of the remaining latency sits on that side. With a model we serve ourselves, the harness and the server can be designed together, and we see many openings there: processing the next camera view while the arm is still moving, before the model is asked about it; dropping old images from the cache without paying for a full prefill; and scheduling a robot's requests so that a correction is not stuck in a queue. We think co-designing serving with the harness can take this a good deal further.
 
 ## References
 
