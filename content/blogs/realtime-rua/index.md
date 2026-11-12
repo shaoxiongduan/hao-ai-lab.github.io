@@ -33,7 +33,7 @@ body.dark{--r-bg:#1d1e20;--r-fg:#e7e9ee;--r-muted:#a3a9b5;--r-faint:#7c8290;--r-
 .post-content .rua-fig svg .lb{font-size:12.5px}
 .post-content .rua-fig svg .lbb{font-size:12.5px;font-weight:600}
 .post-content .rua-fig svg .mn{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px}
-.post-content figure figcaption{font-size:.88em;color:var(--secondary);margin-top:10px;line-height:1.5;text-align:left}
+.post-content figure figcaption{font-size:.88em;font-weight:400;color:var(--secondary);margin-top:10px;line-height:1.5;text-align:left}
 .post-content .rua-legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.82em;color:var(--secondary);margin-top:10px}
 .post-content .rua-legend span{display:inline-flex;align-items:center;gap:6px}
 .post-content .rua-legend i{width:12px;height:12px;border-radius:2px;display:inline-block}
@@ -74,9 +74,9 @@ Benchmarks like RoboDojo don't capture this. Their evaluation loop is synchronou
     <rect x="308" y="0" width="90" height="26" rx="3" fill="var(--r-think)"/><text x="353" y="17" text-anchor="middle" class="sm" style="fill:#fff">think</text>
     <rect x="400" y="0" width="60" height="26" rx="3" fill="var(--r-robot)"/><text x="430" y="17" text-anchor="middle" class="sm" style="fill:#fff">act</text>
     <line x1="0" y1="40" x2="460" y2="40" stroke="var(--r-rule)"/>
-    <text x="0" y="56" class="xs">sim clock</text>
+    <text x="0" y="64" class="xs">sim clock</text>
     <rect x="72" y="46" width="60" height="5" fill="var(--r-robot)"/><rect x="246" y="46" width="60" height="5" fill="var(--r-robot)"/><rect x="400" y="46" width="60" height="5" fill="var(--r-robot)"/>
-    <text x="480" y="17" class="sm">time that counts: <tspan class="lbb" style="font-size:11px">only the acts</tspan></text>
+    <text x="480" y="17" class="sm">time that counts:<tspan dx="4" class="lbb" style="font-size:11px">only the acts</tspan></text>
   </g>
   <line x1="0" y1="100" x2="860" y2="100" stroke="var(--r-rule)" stroke-dasharray="3 4"/>
   <text x="0" y="132" class="lbb">Real robot</text>
@@ -89,11 +89,11 @@ Benchmarks like RoboDojo don't capture this. Their evaluation loop is synchronou
     <rect x="308" y="0" width="90" height="26" rx="3" fill="var(--r-think)"/>
     <rect x="400" y="0" width="60" height="26" rx="3" fill="var(--r-robot)"/>
     <line x1="0" y1="40" x2="460" y2="40" stroke="var(--r-rule)"/>
-    <text x="0" y="56" class="xs">wall clock</text>
+    <text x="0" y="64" class="xs">wall clock</text>
     <rect x="0" y="46" width="460" height="5" fill="var(--r-idle)"/>
     <rect x="0" y="46" width="70" height="5" fill="var(--r-bad)" opacity=".55"/><rect x="134" y="46" width="110" height="5" fill="var(--r-bad)" opacity=".55"/><rect x="308" y="46" width="90" height="5" fill="var(--r-bad)" opacity=".55"/>
     <rect x="72" y="46" width="60" height="5" fill="var(--r-robot)"/><rect x="246" y="46" width="60" height="5" fill="var(--r-robot)"/><rect x="400" y="46" width="60" height="5" fill="var(--r-robot)"/>
-    <text x="480" y="17" class="sm">time that counts: <tspan class="lbb" style="font-size:11px">all of it</tspan></text>
+    <text x="480" y="17" class="sm">time that counts:<tspan dx="4" class="lbb" style="font-size:11px">all of it</tspan></text>
     <text x="480" y="34" class="sm">the robot idles while the model thinks</text>
   </g>
 </svg>
@@ -253,9 +253,9 @@ The timing of feedback turned out to matter (Figure 8). The report for one actio
   <line x1="312" y1="66" x2="330" y2="128" stroke="var(--r-muted)" marker-end="url(#ar2)"/>
   <text x="300" y="98" text-anchor="end" class="xs">report 1 + camera grid</text>
   <line x1="544" y1="66" x2="560" y2="128" stroke="var(--r-muted)" marker-end="url(#ar2)"/>
-  <text x="535" y="98" text-anchor="end" class="xs">report 2</text>
+  <text x="562" y="98" class="xs">report 2</text>
   <path d="M490,130 C 520,100 540,80 560,66" stroke="var(--r-think)" fill="none" stroke-dasharray="4 3" marker-end="url(#ar2)"/>
-  <text x="548" y="112" class="xs" style="fill:var(--r-think)">replace_from=3</text>
+  <text x="500" y="112" text-anchor="end" class="xs" style="fill:var(--r-think)">replace_from=3</text>
   <line x1="110" y1="196" x2="760" y2="196" stroke="var(--r-rule)"/>
   <text x="110" y="216" class="sm">The report for action 1 arrives as action 2 starts. The model reads it while the arm moves,</text>
   <text x="110" y="234" class="sm">and can still change action 3 before it begins.</text>
@@ -284,7 +284,7 @@ Cutting round trips raised the robot's moving share from a median of 29% to 52%,
 <div class="rua-fig">
 <svg id="f9" viewBox="0 0 860 250" role="img" aria-label="Real towel runs before and after the queue"></svg>
 </div>
-<figcaption><b>Figure 10.</b> Real towel-folding runs, grouped by harness version. Filled dots finished the task; hollow dots were stopped early. Time to finish counts only finished runs. Black bars are medians.</figcaption>
+<figcaption><b>Figure 10.</b> Real towel-folding runs, grouped by harness version. Filled dots finished the task; hollow dots were stopped early. Time to finish counts only finished runs. Vertical bars are medians.</figcaption>
 </figure>
 
 Because real runs vary this much, they can't tell us what each design contributes on its own. For that we took one real run of the cup task, made with the full harness, and replayed it without each design in turn. The replay keeps the same model responses, tool calls and actions in the same order, and adds back the requests each design removes, at the step and tool costs we measured on the robot. Only the last bar in Figure 11 is the real run.
@@ -427,16 +427,16 @@ const C={w:"var(--r-think-soft)",g:"var(--r-think)",i:"var(--r-tool)",t:"var(--r
 
 /* Figure 4: round trips before/after */
 (function(){
-  const s=document.getElementById("f4"),sc=34,x0=120;
+  const s=document.getElementById("f4"),sc=26,x0=120;
   function row(y,label,sub,items){
     el("text",{x:0,y:y+16,class:"lbb"},s,label);el("text",{x:0,y:y+32,class:"sm"},s,sub);
-    let x=x0;items.forEach(([k,d,t])=>{const w=d*sc;el("rect",{x:x,y:y,width:Math.max(w-2,3),height:28,rx:3,fill:k=="m"?"var(--r-think)":k=="r"?"var(--r-robot)":"var(--r-tool)"},s);
-      if(t)el("text",{x:x+w/2-1,y:y+46,class:"xs","text-anchor":"middle"},s,t);x+=w;});
+    let x=x0;items.forEach(([k,d,t,a])=>{const w=d*sc;el("rect",{x:x,y:y,width:Math.max(w-2,3),height:28,rx:3,fill:k=="m"?"var(--r-think)":k=="r"?"var(--r-robot)":"var(--r-tool)"},s);
+      if(t)el("text",{x:a?x:x+w/2-1,y:y+46,class:"xs","text-anchor":a||"middle"},s,t);x+=w;});
     return x;}
   const m=2.6;
   const xa=row(20,"Before","8 model steps",[["m",m,"write action"],["r",4.5,"blocking motion"],["m",m,"poll"],["t",.66,""],["m",m,"read cam 1"],["m",m,"cam 2"],["m",m,"cam 3"],["m",m,"cam 4"],["m",m,"read state"],["m",m,"next"]]);
   el("text",{x:xa+6,y:39,class:"sm"},s,Math.round((xa-x0)/sc)+" s");
-  const xb=row(110,"After","2 model steps",[["m",m,"write action"],["r",4.5,"motion"],["t",.2,""],["m",m,"report: result + state + grid → next"]]);
+  const xb=row(110,"After","2 model steps",[["m",m,"write action"],["r",4.5,"motion"],["t",.2,""],["m",m,"report: result + state + grid → next","start"]]);
   el("text",{x:xb+6,y:129,class:"sm"},s,Math.round((xb-x0)/sc)+" s");
 })();
 
@@ -452,7 +452,7 @@ const C={w:"var(--r-think-soft)",g:"var(--r-think)",i:"var(--r-tool)",t:"var(--r
 
 /* Figure 6: lanes */
 (function(){
-  const s=document.getElementById("f6"),x0=150,W=690,T=680,sc=W/T;
+  const s=document.getElementById("f6"),x0=150,W=650,T=680,sc=W/T;
   const st={};D.stages.forEach(z=>st[z.id]=z);
   const rows=[[0,"Vanilla loop","replay"],[4,"No queue","replay"],[5,"With the queue","real run"]];
   rows.forEach(([id,a,b],i)=>{const z=st[id],y=14+i*88;
