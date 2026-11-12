@@ -164,7 +164,7 @@ Our early towel-folding runs on the real robot took between 13 and 37 minutes. F
 
 Very little of the model's time went to producing output. About two thirds of it was TTFT. Measured from the harness, it covers prefill, the network and any other processing on the server; through the API we can't tell how it splits. A response with fewer than 100 output tokens still had a median TTFT of about two seconds, and an agent pays it on every tool-call round trip. Many of these requests did very little: the agent would spend a whole round trip viewing an image, checking on a program it had started, or asking where an arm had ended up. On average it made several requests per robot action, and the robot was idle through all of them.
 
-Agent workloads are known to be input-heavy: the context grows with every step, while each output is a short tool call. Manus reports about 100 input tokens for every output token [[7]](#r7). Our runs were at roughly 300 to 900 to one, since the agent keeps adding camera images. So TTFT, paid on every request, outweighs decoding. To go faster, we needed the agent to make fewer requests and make each one cheaper, and the requests that remained had to happen while the robot was moving rather than before it.
+Agent workloads are known to be input-heavy: the context grows with every step, while each output is a short tool call. Manus reports about 100 input tokens for every output token [[7]](#r7). Our runs were at roughly 300 to 900 to one. So TTFT, paid on every request, outweighs decoding. To go faster, we needed the agent to make fewer requests and make each one cheaper, and the requests that remained had to happen while the robot was moving rather than before it.
 
 ## 1. Faster decoding
 
