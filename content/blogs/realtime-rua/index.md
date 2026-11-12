@@ -51,7 +51,7 @@ body.dark{--r-bg:#1d1e20;--r-fg:#e7e9ee;--r-muted:#a3a9b5;--r-faint:#7c8290;--r-
 **TL;DR**
 
 - Robot-use agents are still far too slow for the real world. Benchmarks like RoboDojo don't show it, because their simulators wait for the model before stepping.
-- The agent's time goes mostly to per-request overhead, TTFT above all, which it pays on every tool-call round trip. So we cut the number of requests, kept the context short and made the tools faster.
+- The agent's time goes mostly to per-request overhead, time to first token (TTFT) above all, which it pays on every tool-call round trip. So we cut the number of requests, kept the context short and made the tools faster.
 - We then let the robot carry out queued actions while the model plans the next ones, which hides most of the model's time behind motion.
 - Finished towel-folding runs went from a median of about 17 minutes to about 6, and on a cup task the robot moved 84% of the time. What remains is latency: the robot acts on what it saw about 5 seconds earlier.
 
@@ -162,7 +162,7 @@ Our early towel-folding runs on the real robot took between 13 and 37 minutes. F
 <figcaption><b>Figure 4.</b> Where the time went in an early towel-folding run. The summary hold is the API holding each response until its reasoning summary was written; we turned summaries off for later runs. TTFT is estimated as model time minus decoding, which includes the hidden reasoning tokens.</figcaption>
 </figure>
 
-Very little of the model's time went to producing output. About two thirds of it was time to first token (TTFT). Measured from the harness, it covers prefill, the network and any other processing on the server; through the API we can't tell how it splits. A response with fewer than 100 output tokens still had a median TTFT of about two seconds, and an agent pays it on every tool-call round trip. Many of these requests did very little: the agent would spend a whole round trip viewing an image, checking on a program it had started, or asking where an arm had ended up. On average it made several requests per robot action, and the robot was idle through all of them.
+Very little of the model's time went to producing output. About two thirds of it was TTFT. Measured from the harness, it covers prefill, the network and any other processing on the server; through the API we can't tell how it splits. A response with fewer than 100 output tokens still had a median TTFT of about two seconds, and an agent pays it on every tool-call round trip. Many of these requests did very little: the agent would spend a whole round trip viewing an image, checking on a program it had started, or asking where an arm had ended up. On average it made several requests per robot action, and the robot was idle through all of them.
 
 This is a different profile from chat, where output tokens usually dominate latency [[7]](#r7). An agent step emits a short tool call, often a couple of hundred tokens, so the fixed cost per request outweighs decoding. To go faster, we needed the agent to make fewer requests and make each one cheaper, and the requests that remained had to happen while the robot was moving rather than before it.
 
