@@ -159,10 +159,10 @@ Our early towel-folding runs on the real robot took between 13 and 37 minutes. F
 <div class="rua-fig">
 <svg id="f3" viewBox="0 0 860 170" role="img" aria-label="Time breakdown of an early towel run"></svg>
 </div>
-<figcaption><b>Figure 4.</b> Where the time went in an early towel-folding run. The summary hold is the API holding each response until its reasoning summary was written; we turned summaries off for later runs. TTFT is estimated as model time minus decoding at the measured token rate.</figcaption>
+<figcaption><b>Figure 4.</b> Where the time went in an early towel-folding run. The summary hold is the API holding each response until its reasoning summary was written; we turned summaries off for later runs. TTFT is estimated as model time minus decoding, which includes the hidden reasoning tokens.</figcaption>
 </figure>
 
-Very little of the model's time went to producing output. About two thirds of it passed before each response produced anything at all, as TTFT, which we measure from the harness. That includes more than prefill: there is queueing and other work on the server, and since reasoning is hidden, any reasoning before the first output. A response with fewer than 100 output tokens still had a median TTFT of about two seconds. Much of that is a fixed cost on every request, and it grows as images accumulate in the context. An agent pays it on every tool-call round trip. Many of these requests did very little: the agent would spend a whole round trip viewing an image, checking on a program it had started, or asking where an arm had ended up. On average it made several requests per robot action, and the robot was idle through all of them.
+Very little of the model's time went to producing output. About two thirds of it passed before each response produced anything at all. We call this TTFT and measure it from the harness, so it covers prefill, the network and any other processing on the server; through the API we can't tell how it splits. A response with fewer than 100 output tokens still had a median TTFT of about two seconds, and an agent pays it on every tool-call round trip. Many of these requests did very little: the agent would spend a whole round trip viewing an image, checking on a program it had started, or asking where an arm had ended up. On average it made several requests per robot action, and the robot was idle through all of them.
 
 This is a different profile from chat, where output tokens usually dominate latency [[7]](#r7). An agent step emits a short tool call, often a couple of hundred tokens, so the fixed cost per request outweighs decoding. To go faster, we needed the agent to make fewer requests and make each one cheaper, and the requests that remained had to happen while the robot was moving rather than before it.
 
@@ -338,8 +338,8 @@ Hiding the model's time behind motion is not the same as making the agent fast. 
   <circle cx="130" cy="53" r="6" fill="var(--r-fg)"/>
   <text x="130" y="28" text-anchor="middle" class="sm">observation</text>
   <text x="0" y="112" class="lbb">Model</text>
-  <rect x="130" y="96" width="250" height="26" rx="3" fill="var(--r-think-soft)"/><text x="255" y="114" text-anchor="middle" class="sm">TTFT (server wait, hidden reasoning)</text>
-  <rect x="382" y="96" width="170" height="26" rx="3" fill="var(--r-think)"/><text x="467" y="114" text-anchor="middle" class="sm" style="fill:#fff">write the action</text>
+  <rect x="130" y="96" width="250" height="26" rx="3" fill="var(--r-think-soft)"/><text x="255" y="114" text-anchor="middle" class="sm">TTFT</text>
+  <rect x="382" y="96" width="170" height="26" rx="3" fill="var(--r-think)"/><text x="467" y="114" text-anchor="middle" class="sm" style="fill:#fff">reason, write the action</text>
   <rect x="554" y="96" width="30" height="26" rx="3" fill="var(--r-tool)"/>
   <line x1="590" y1="109" x2="680" y2="66" stroke="var(--r-muted)" marker-end="url(#ar3)"/>
   <text x="690" y="96" class="sm">action starts from a</text>
