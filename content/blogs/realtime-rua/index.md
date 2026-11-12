@@ -164,7 +164,7 @@ Our early towel-folding runs on the real robot took between 13 and 37 minutes. F
 
 Very little of the model's time went to producing output. About two thirds of it was TTFT. Measured from the harness, it covers prefill, the network and any other processing on the server; through the API we can't tell how it splits. A response with fewer than 100 output tokens still had a median TTFT of about two seconds, and an agent pays it on every tool-call round trip. Many of these requests did very little: the agent would spend a whole round trip viewing an image, checking on a program it had started, or asking where an arm had ended up. On average it made several requests per robot action, and the robot was idle through all of them.
 
-This is a different profile from chat, where output tokens usually dominate latency [[7]](#r7). An agent step emits a short tool call, often a couple of hundred tokens, so the fixed cost per request outweighs decoding. To go faster, we needed the agent to make fewer requests and make each one cheaper, and the requests that remained had to happen while the robot was moving rather than before it.
+Speed is usually discussed in terms of decoding throughput, because in chat, generating the output dominates latency [[7]](#r7). An agent step is different: it emits a short tool call, often a couple of hundred tokens, so the fixed cost per request outweighs decoding. To go faster, we needed the agent to make fewer requests and make each one cheaper, and the requests that remained had to happen while the robot was moving rather than before it.
 
 ## 1. Faster decoding
 
