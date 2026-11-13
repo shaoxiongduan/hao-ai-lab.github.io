@@ -486,7 +486,7 @@ const C={w:"var(--r-think-soft)",g:"var(--r-think)",i:"var(--r-tool)",t:"var(--r
   el("rect",{x:x0,y:30,width:W,height:18,fill:"var(--r-idle)"},s);el("rect",{x:x0,y:62,width:W,height:18,fill:"var(--r-idle)"},s);
   z.agent.forEach(([t0,t1,k])=>{if(t1<a||t0>b)return;el("rect",{x:X(t0),y:30,width:Math.max(X(t1)-X(t0),.5),height:18,fill:k=="w"?"var(--r-think)":"var(--r-tool)"},s);});
   z.robot.forEach(([t0,t1,n])=>{if(t1<a||t0>b)return;el("rect",{x:X(t0),y:62,width:Math.max(X(t1)-X(t0)-1,.5),height:18,fill:"var(--r-robot)"},s);});
-  [[234.86,240.12,"24 s: look before folding"],[327.49,347.94,"20 s: re-plan after a bad sweep"]].forEach(([t0,t1,l])=>{
+  [[216.06,240.12,"24 s: look before folding"],[327.49,347.94,"20 s: re-plan after a bad sweep"]].forEach(([t0,t1,l])=>{
     el("rect",{x:X(t0),y:58,width:X(t1)-X(t0),height:26,fill:"none",stroke:"var(--r-bad)","stroke-width":1.5,rx:2},s);
     el("text",{x:(X(t0)+X(t1))/2,y:104,class:"sm","text-anchor":"middle",style:"fill:var(--r-bad)"},s,l);});
   [["lay flat",209.55],["fold",240.12],["sweep",306.89],["next grasp",347.94]].forEach(([n,t])=>{el("text",{x:X(t)+2,y:20,class:"xs"},s,n);el("line",{x1:X(t),y1:23,x2:X(t),y2:84,stroke:"var(--r-faint)","stroke-dasharray":"2 2"},s);});
