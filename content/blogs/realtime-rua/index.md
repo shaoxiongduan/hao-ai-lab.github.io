@@ -1,8 +1,8 @@
 +++
 title = "Getting Robot-Use Agents to Run in Real Time"
 date = 2026-11-11T00:00:00-08:00
-authors = ["Shaoxiong Duan", "Yang Yuanbo", "Junda Chen", "Yulun Wu", "Hao Zhang"]
-author = "Shaoxiong Duan, Yang Yuanbo, Junda Chen, Yulun Wu, Hao Zhang"
+authors = ["Shaoxiong Duan", "Yang Yuanbo", "Junda Chen", "Quanquan Peng", "Xiaolong Wang", "Hao Zhang"]
+author = "Shaoxiong Duan, Yang Yuanbo, Junda Chen, Quanquan Peng, Xiaolong Wang, Hao Zhang"
 ShowReadingTime = true
 authorOnNewLine = true
 draft = false
@@ -634,18 +634,18 @@ Throughout this work we treated Codex and OpenAI's serving as a black box. We co
 
 ## Acknowledgement
 
-*To be added.*
+We thank Quanquan Peng and Xiaolong Wang for providing the YAM robot arms and for their guidance on using them.
 
 ## Contributors
 
-[Shaoxiong Duan](https://github.com/shaoxiongduan), Yang Yuanbo, [Junda Chen](https://github.com/GindaChen), Yulun Wu, [Hao Zhang](https://haozhang.ai)
+[Shaoxiong Duan](https://github.com/shaoxiongduan), Yang Yuanbo, [Junda Chen](https://github.com/GindaChen), Quanquan Peng, Xiaolong Wang, [Hao Zhang](https://haozhang.ai)
 
 ## Citation
 
 ```bibtex
 @misc{realtimerua2026,
   title        = {Getting Robot-Use Agents to Run in Real Time},
-  author       = {Duan, Shaoxiong and Yang, Yuanbo and Chen, Junda and Wu, Yulun and Zhang, Hao},
+  author       = {Duan, Shaoxiong and Yang, Yuanbo and Chen, Junda and Peng, Quanquan and Wang, Xiaolong and Zhang, Hao},
   year         = {2026},
   month        = nov,
   howpublished = {Hao AI Lab Blog},
