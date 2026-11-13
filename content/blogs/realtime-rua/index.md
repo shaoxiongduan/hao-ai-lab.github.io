@@ -118,36 +118,68 @@ Like PyRUA-Lean [[6]](#r6), we use code as the action interface: the robot is a 
 
 <figure class="rua-wide">
 <div class="rua-fig">
-<svg viewBox="0 20 860 182" role="img" aria-label="Harness: model writes code that runs in a persistent Python kernel, which talks to the robot server and the cameras; reports flow back to the model.">
+<svg viewBox="0 10 860 316" role="img" aria-label="Harness: Codex runs in a sandbox with no internet; the agent reads the robot API source, writes its own helpers, and runs code in a persistent Python kernel that sends commands to the robot server, which checks each one; reports flow back to the model.">
   <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--r-muted)"/></marker></defs>
-  <rect x="10" y="60" width="170" height="96" rx="6" fill="var(--r-panel)" stroke="var(--r-think)" stroke-width="1.5"/>
-  <text x="95" y="98" text-anchor="middle" class="lbb">Model</text>
-  <text x="95" y="118" text-anchor="middle" class="sm">coding agent</text>
-  <rect x="290" y="40" width="250" height="136" rx="6" fill="var(--r-panel)" stroke="var(--r-tool)" stroke-width="1.5"/>
-  <text x="415" y="66" text-anchor="middle" class="lbb">Persistent Python kernel</text>
-  <text x="415" y="86" text-anchor="middle" class="sm">readable robot API</text>
-  <text x="415" y="102" text-anchor="middle" class="sm">the agent's own helpers and hooks</text>
-  <rect x="315" y="114" width="200" height="46" rx="4" fill="var(--r-bg)" stroke="var(--r-rule)"/>
-  <text x="415" y="133" text-anchor="middle" class="mn">kernel.queue([a, b, c])</text>
-  <text x="415" y="150" text-anchor="middle" class="xs">action queue</text>
-  <rect x="650" y="30" width="200" height="70" rx="6" fill="var(--r-panel)" stroke="var(--r-robot)" stroke-width="1.5"/>
-  <text x="750" y="58" text-anchor="middle" class="lbb">Robot server</text>
-  <text x="750" y="78" text-anchor="middle" class="sm">safety fence, IK, control</text>
-  <rect x="650" y="122" width="200" height="70" rx="6" fill="var(--r-panel)" stroke="var(--r-robot)" stroke-width="1.5"/>
-  <text x="750" y="150" text-anchor="middle" class="lbb">2 arms, 4 cameras</text>
-  <line x1="180" y1="88" x2="288" y2="88" stroke="var(--r-muted)" marker-end="url(#ar)"/>
-  <text x="234" y="80" text-anchor="middle" class="xs">code</text>
-  <path d="M288,140 L180,140" stroke="var(--r-muted)" marker-end="url(#ar)" fill="none"/>
-  <text x="234" y="132" text-anchor="middle" class="xs">results + images</text>
-  <text x="234" y="158" text-anchor="middle" class="xs">pushed reports</text>
-  <line x1="540" y1="70" x2="648" y2="62" stroke="var(--r-muted)" marker-end="url(#ar)"/>
-  <line x1="648" y1="152" x2="540" y2="146" stroke="var(--r-muted)" marker-end="url(#ar)"/>
-  <line x1="750" y1="100" x2="750" y2="120" stroke="var(--r-muted)" marker-end="url(#ar)"/>
-  <text x="594" y="58" text-anchor="middle" class="xs">commands</text>
-  <text x="594" y="164" text-anchor="middle" class="xs">frames, state</text>
+  <rect x="150" y="20" width="462" height="296" rx="10" fill="none" stroke="var(--r-faint)" stroke-width="1.2" stroke-dasharray="5 4"/>
+  <text x="164" y="42" class="lbb">Sandbox (bubblewrap)</text>
+  <text x="164" y="306" class="xs">No internet: only the model API, the robot server and the cameras.</text>
+  <rect x="0" y="60" width="96" height="96" rx="6" fill="var(--r-panel)" stroke="var(--r-think)" stroke-width="1.5"/>
+  <text x="48" y="96" text-anchor="middle" class="lbb">Model</text>
+  <text x="48" y="115" text-anchor="middle" class="sm">GPT-6 Astra</text>
+  <text x="48" y="132" text-anchor="middle" class="xs">OpenAI API</text>
+  <rect x="164" y="56" width="160" height="140" rx="6" fill="var(--r-panel)" stroke="var(--r-think)" stroke-width="1.5"/>
+  <text x="244" y="78" text-anchor="middle" class="lbb">Codex</text>
+  <text x="244" y="96" text-anchor="middle" class="xs">its tools include</text>
+  <rect x="178" y="104" width="132" height="20" rx="3" fill="var(--r-bg)" stroke="var(--r-rule)"/><text x="244" y="118.5" text-anchor="middle" class="mn">exec_command</text>
+  <rect x="178" y="128" width="132" height="20" rx="3" fill="var(--r-bg)" stroke="var(--r-rule)"/><text x="244" y="142.5" text-anchor="middle" class="mn">write_stdin</text>
+  <rect x="178" y="152" width="132" height="20" rx="3" fill="var(--r-bg)" stroke="var(--r-rule)"/><text x="244" y="166.5" text-anchor="middle" class="mn">view_image</text>
+  <text x="244" y="188" text-anchor="middle" class="xs">no web search or browser</text>
+  <rect x="374" y="56" width="224" height="140" rx="6" fill="var(--r-panel)" stroke="var(--r-tool)" stroke-width="1.5"/>
+  <text x="486" y="80" text-anchor="middle" class="lbb">Persistent Python kernel</text>
+  <text x="486" y="98" text-anchor="middle" class="sm">imports once; variables persist</text>
+  <rect x="392" y="108" width="188" height="42" rx="4" fill="var(--r-bg)" stroke="var(--r-rule)"/>
+  <text x="486" y="126" text-anchor="middle" class="mn">kernel.queue([a, b, c])</text>
+  <text x="486" y="142" text-anchor="middle" class="xs">action queue</text>
+  <text x="486" y="170" text-anchor="middle" class="sm">checks run after every motion</text>
+  <text x="486" y="187" text-anchor="middle" class="xs">reports pushed when actions end</text>
+  <rect x="164" y="216" width="216" height="70" rx="6" fill="var(--r-panel)" stroke="var(--r-faint)"/>
+  <rect x="304" y="208" width="70" height="17" rx="8.5" fill="var(--r-bg)" stroke="var(--r-faint)"/><text x="339" y="220" text-anchor="middle" class="xs">white box</text>
+  <text x="272" y="241" text-anchor="middle" class="lbb">Robot API source</text>
+  <text x="272" y="258" text-anchor="middle" class="sm">read-only; the agent reads it</text>
+  <text x="272" y="277" text-anchor="middle" class="mn">robot/  MANUAL.md</text>
+  <rect x="394" y="216" width="204" height="70" rx="6" fill="var(--r-panel)" stroke="var(--r-faint)"/>
+  <text x="496" y="241" text-anchor="middle" class="lbb">/workspace (read-write)</text>
+  <text x="496" y="258" text-anchor="middle" class="sm">the agent's own helpers</text>
+  <text x="496" y="277" text-anchor="middle" class="mn">def lift_cup(): ...</text>
+  <rect x="680" y="56" width="180" height="100" rx="6" fill="var(--r-panel)" stroke="var(--r-robot)" stroke-width="1.5"/>
+  <text x="770" y="80" text-anchor="middle" class="lbb">Robot server</text>
+  <text x="770" y="100" text-anchor="middle" class="sm">fence + arm distance</text>
+  <text x="770" y="116" text-anchor="middle" class="xs">checked on every command</text>
+  <text x="770" y="138" text-anchor="middle" class="sm">IK, control</text>
+  <rect x="680" y="196" width="180" height="60" rx="6" fill="var(--r-panel)" stroke="var(--r-robot)" stroke-width="1.5"/>
+  <text x="770" y="231" text-anchor="middle" class="lbb">2 arms, 4 cameras</text>
+  <line x1="96" y1="96" x2="162" y2="96" stroke="var(--r-muted)" marker-end="url(#ar)"/>
+  <text x="123" y="88" text-anchor="middle" class="xs">calls</text>
+  <line x1="162" y1="124" x2="98" y2="124" stroke="var(--r-muted)" marker-end="url(#ar)"/>
+  <text x="123" y="139" text-anchor="middle" class="xs">results</text>
+  <line x1="324" y1="96" x2="372" y2="96" stroke="var(--r-muted)" marker-end="url(#ar)"/>
+  <text x="349" y="88" text-anchor="middle" class="xs">code</text>
+  <line x1="372" y1="124" x2="326" y2="124" stroke="var(--r-muted)" marker-end="url(#ar)"/>
+  <text x="349" y="139" text-anchor="middle" class="xs">reports</text>
+  <line x1="598" y1="96" x2="678" y2="96" stroke="var(--r-muted)" marker-end="url(#ar)"/>
+  <text x="646" y="88" text-anchor="middle" class="xs">commands</text>
+  <line x1="678" y1="124" x2="600" y2="124" stroke="var(--r-muted)" marker-end="url(#ar)"/>
+  <text x="646" y="139" text-anchor="middle" class="xs">results</text>
+  <line x1="678" y1="226" x2="600" y2="186" stroke="var(--r-muted)" marker-end="url(#ar)"/>
+  <text x="648" y="238" text-anchor="middle" class="xs">frames</text>
+  <line x1="770" y1="156" x2="770" y2="194" stroke="var(--r-muted)" marker-end="url(#ar)"/>
+  <line x1="244" y1="214" x2="244" y2="198" stroke="var(--r-muted)" marker-end="url(#ar)"/>
+  <text x="250" y="210" class="xs">reads</text>
+  <line x1="496" y1="214" x2="496" y2="198" stroke="var(--r-muted)" marker-end="url(#ar)"/>
+  <text x="502" y="210" class="xs">imports</text>
 </svg>
 </div>
-<figcaption><b>Figure 3.</b> The harness. The model writes code, a long-lived Python process runs it against the robot, and results, images and reports flow back.</figcaption>
+<figcaption><b>Figure 3.</b> The harness. Codex and everything the agent runs sit in a sandbox with no internet access. The agent reads the robot API's source, writes its own helpers, and runs its code in a long-lived Python process; the robot server checks every command, and results, images and reports flow back.</figcaption>
 </figure>
 
 ## Where the time goes
