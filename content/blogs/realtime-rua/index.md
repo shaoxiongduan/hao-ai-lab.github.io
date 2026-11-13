@@ -220,7 +220,7 @@ Two smaller changes removed follow-up requests. Error messages say which limit w
 
 <figure class="rua-wide">
 <div class="rua-fig">
-<svg viewBox="0 0 860 324" role="img" aria-label="One action from start to end. The model writes an action and its own check in one request and both run at once. While the arm moves, the robot server checks every command and the model keeps working; it can stop the action. When the action ends, a report arrives as a message with the result, the arms' state, every camera in one image and the output of the agent's check.">
+<svg viewBox="0 0 860 310" role="img" aria-label="One action from start to end. The model writes an action and its own check in one request and both run at once. While the arm moves, the robot server checks every command and the model keeps working; it can stop the action. When the action ends, a report arrives as a message with the result, the arms' state, every camera in one image and the output of the agent's check.">
   <defs><marker id="ar6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--r-muted)"/></marker></defs>
   <text x="0" y="16" class="lbb">1. Written and run in one request</text>
   <rect x="0" y="28" width="262" height="182" rx="6" fill="var(--r-panel)" stroke="var(--r-think)" stroke-width="1.5"/>
@@ -232,7 +232,7 @@ Two smaller changes removed follow-up requests. Error messages say which limit w
   <text x="24" y="93" class="mn" style="font-size:11.5px">r.move(press, line=True)</text>
   <text x="24" y="107.5" class="mn" style="font-size:11.5px">r.move(drag, line=True)</text>
   <text x="24" y="122" class="mn" style="font-size:11.5px">r.move(lift, line=True)</text>
-  <text x="10" y="136.5" class="mn" style="font-size:11.5px">kernel.queue(smooth_far)</text>
+  <text x="10" y="136.5" class="mn" style="font-size:11.5px">kernel.start(smooth_far)</text>
   <text x="10" y="170" class="mn" style="font-size:11.5px">def towel_points(r, frames):</text>
   <text x="24" y="184.5" class="mn" style="font-size:11.5px">viz.marks(frames["front"], ...)</text>
   <text x="10" y="199" class="mn" style="font-size:11.5px">kernel.after_motion(towel_points)</text>
@@ -252,31 +252,29 @@ Two smaller changes removed follow-up requests. Error messages say which limit w
   <g fill="var(--r-think)"><rect x="300" y="148" width="66" height="14" rx="2"/><rect x="380" y="148" width="44" height="14" rx="2"/><rect x="436" y="148" width="58" height="14" rx="2"/></g>
   <g fill="var(--r-tool)"><rect x="366" y="148" width="5" height="14"/><rect x="424" y="148" width="5" height="14"/><rect x="494" y="148" width="5" height="14"/></g>
   <text x="300" y="182" class="sm" style="fill:var(--r-fg)">Meanwhile the model keeps working:</text>
-  <text x="300" y="197" class="xs">it can look at the plan or queue the next action.</text>
+  <text x="300" y="197" class="xs">it can look at the plan or the cameras.</text>
   <rect x="300" y="215" width="10" height="10" rx="1.5" fill="var(--r-bad)"/>
   <text x="316" y="224" class="mn" style="font-size:11.5px">kernel.action().stop()</text>
-  <text x="300" y="241" class="xs">stops it at once and the arms hold;</text>
-  <text x="300" y="255" class="xs">it can also replace what is queued.</text>
+  <text x="300" y="241" class="xs">stops it at once, and the arms hold.</text>
   <line x1="545" y1="66" x2="590" y2="66" stroke="var(--r-muted)" marker-end="url(#ar6)"/>
   <text x="596" y="16" class="lbb">3. When it ends, a report arrives</text>
-  <rect x="596" y="28" width="264" height="268" rx="6" fill="var(--r-bg)" stroke="var(--r-rule)"/>
+  <rect x="596" y="28" width="264" height="253" rx="6" fill="var(--r-bg)" stroke="var(--r-rule)"/>
   <path d="M597,50 V34 a5,5 0 0 1 5,-5 H854 a5,5 0 0 1 5,5 V50 Z" fill="var(--r-panel)"/>
   <text x="606" y="44" class="xs">a message to the model, images attached</text>
   <text x="606" y="68" class="mn" style="font-size:10.5px">[action smooth_far] done in 15.1 s</text>
-  <text x="606" y="83" class="mn" style="font-size:10.5px">[queue] started: smooth_outer (#4)</text>
-  <text x="606" y="98" class="mn" style="font-size:10.5px">[state] left xyz=[0.55,0.29,0.08] ...</text>
-  <text x="606" y="116" class="mn" style="font-size:10.5px">[view] after-smooth_far</text>
-  <image href="img/report-grid.jpg" x="606" y="123" width="136" height="102"/>
-  <rect x="606" y="123" width="136" height="102" fill="none" stroke="var(--r-rule)"/>
-  <text x="752" y="166" class="xs">every camera</text>
-  <text x="752" y="180" class="xs">in one image</text>
-  <text x="606" y="246" class="mn" style="font-size:10.5px;fill:var(--r-tool)">[marks towel-points]</text>
-  <text x="606" y="261" class="mn" style="font-size:10.5px">1:(0.69,-0.30,0.03) ... (12 points)</text>
-  <text x="606" y="280" class="xs" style="fill:var(--r-tool)">output of the agent's own check</text>
-  <text x="606" y="316" class="xs">No extra requests for images or state.</text>
+  <text x="606" y="83" class="mn" style="font-size:10.5px">[state] left xyz=[0.55,0.29,0.08] ...</text>
+  <text x="606" y="101" class="mn" style="font-size:10.5px">[view] after-smooth_far</text>
+  <image href="img/report-grid.jpg" x="606" y="108" width="136" height="102"/>
+  <rect x="606" y="108" width="136" height="102" fill="none" stroke="var(--r-rule)"/>
+  <text x="752" y="151" class="xs">every camera</text>
+  <text x="752" y="165" class="xs">in one image</text>
+  <text x="606" y="231" class="mn" style="font-size:10.5px;fill:var(--r-tool)">[marks towel-points]</text>
+  <text x="606" y="246" class="mn" style="font-size:10.5px">1:(0.69,-0.30,0.03) ... (12 points)</text>
+  <text x="606" y="265" class="xs" style="fill:var(--r-tool)">output of the agent's own check</text>
+  <text x="606" y="301" class="xs">No extra requests for images or state.</text>
 </svg>
 </div>
-<figcaption><b>Figure 6.</b> One action from start to end, from the crumpled-towel run in Video 3 (code shortened). The model writes the action and its own check (a hook) in one request, and both start at once. While the arm moves, the robot server checks every command, and the model keeps working and can stop the action. When the action ends, its report arrives as a message with the result, the arms' state, every camera in one image and the output of the hook. Here the next action had already started, because this run used the queue from section 5.</figcaption>
+<figcaption><b>Figure 6.</b> One action from start to end, adapted from the crumpled-towel run in Video 3 (code shortened, shown as a single action). The model writes the action and its own check (a hook) in one request, and both start at once. While the arm moves, the robot server checks every command, and the model keeps working and can stop the action. When the action ends, its report arrives as a message with the result, the arms' state, every camera in one image and the output of the hook.</figcaption>
 </figure>
 
 ## 3. Keep the context short
@@ -314,7 +312,61 @@ A robot agent looks at a lot of images, and as they pile up in the context, TTFT
 
 ## 4. Faster tools
 
-Once most of the extra requests were gone, the time spent inside tools became noticeable, at 6 to 10% of the run. Most of it sat between a look and the next action, where nothing else could happen. The largest improvement came from running the agent's code in a persistent Python process. Imports are paid for once, Python starts a call in tens of milliseconds instead of a few hundred, and variables and helper functions survive from one call to the next. We also made camera capture faster.
+Once most of the extra requests were gone, the time spent inside tools became noticeable, at 6 to 10% of the run. Most of it sat between a look and the next action, where nothing else could happen. The largest improvement came from running the agent's code in a persistent Python process. Imports are paid for once, Python starts a call in tens of milliseconds instead of a few hundred, and variables and helper functions survive from one call to the next (Figure 9). We also made camera capture faster.
+
+<figure class="rua-wide" id="persistent-kernel-fig">
+<div class="rua-fig">
+<svg viewBox="0 0 860 304.5" role="img" aria-label="Three calls from the crumpled-towel run sent to one persistent Python kernel. The first defines a helper, far; the second uses far and defines floor; the third uses floor. A new process per call would take a few hundred milliseconds to start and would lose every name.">
+  <defs><marker id="ar9" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--r-think)"/></marker></defs>
+  <text x="0" y="16" class="lbb">1. One call defines far</text>
+  <rect x="0" y="28" width="268" height="164" rx="6" fill="var(--r-panel)" stroke="var(--r-think)" stroke-width="1.5"/>
+  <rect x="5" y="39.0" width="258" height="14.5" rx="2" fill="var(--r-think-soft)" opacity=".8"/>
+  <text x="10.0" y="50.0" class="mn" style="font-size:10.5px">def far(x, y, z):</text>
+  <text x="22.6" y="64.5" class="mn" style="font-size:10.5px">return robot.pose([x, y, z], ...)</text>
+  <text x="10.0" y="79.0" class="mn" style="font-size:10.5px">F = {a: far(.58, y, .022) ...}</text>
+  <text x="10.0" y="93.5" class="mn" style="font-size:10.5px">FE = {...}</text>
+  <text x="10.0" y="108.0" class="mn" style="font-size:10.5px">for a in F:</text>
+  <text x="22.6" y="122.5" class="mn" style="font-size:10.5px">print(r.reachable([F[a],FE[a]],ee=a))</text>
+  <text x="10.0" y="137.0" class="mn" style="font-size:10.5px">viz.Overlay(r, "front").ghost(...)</text>
+  <line x1="10" y1="150.5" x2="258" y2="150.5" stroke="var(--r-rule)"/>
+  <text x="10.0" y="163.5" class="mn" style="font-size:10.5px;fill:var(--r-muted)">left [(True, None), (True, None)]</text>
+  <text x="10.0" y="178.0" class="mn" style="font-size:10.5px;fill:var(--r-muted)">[view] far-strokes</text>
+  <text x="296" y="16" class="lbb">2. 5 s later, the next uses it</text>
+  <rect x="296" y="28" width="268" height="106" rx="6" fill="var(--r-panel)" stroke="var(--r-think)" stroke-width="1.5"/>
+  <rect x="301" y="39.0" width="258" height="14.5" rx="2" fill="var(--r-think-soft)" opacity=".8"/>
+  <text x="306.0" y="50.0" class="mn" style="font-size:10.5px">floor = GripperFloor(m, ...)</text>
+  <text x="306.0" y="64.5" class="mn" style="font-size:10.5px">for a in ["left", "right"]:</text>
+  <rect x="301" y="68.0" width="258" height="14.5" rx="2" fill="var(--r-tool-soft)" opacity=".8"/>
+  <text x="318.6" y="79.0" class="mn" style="font-size:10.5px">floor.lowest(a, far(.58, .15, .022))</text>
+  <line x1="306" y1="92.5" x2="554" y2="92.5" stroke="var(--r-rule)"/>
+  <text x="306.0" y="105.5" class="mn" style="font-size:10.5px;fill:var(--r-muted)">left ... far low 0.0159</text>
+  <text x="306.0" y="120.0" class="mn" style="font-size:10.5px;fill:var(--r-muted)">right ... far low 0.0159</text>
+  <text x="592" y="16" class="lbb">3. 18 s later, floor is still there</text>
+  <rect x="592" y="28" width="268" height="121" rx="6" fill="var(--r-panel)" stroke="var(--r-think)" stroke-width="1.5"/>
+  <text x="602.0" y="50.0" class="mn" style="font-size:10.5px">for ang in [0, .15, .3]:</text>
+  <text x="614.6" y="64.5" class="mn" style="font-size:10.5px">T = scoop(.32, .25, .07, ang)</text>
+  <rect x="597" y="68.0" width="258" height="14.5" rx="2" fill="var(--r-tool-soft)" opacity=".8"/>
+  <text x="614.6" y="79.0" class="mn" style="font-size:10.5px">print(floor.lowest("left", T),</text>
+  <text x="652.4" y="93.5" class="mn" style="font-size:10.5px">r.reachable([T], ee="left"))</text>
+  <line x1="602" y1="107.0" x2="850" y2="107.0" stroke="var(--r-rule)"/>
+  <text x="602.0" y="120.0" class="mn" style="font-size:10.5px;fill:var(--r-muted)">scoop 0.15 low 0.010 [(False, ...)]</text>
+  <text x="602.0" y="134.5" class="mn" style="font-size:10.5px;fill:var(--r-muted)">scoop 0.3 low 0.021 [(True, None)]</text>
+  <path d="M262,46.0 C 285,46.0 276,75.0 298,75.0" fill="none" stroke="var(--r-think)" stroke-width="1.3" marker-end="url(#ar9)"/>
+  <path d="M558,46.0 C 581,46.0 572,75.0 594,75.0" fill="none" stroke="var(--r-think)" stroke-width="1.3" marker-end="url(#ar9)"/>
+  <rect x="0" y="204.5" width="11" height="11" rx="2" fill="var(--r-think-soft)"/><text x="16" y="214.5" class="xs">defined in this call</text>
+  <rect x="140" y="204.5" width="11" height="11" rx="2" fill="var(--r-tool-soft)"/><text x="156" y="214.5" class="xs">used again in a later call</text>
+  <text x="320" y="214.5" class="xs">robot, np and viz were imported once, when the kernel started.</text>
+  <text x="0" y="248.5" class="sm" style="fill:var(--r-fg)">Before each call's code runs (illustrative scale):</text>
+  <text x="0" y="272.5" class="xs">a new Python process</text>
+  <rect x="130" y="261.5" width="300" height="14" rx="2" fill="var(--r-idle)" stroke="var(--r-faint)"/>
+  <text x="440" y="272.5" class="xs">a few hundred ms to start and import; every name is gone when it exits</text>
+  <text x="0" y="294.5" class="xs">the kernel</text>
+  <rect x="130" y="283.5" width="30" height="14" rx="2" fill="var(--r-tool)"/>
+  <text x="170" y="294.5" class="xs">tens of ms; names, helpers and imports stay</text>
+</svg>
+</div>
+<figcaption><b>Figure 9.</b> Three calls from the crumpled-towel run in Video 3, all sent to the same Python process (code and output shortened). The second call uses the helper far defined in the first, and the third uses floor from the second. None of them imports robot, np or viz. A new Python process for each call would take a few hundred milliseconds to start and import, and would lose every name when it exits.</figcaption>
+</figure>
 
 ## 5. Pipelining: hiding time behind motion
 
@@ -326,7 +378,7 @@ The agent writes each action as a Python function and adds it to a queue. The ro
 kernel.queue(new_plan, replace_from="lift_right") <span class="rua-c"># replace the queue's tail while the head runs</span>
 kernel.action().stop()                            <span class="rua-c"># stop now; the arms hold</span></code></pre>
 
-The timing of feedback turned out to matter (Figure 9). The report for one action arrives as the next one starts, so the model reads how the last action went while the robot is already busy, and still has time to revise the action after that. If the model finishes its turn while the robot is still moving, the harness sends it a fresh camera view so that it gets started on the next step instead of sitting idle. And because a queued action starts from wherever the previous one left off, the agent writes actions that check their own preconditions, for instance that a cup is still in the gripper before carrying it anywhere.
+The timing of feedback turned out to matter (Figures 10 and 11). The report for one action arrives as the next one starts, so the model reads how the last action went while the robot is already busy, and still has time to revise the action after that. If the model finishes its turn while the robot is still moving, the harness sends it a fresh camera view so that it gets started on the next step instead of sitting idle. And because a queued action starts from wherever the previous one left off, the agent writes actions that check their own preconditions, for instance that a cup is still in the gripper before carrying it anywhere.
 
 <figure class="rua-wide">
 <div class="rua-fig">
@@ -353,7 +405,118 @@ The timing of feedback turned out to matter (Figure 9). The report for one actio
   <text x="110" y="234" class="sm">and can still change action 3 before it begins.</text>
 </svg>
 </div>
-<figcaption><b>Figure 9.</b> How the queue overlaps thinking with motion. Each report lands while the next action is already running, so the model's request time is hidden, as long as it finishes before the queue runs dry.</figcaption>
+<figcaption><b>Figure 10.</b> How the queue overlaps thinking with motion. Each report lands while the next action is already running, so the model's request time is hidden, as long as it finishes before the queue runs dry.</figcaption>
+</figure>
+
+<figure class="rua-wide">
+<div class="rua-fig">
+<svg viewBox="0 14 860 339" role="img" aria-label="36 seconds of the crumpled-towel run. While one smoothing stroke runs, the model queues the next, checks its next plans, and reads each report as the next stroke starts. The report notes that nothing is queued behind; the model queues the next stroke 2.8 seconds later, so the arms never stop.">
+  <defs><marker id="ar11" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--r-think)"/></marker></defs>
+  <text x="0" y="41" class="lbb">Robot</text>
+  <text x="0" y="66" class="xs">in the queue</text>
+  <text x="0" y="94" class="lbb">Model</text>
+  <rect x="96" y="24" width="754" height="26" fill="var(--r-idle)"/>
+  <rect x="100.5" y="24" width="313.9" height="26" rx="3" fill="var(--r-robot)"/>
+  <text x="108.5" y="41.5" class="sm" style="fill:var(--r-bg);font-weight:600">smooth_first</text>
+  <rect x="415.9" y="24" width="315.1" height="26" rx="3" fill="var(--r-robot)"/>
+  <text x="423.9" y="41.5" class="sm" style="fill:var(--r-bg);font-weight:600">smooth_far</text>
+  <rect x="732.5" y="24" width="116.0" height="26" rx="3" fill="var(--r-robot)"/>
+  <text x="740.5" y="41.5" class="sm" style="fill:var(--r-bg);font-weight:600">smooth_outer</text>
+  <rect x="250.3" y="56" width="164.1" height="13" rx="2" fill="none" stroke="var(--r-robot)" stroke-dasharray="4 2"/>
+  <text x="256.3" y="66" class="xs">smooth_far waits</text>
+  <line x1="250.3" y1="80" x2="250.3" y2="71" stroke="var(--r-think)" stroke-width="1.3" marker-end="url(#ar11)"/>
+  <rect x="479.7" y="56" width="251.3" height="13" rx="2" fill="none" stroke="var(--r-robot)" stroke-dasharray="4 2"/>
+  <text x="485.7" y="66" class="xs">smooth_outer waits</text>
+  <line x1="479.7" y1="80" x2="479.7" y2="71" stroke="var(--r-think)" stroke-width="1.3" marker-end="url(#ar11)"/>
+  <rect x="96" y="80" width="754" height="18" fill="var(--r-idle)"/>
+  <rect x="96.0" y="80" width="2.4" height="18" fill="var(--r-think)"/>
+  <rect x="99.2" y="80" width="1.6" height="18" fill="var(--r-tool)"/>
+  <rect x="100.6" y="80" width="34.7" height="18" fill="var(--r-think)"/>
+  <rect x="136.2" y="80" width="1.6" height="18" fill="var(--r-tool)"/>
+  <rect x="136.3" y="80" width="49.7" height="18" fill="var(--r-think)"/>
+  <rect x="186.8" y="80" width="6.2" height="18" fill="var(--r-tool)"/>
+  <rect x="193.1" y="80" width="55.4" height="18" fill="var(--r-think)"/>
+  <rect x="249.2" y="80" width="1.7" height="18" fill="var(--r-tool)"/>
+  <rect x="250.9" y="80" width="47.3" height="18" fill="var(--r-think)"/>
+  <rect x="299.0" y="80" width="3.7" height="18" fill="var(--r-tool)"/>
+  <rect x="302.7" y="80" width="32.3" height="18" fill="var(--r-think)"/>
+  <rect x="335.8" y="80" width="1.8" height="18" fill="var(--r-tool)"/>
+  <rect x="337.6" y="80" width="44.8" height="18" fill="var(--r-think)"/>
+  <rect x="383.2" y="80" width="9.9" height="18" fill="var(--r-tool)"/>
+  <rect x="393.1" y="80" width="84.9" height="18" fill="var(--r-think)"/>
+  <rect x="478.8" y="80" width="1.6" height="18" fill="var(--r-tool)"/>
+  <rect x="480.3" y="80" width="83.1" height="18" fill="var(--r-think)"/>
+  <rect x="564.2" y="80" width="1.6" height="18" fill="var(--r-tool)"/>
+  <rect x="565.8" y="80" width="106.4" height="18" fill="var(--r-think)"/>
+  <rect x="673.1" y="80" width="14.6" height="18" fill="var(--r-tool)"/>
+  <rect x="687.7" y="80" width="144.1" height="18" fill="var(--r-think)"/>
+  <rect x="832.6" y="80" width="4.5" height="18" fill="var(--r-tool)"/>
+  <rect x="837.1" y="80" width="12.1" height="18" fill="var(--r-think)"/>
+  <path d="M416.1,71 L426.1,71 L421.1,78 z" fill="var(--r-fg)"/>
+  <path d="M733.8,71 L743.8,71 L738.8,78 z" fill="var(--r-fg)"/>
+  <text x="429.1" y="77" class="xs" style="fill:var(--r-fg)">report</text>
+  <text x="746.8" y="77" class="xs" style="fill:var(--r-fg)">report</text>
+  <line x1="250.4" y1="99" x2="250.4" y2="104" stroke="var(--r-fg)"/>
+  <circle cx="250.4" cy="112" r="8" fill="var(--r-fg)"/>
+  <text x="250.4" y="116" text-anchor="middle" class="xs" style="fill:var(--r-bg);font-weight:700">1</text>
+  <line x1="421.1" y1="99" x2="421.1" y2="104" stroke="var(--r-fg)"/>
+  <circle cx="421.1" cy="112" r="8" fill="var(--r-fg)"/>
+  <text x="421.1" y="116" text-anchor="middle" class="xs" style="fill:var(--r-bg);font-weight:700">2</text>
+  <line x1="479.7" y1="99" x2="479.7" y2="104" stroke="var(--r-fg)"/>
+  <circle cx="479.7" cy="112" r="8" fill="var(--r-fg)"/>
+  <text x="479.7" y="116" text-anchor="middle" class="xs" style="fill:var(--r-bg);font-weight:700">3</text>
+  <line x1="189.8" y1="99" x2="189.8" y2="124" stroke="var(--r-tool)"/>
+  <text x="189.8" y="136" text-anchor="middle" class="xs" style="fill:var(--r-tool)">ghost of the strokes</text>
+  <line x1="388.2" y1="99" x2="388.2" y2="124" stroke="var(--r-tool)"/>
+  <text x="388.2" y="136" text-anchor="middle" class="xs" style="fill:var(--r-tool)">3D view of the next crease</text>
+  <line x1="745.3" y1="128" x2="850" y2="128" stroke="var(--r-muted)"/><line x1="745.3" y1="124" x2="745.3" y2="132" stroke="var(--r-muted)"/><line x1="850" y1="124" x2="850" y2="132" stroke="var(--r-muted)"/>
+  <text x="797.6" y="142" text-anchor="middle" class="xs">5 s</text>
+  <circle cx="8.0" cy="158" r="8" fill="var(--r-fg)"/>
+  <text x="8.0" y="162" text-anchor="middle" class="xs" style="fill:var(--r-bg);font-weight:700">1</text>
+  <text x="22" y="162" class="lbb">It queues the next stroke</text>
+  <rect x="0" y="174" width="268" height="113" rx="6" fill="var(--r-panel)" stroke="var(--r-think)" stroke-width="1.5"/>
+  <text x="10.0" y="194.0" class="mn" style="font-size:10.5px">def smooth_far(r):</text>
+  <text x="22.6" y="208.5" class="mn" style="font-size:10.5px">r.move(F, ee=list(F), line=True)</text>
+  <text x="22.6" y="223.0" class="mn" style="font-size:10.5px">...</text>
+  <text x="10.0" y="237.5" class="mn" style="font-size:10.5px">kernel.queue(smooth_far)</text>
+  <line x1="10" y1="245.0" x2="258" y2="245.0" stroke="var(--r-rule)"/>
+  <text x="10.0" y="260.0" class="mn" style="font-size:10.5px;fill:var(--r-muted)">[action smooth_far] queued behind</text>
+  <text x="22.6" y="274.5" class="mn" style="font-size:10.5px;fill:var(--r-muted)">smooth_first as #3</text>
+  <circle cx="304.0" cy="158" r="8" fill="var(--r-fg)"/>
+  <text x="304.0" y="162" text-anchor="middle" class="xs" style="fill:var(--r-bg);font-weight:700">2</text>
+  <text x="318" y="162" class="lbb">A report as smooth_far starts</text>
+  <rect x="296" y="174" width="268" height="169" rx="6" fill="var(--r-bg)" stroke="var(--r-rule)"/>
+  <path d="M297,196 V180 a5,5 0 0 1 5,-5 H558 a5,5 0 0 1 5,5 V196 Z" fill="var(--r-panel)"/>
+  <text x="306" y="190" class="xs">a message to the model</text>
+  <text x="306.0" y="214.0" class="mn" style="font-size:10.5px">[action smooth_first] done in 15.1 s</text>
+  <text x="306.0" y="228.5" class="mn" style="font-size:10.5px">[queue] started: smooth_far (#3;</text>
+  <text x="318.6" y="243.0" class="mn" style="font-size:10.5px">it had waited 7.9 s)</text>
+  <rect x="301" y="246.5" width="258" height="14.5" rx="2" fill="var(--r-tool-soft)" opacity=".8"/>
+  <text x="306.0" y="257.5" class="mn" style="font-size:10.5px">[queue] empty behind it: as #3</text>
+  <rect x="301" y="261.0" width="258" height="14.5" rx="2" fill="var(--r-tool-soft)" opacity=".8"/>
+  <text x="318.6" y="272.0" class="mn" style="font-size:10.5px">ends, the arms stop until the</text>
+  <rect x="301" y="275.5" width="258" height="14.5" rx="2" fill="var(--r-tool-soft)" opacity=".8"/>
+  <text x="318.6" y="286.5" class="mn" style="font-size:10.5px">next action is queued</text>
+  <text x="306.0" y="301.0" class="mn" style="font-size:10.5px">[state] left xyz=[0.405,0.247,...]</text>
+  <text x="306.0" y="315.5" class="mn" style="font-size:10.5px">[view] after-smooth_first</text>
+  <text x="306.0" y="330.0" class="mn" style="font-size:10.5px">[marks towel-points] 1:(0.345,...)</text>
+  <circle cx="600.0" cy="158" r="8" fill="var(--r-fg)"/>
+  <text x="600.0" y="162" text-anchor="middle" class="xs" style="fill:var(--r-bg);font-weight:700">3</text>
+  <text x="614" y="162" class="lbb">2.8 s later, the next one</text>
+  <rect x="592" y="174" width="268" height="113" rx="6" fill="var(--r-panel)" stroke="var(--r-think)" stroke-width="1.5"/>
+  <text x="602.0" y="194.0" class="mn" style="font-size:10.5px">def smooth_outer(r):</text>
+  <text x="614.6" y="208.5" class="mn" style="font-size:10.5px">r.move(start, ...)</text>
+  <text x="614.6" y="223.0" class="mn" style="font-size:10.5px">...</text>
+  <text x="602.0" y="237.5" class="mn" style="font-size:10.5px">kernel.queue(smooth_outer)</text>
+  <line x1="602" y1="245.0" x2="850" y2="245.0" stroke="var(--r-rule)"/>
+  <text x="602.0" y="260.0" class="mn" style="font-size:10.5px;fill:var(--r-muted)">[action smooth_outer] queued behind</text>
+  <text x="614.6" y="274.5" class="mn" style="font-size:10.5px;fill:var(--r-muted)">smooth_far as #4</text>
+  <text x="592" y="309.0" class="sm" style="fill:var(--r-fg)">smooth_outer starts the moment</text>
+  <text x="592" y="325.0" class="sm" style="fill:var(--r-fg)">smooth_far ends: the arms never stop.</text>
+</svg>
+</div>
+<div class="rua-legend"><span><i style="background:var(--r-robot)"></i>robot moving</span><span><i style="border:1px dashed var(--r-robot);background:none"></i>waiting in the queue</span><span><i style="background:var(--r-think)"></i>model working</span><span><i style="background:var(--r-tool)"></i>tool</span></div>
+<figcaption><b>Figure 11.</b> 36 seconds of the crumpled-towel run in Video 3 (code and messages shortened). (1) While smooth_first runs, the model queues the next stroke, which waits its turn. In between, it checks its next plans: a ghost of the strokes on the front camera, then a 3D view of the next crease. (2) The report for smooth_first arrives as smooth_far starts, and says that nothing is queued behind it. (3) The model queues the next stroke 2.8 s later, so it starts the moment smooth_far ends.</figcaption>
 </figure>
 
 <figure class="rua-wide">
@@ -361,14 +524,14 @@ The timing of feedback turned out to matter (Figure 9). The report for one actio
 <svg id="f6" viewBox="0 7 860 293" role="img" aria-label="Agent and robot lanes for the same work in three harnesses"></svg>
 </div>
 <div class="rua-legend"><span><i style="background:var(--r-think-soft)"></i>TTFT</span><span><i style="background:var(--r-think)"></i>generating</span><span><i style="background:var(--r-tool)"></i>tool / image read</span><span><i style="background:var(--r-robot)"></i>robot moving</span></div>
-<figcaption><b>Figure 10.</b> The same cup task in three harnesses, on one time axis. Top: a vanilla agent loop. Middle: sections 1–4, without the queue. Bottom: with the queue (the real run). Model time barely changes from middle to bottom; most of it now happens while the arm moves. The top two rows are replays of the real run, explained under Results. Excludes the agent's initial reading of the robot API code.</figcaption>
+<figcaption><b>Figure 12.</b> The same cup task in three harnesses, on one time axis. Top: a vanilla agent loop. Middle: sections 1–4, without the queue. Bottom: with the queue (the real run). Model time barely changes from middle to bottom; most of it now happens while the arm moves. The top two rows are replays of the real run, explained under Results. Excludes the agent's initial reading of the robot API code.</figcaption>
 </figure>
 
 Uni-robot-agent [[2]](#r2) uses the same idea. Its tool calls can run in the background, so the model keeps reasoning while the robot executes, and in simulation this cut episode times substantially. Our version differs mainly in how results come back: the agent doesn't ask for them. Each action's report reaches it as a message as the next action starts, while there is still time to change what comes after.
 
 ## Results
 
-We first compare real runs. Figure 11 shows every towel-folding run that finished the task or ran for at least a few minutes, grouped by the three versions of the harness we ran on the robot: the original, one with fewer round trips, a shorter context and faster tools but no queue, and the full harness with the queue. Run times vary a lot, because they depend on how the towel starts out and on the choices the agent makes, and many runs were stopped before the end. Alongside time to finish, we therefore show two measures that don't need a finished run: how much of the time the robot was moving, and how much of the model's time overlapped motion.
+We first compare real runs. Figure 13 shows every towel-folding run that finished the task or ran for at least a few minutes, grouped by the three versions of the harness we ran on the robot: the original, one with fewer round trips, a shorter context and faster tools but no queue, and the full harness with the queue. Run times vary a lot, because they depend on how the towel starts out and on the choices the agent makes, and many runs were stopped before the end. Alongside time to finish, we therefore show two measures that don't need a finished run: how much of the time the robot was moving, and how much of the model's time overlapped motion.
 
 Cutting round trips raised the robot's moving share from a median of 29% to 52%, because the robot spent less time waiting between actions. It hid none of the model's time, though, since every action still blocked. The queue is what hid it: the median share of model time that overlapped motion went from almost none to about half. Runs that finished took a median of about 6 minutes with the full harness, against 16 to 18 minutes with the earlier versions.
 
@@ -376,16 +539,16 @@ Cutting round trips raised the robot's moving share from a median of 29% to 52%,
 <div class="rua-fig">
 <svg id="f9" viewBox="0 0 860 219" role="img" aria-label="Real towel runs before and after the queue"></svg>
 </div>
-<figcaption><b>Figure 11.</b> Real towel-folding runs, grouped by harness version. Filled dots finished the task; hollow dots were stopped early. Time to finish counts only finished runs. Vertical bars are medians. Excludes the agent's initial reading of the robot API code.</figcaption>
+<figcaption><b>Figure 13.</b> Real towel-folding runs, grouped by harness version. Filled dots finished the task; hollow dots were stopped early. Time to finish counts only finished runs. Vertical bars are medians. Excludes the agent's initial reading of the robot API code.</figcaption>
 </figure>
 
-Because real runs vary this much, they can't tell us what each design contributes on its own. For that we took one real run of the cup task, made with the full harness, and replayed it without each design in turn. The replay keeps the same model responses, tool calls and actions in the same order, and adds back the requests each design removes, at the step and tool costs we measured on the robot. Only the last bar in Figure 12 is the real run.
+Because real runs vary this much, they can't tell us what each design contributes on its own. For that we took one real run of the cup task, made with the full harness, and replayed it without each design in turn. The replay keeps the same model responses, tool calls and actions in the same order, and adds back the requests each design removes, at the step and tool costs we measured on the robot. Only the last bar in Figure 14 is the real run.
 
 <figure>
 <div class="rua-fig rua-narrow">
 <svg id="f7" viewBox="0 0 640 300" role="img" aria-label="Wall time per stage"></svg>
 </div>
-<figcaption><b>Figure 12.</b> Wall time for the same cup task as each design is added. Model requests fall from 164 to 59. The queue removes no model time; it overlaps it with motion. Excludes the agent's initial reading of the robot API code.</figcaption>
+<figcaption><b>Figure 14.</b> Wall time for the same cup task as each design is added. Model requests fall from 164 to 59. The queue removes no model time; it overlaps it with motion. Excludes the agent's initial reading of the robot API code.</figcaption>
 </figure>
 
 Together, the changes reduce the wall time of this task from 667 s to 204 s, a 3.3× speedup. Before the queue, almost all of the gain comes from cutting the number of model requests. The queue doesn't reduce the model's time at all, but it moves 137 of the 182 seconds of model time into periods when the robot is moving. From the first motion to the end, the robot goes from moving 24% of the time to 84%.
@@ -418,7 +581,7 @@ The table below lists the three runs from our demo videos, all made with the ful
 
 ## Limitations
 
-Hiding the model's time behind motion is not the same as making the agent fast. Even when the queue hides nearly all of it, every action is still based on an observation that is about 5 seconds old by the time the action is queued (Figure 13). The robot moves most of the time, but it reacts like a player in a game with very high ping.
+Hiding the model's time behind motion is not the same as making the agent fast. Even when the queue hides nearly all of it, every action is still based on an observation that is about 5 seconds old by the time the action is queued (Figure 15). The robot moves most of the time, but it reacts like a player in a game with very high ping.
 
 <figure class="rua-wide">
 <div class="rua-fig">
@@ -441,16 +604,16 @@ Hiding the model's time behind motion is not the same as making the agent fast. 
   <text x="357" y="162" text-anchor="middle" class="lbb">median 4.7–6.0 s</text>
 </svg>
 </div>
-<figcaption><b>Figure 13.</b> The latency the queue can't hide: from the latest observation the model received to the action it queued in response. Median per run, for the three runs in the table.</figcaption>
+<figcaption><b>Figure 15.</b> The latency the queue can't hide: from the latest observation the model received to the action it queued in response. Median per run, for the three runs in the table.</figcaption>
 </figure>
 
-This is also why the queue helps some tasks much more than others. Lifting three cups in turn can be planned from a single look, so several actions wait in the queue and the robot rarely stops. Cloth needs a look after almost every grasp, so the queue runs one deep, and every few actions the robot waits while the model looks and thinks (Figure 14). Tasks that need fine, live correction are the worst case. In our ring-stacking runs, where the agent had to line a ring up over a peg, the robot was moving only 28 to 36% of the time even with the queue, because each small correction depended on seeing the result of the last one.
+This is also why the queue helps some tasks much more than others. Lifting three cups in turn can be planned from a single look, so several actions wait in the queue and the robot rarely stops. Cloth needs a look after almost every grasp, so the queue runs one deep, and every few actions the robot waits while the model looks and thinks (Figure 16). Tasks that need fine, live correction are the worst case. In our ring-stacking runs, where the agent had to line a ring up over a peg, the robot was moving only 28 to 36% of the time even with the queue, because each small correction depended on seeing the result of the last one.
 
 <figure class="rua-wide">
 <div class="rua-fig">
 <svg id="f8" viewBox="0 1 860 161" role="img" aria-label="Towel run lanes with long gaps"></svg>
 </div>
-<figcaption><b>Figure 14.</b> Part of the crumpled-towel run where the queue didn't help. The robot waits while the agent looks before folding, and again while it re-plans after a sweep went wrong.</figcaption>
+<figcaption><b>Figure 16.</b> Part of the crumpled-towel run where the queue didn't help. The robot waits while the agent looks before folding, and again while it re-plans after a sweep went wrong.</figcaption>
 </figure>
 
 Closing this gap needs a shorter loop from observation to action. That means lower TTFT and less reasoning on routine steps, but it may also mean splitting the work, so that a faster, smaller model or a reactive controller handles the corrections that can't wait several seconds.
