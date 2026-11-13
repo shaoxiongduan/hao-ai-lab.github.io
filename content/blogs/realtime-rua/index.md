@@ -9,9 +9,9 @@ draft = false
 contentClass = "post-content-justified"
 summary = "Robot-use agents score well on benchmarks whose simulators wait for the model, but on a real robot every second of thinking is a second the robot stands still. On a two-arm robot, we cut the agent's per-request overhead, kept its context short and let the robot run queued actions while the model plans the next ones, hiding most of the model's time behind motion."
 [cover]
-  image = "img/setup-cell.jpg"
+  image = "img/thumbnail.jpg"
   relative = true
-  alt = "Two YAM robot arms behind a table with a towel laid out for folding"
+  alt = "Two robot arms and a crumpled towel next to the headline result: towel folding about 3x faster, from 18 to 6 minutes"
   hiddenInSingle = true
 [socialIcons]
   [[socialIcons.icon]]
@@ -53,7 +53,7 @@ body.dark{--r-bg:#1d1e20;--r-fg:#e7e9ee;--r-muted:#a3a9b5;--r-faint:#7c8290;--r-
 - Robot-use agents are still far too slow for the real world. Benchmarks like RoboDojo don't show it, because their simulators wait for the model before stepping.
 - The agent's time goes mostly to per-request overhead, time to first token (TTFT) above all, which it pays on every tool-call round trip. So we cut the number of requests, kept the context short and made the tools faster.
 - We then let the robot carry out queued actions while the model plans the next ones, which hides most of the model's time behind motion.
-- Finished towel-folding runs went from a median of about 17 minutes to about 6, and on a cup task the robot moved 84% of the time. What remains is latency: the robot acts on what it saw about 5 seconds earlier.
+- Finished towel-folding runs went from a median of about 18 minutes to about 6, and on a cup task the robot moved 84% of the time. What remains is latency: the robot acts on what it saw about 5 seconds earlier.
 
 Over the past year, robot-use agents (RUAs) have become a serious alternative to end-to-end robot policies. GPT-6 Astra, driving a robot through code, scored above all 40 public policies on RoboDojo [[1]](#r1). Uni-robot-agent put open-weight models such as Qwen3.8-Flash-Next on the same benchmark, well ahead of VLA and world-action-model baselines like π0.5 and OpenWAM-α [[2]](#r2). Anthropic reports 64.9% on RoboDojo Sim for Fable 5.2 [[3]](#r3).
 
