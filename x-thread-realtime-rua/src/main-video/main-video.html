@@ -1,0 +1,333 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&display=swap">
+<style>
+:root{--bg:#121316;--panel:#1b1d21;--fg:#eef0f4;--muted:#a3a9b5;--faint:#7c8290;--rule:#33363d;--robot:#3cc0aa;--wait:#6b5bd2;--gen:#b3a6ff;--tool:#e8a94a;--img:#e48cc0;--rep:#4fa6e3;--idle:#262a31;--bad:#ff7a5f;--think:#8f80ee;--mod:#eac46b;--mod-bg:#3a2f14;--real:#5fd9b3;--real-bg:#143329}
+*{box-sizing:border-box}
+html,body{margin:0;width:1920px;height:1080px;overflow:hidden;background:var(--bg);font-family:"Archivo","Helvetica Neue",Arial,sans-serif;color:var(--fg);font-variant-numeric:tabular-nums}
+.layer{position:absolute;inset:0}
+#zoom{transform-origin:1892px 1060px}
+#bg{width:1920px;height:1080px;display:block}
+#hl{position:absolute;left:1598px;top:994px;width:292px;height:62px;border:5px solid var(--bad);border-radius:10px;box-shadow:0 0 0 4000px rgba(8,9,12,var(--spot,0)),0 0 28px rgba(255,122,95,.7)}
+#dim{background:radial-gradient(ellipse at 50% 48%,rgba(10,11,14,.55),rgba(10,11,14,.25) 70%)}
+.big{font-weight:800;letter-spacing:-.015em;line-height:1.05;text-shadow:0 4px 30px rgba(0,0,0,.55)}
+.sub{color:var(--muted);font-weight:500}
+#t1{display:flex;align-items:center;justify-content:center;text-align:center}
+#t1 .big{font-size:92px;max-width:1500px}
+#credit{position:absolute;right:44px;top:34px;font-size:22px;font-weight:500;color:rgba(255,255,255,.85);text-shadow:0 2px 8px rgba(0,0,0,.9)}
+#t2{padding:150px 0 0 120px}
+#t2 .big{font-size:110px}
+#t2 .sub{font-size:38px;margin-top:26px;color:#d9dce3;max-width:1100px;line-height:1.3;text-shadow:0 2px 14px rgba(0,0,0,.8)}
+#t2 .sub b{color:var(--bad)}
+#dark{background:var(--bg)}
+#t3{display:flex;align-items:center;justify-content:center}
+#t3 .big{font-size:100px}
+.pill{display:inline-block;font-size:21px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:7px 15px 6px;border-radius:999px;line-height:1}
+.pill.mod{color:var(--mod);background:var(--mod-bg)} .pill.real{color:var(--real);background:var(--real-bg)}
+.lab{fill:var(--muted);font-size:22px;font-weight:700;letter-spacing:.06em}
+.lab2{fill:var(--faint);font-size:17px;font-weight:500}
+.tick{fill:var(--faint);font-size:20px}
+.val{fill:var(--fg);font-size:36px;font-weight:700}
+.legend{position:absolute;display:flex;gap:34px;font-size:23px;color:var(--muted);font-weight:500;align-items:center}
+.legend i{display:inline-block;width:20px;height:20px;border-radius:4px;margin-right:10px;vertical-align:-3px}
+.legend i.tri{width:0;height:0;border-radius:0;border-left:10px solid transparent;border-right:10px solid transparent;border-top:16px solid var(--rep);vertical-align:-1px}
+/* scene T: the stages */
+#T .title{position:absolute;left:120px;top:92px}
+#T h2{margin:0;font-size:62px;font-weight:800;letter-spacing:-.01em;display:flex;align-items:center;gap:24px}
+#T .title p{margin:14px 0 0;font-size:30px;color:var(--muted);font-weight:500}
+#counter{position:absolute;right:120px;top:96px;text-align:right}
+#counter .n{font-size:100px;font-weight:800;line-height:1}
+#counter .l{font-size:25px;color:var(--muted);font-weight:500;margin-top:8px}
+.cards{position:absolute;left:120px;top:612px;display:grid;grid-template-columns:repeat(4,1fr);gap:36px;width:1680px}
+.card{background:var(--panel);border-radius:16px;padding:22px 28px 24px;border:3px solid transparent}
+.card .v{font-size:60px;font-weight:800;line-height:1}
+.card .l{font-size:23px;color:var(--muted);font-weight:500;margin-top:12px}
+.note{position:absolute;left:120px;top:900px;font-size:44px;font-weight:700}
+.note span{color:var(--robot)}
+/* scene C: before / after */
+#C .head{position:absolute;left:120px;top:110px;display:flex;align-items:baseline;gap:40px;transform-origin:0 50%}
+#C .head .x{font-size:140px;font-weight:800;color:var(--robot);letter-spacing:-.02em}
+#C .head .y{font-size:58px;font-weight:700}
+#C .head .y span{color:var(--muted);font-weight:500}
+#C .tag{position:absolute;left:120px;top:296px;font-size:31px;color:var(--muted);font-weight:500}
+#C .rowlab{position:absolute;left:120px;width:330px}
+#C .rowlab b{display:block;font-size:32px;font-weight:700;margin-bottom:10px}
+#C .rowlab .m{display:block;font-size:24px;color:var(--muted);font-weight:500;margin-top:10px}
+#C .foot{position:absolute;left:120px;top:968px;font-size:21px;color:var(--faint);font-weight:500;max-width:1680px}
+/* scene R: real runs */
+#R .title{position:absolute;left:84px;top:74px}
+#R h2{margin:0;font-size:56px;font-weight:800;letter-spacing:-.01em;display:flex;align-items:center;gap:22px}
+#R .title p{margin:12px 0 0;font-size:28px;color:var(--muted);font-weight:500}
+.tile{position:absolute;top:226px;width:552px}
+.tile .v{position:relative;width:552px;height:414px;border-radius:14px;overflow:hidden;background:#000}
+.tile img{width:552px;height:414px;display:block;object-fit:cover}
+.tile .clock{position:absolute;left:14px;top:12px;font-size:30px;font-weight:800;padding:6px 12px;border-radius:9px;background:rgba(10,11,14,.72)}
+.tile .clock.done{color:var(--robot)}
+.tile .spd{position:absolute;right:14px;top:12px;font-size:22px;font-weight:700;padding:8px 12px;border-radius:9px;background:rgba(10,11,14,.72);color:var(--muted)}
+.tile svg{display:block;margin-top:18px}
+.tile .nm{font-size:27px;font-weight:700;margin-top:16px;line-height:1.2}
+.tile .st{font-size:25px;color:var(--muted);font-weight:500;margin-top:8px}
+.tile .st b{color:var(--robot);font-weight:700}
+#R .bottom{position:absolute;left:84px;top:936px;font-size:36px;font-weight:700}
+#R .bottom span{color:var(--robot)}
+#R .nocut{color:var(--fg);font-weight:700}
+#R .rfoot{position:absolute;left:84px;top:1012px;font-size:21px;color:var(--faint);font-weight:500}
+#end{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;text-align:center}
+#end h1{margin:0;font-size:76px;font-weight:800;letter-spacing:-.015em;max-width:1500px;line-height:1.08}
+#end .lab3{font-size:36px;color:var(--muted);font-weight:600}
+#end .url{font-size:36px;color:var(--robot);font-weight:600}
+</style></head><body>
+<div id="vid" class="layer">
+  <div id="zoom" class="layer"><img id="bg" alt=""><div id="hl"></div></div>
+  <div id="dim" class="layer"></div>
+  <div id="credit">Footage: Anthropic, &ldquo;Claude Fable 5.2 controls physical robot arms&rdquo;</div>
+  <div id="t1" class="layer"><div class="big">Agents are now good at controlling robots.</div></div>
+  <div id="t2" class="layer"><div class="big">But they are slow.</div><div class="sub">Even with the pauses cut, solving the cube<br>still took about an hour.</div></div>
+</div>
+<div id="dark" class="layer"></div>
+<div id="t3" class="layer"><div class="big">How can we make them faster?</div></div>
+
+<div id="T" class="layer">
+  <div class="title"><h2><span id="tTitle">Vanilla agent loop</span><span id="tPill" class="pill mod">modelled</span></h2><p id="tSub"></p></div>
+  <div id="counter"><div class="n">1.00&times;</div><div class="l">faster than the vanilla loop</div></div>
+  <svg id="svgT" class="layer" width="1920" height="1080"></svg>
+  <div class="cards">
+    <div class="card" id="cWall"><div class="v">667 s</div><div class="l">time to finish</div></div>
+    <div class="card" id="cReq"><div class="v">164</div><div class="l">model requests</div></div>
+    <div class="card" id="cMov"><div class="v">24%</div><div class="l">robot moving</div></div>
+    <div class="card" id="cHid"><div class="v">0 s</div><div class="l">model time hidden by motion</div></div>
+  </div>
+  <div class="legend" style="left:120px;top:812px"><span><i style="background:var(--robot)"></i>robot moving</span><span><i style="background:var(--wait)"></i>waiting for the model</span><span><i style="background:var(--gen)"></i>model writing</span><span><i style="background:var(--tool)"></i>tool call</span><span><i class="tri"></i>report arrives</span></div>
+  <div class="note" id="noteT1">The robot moves only <span>24%</span> of the time.</div>
+  <div class="note" id="noteT2">The model now thinks <span>while the robot moves</span>.</div>
+</div>
+
+<div id="C" class="layer">
+  <div class="head"><div class="x">3.3&times; faster</div><div class="y">667 s <span>&rarr;</span> 204 s</div></div>
+  <div class="tag">Same model, same task. With pipelining, the robot runs actions while the model plans the next ones.</div>
+  <div class="rowlab" style="top:410px"><b>Vanilla loop</b><span class="pill mod">modelled</span><span class="m">robot moving 24%</span></div>
+  <div class="rowlab" style="top:620px"><b>With pipelining</b><span class="pill real">real run</span><span class="m" style="color:var(--robot)">robot moving 84%</span></div>
+  <svg id="svgC" class="layer" width="1920" height="1080"></svg>
+  <div class="legend" style="left:480px;top:868px"><span><i style="background:var(--robot)"></i>robot moving</span><span><i style="background:var(--wait)"></i>waiting for the model</span><span><i style="background:var(--gen)"></i>model writing</span><span><i style="background:var(--tool)"></i>tool call</span><span><i class="tri"></i>report arrives</span></div>
+  <div class="foot">The vanilla loop is modelled from the real run: the same model responses, tool calls and actions, with the requests each design removes added back.</div>
+</div>
+
+<div id="R" class="layer">
+  <div class="title"><h2>Real runs with the full harness<span class="pill real">real robot</span></h2><p>Sped up evenly, <b class="nocut">no pauses cut.</b> Under each: what the robot and the agent were doing.</p></div>
+  <div id="tiles"></div>
+  <div class="bottom" id="rBottom">Finished towel folds: median <span>~18 min &rarr; ~6 min</span> across our real runs.</div>
+  <div class="rfoot">Each clip starts once the agent has read the robot API code, as in the blog.</div>
+</div>
+
+<div id="end" class="layer"><h1>Getting Robot-Use Agents<br>to Run in Real Time</h1><div class="lab3">Hao AI Lab</div><div class="url">haoailab.com/blogs/realtime-rua</div></div>
+
+<script>
+const D = __DATA__;
+const NS = "http://www.w3.org/2000/svg";
+const $ = id => document.getElementById(id);
+const el = (tag, attrs, parent, text) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (text != null) e.textContent = text; parent.appendChild(e); return e; };
+const KC = { w: "var(--wait)", g: "var(--gen)", t: "var(--tool)", i: "var(--tool)" };  // image reads count as tool calls, as in the blog
+const TRI = "M-8,-15 L8,-15 L0,-1 Z";
+const ST = D.stages, VAN = ST[0].wall;
+const lerp = (a, b, p) => a + (b - a) * p;
+const cl = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const ease = x => { x = cl(x); return x * x * (3 - 2 * x); };
+const ramp = (t, a, b) => ease((t - a) / (b - a));
+const win = (t, a, b, c, d) => Math.min(ramp(t, a, b), 1 - ramp(t, c, d));
+const show = (id, o, dy = 0) => { const e = typeof id === "string" ? $(id) : id; e.style.opacity = o; e.style.transform = dy ? `translateY(${dy}px)` : ""; e.style.visibility = o > 0.001 ? "visible" : "hidden"; };
+const fmtX = x => (x < 1.995 ? x.toFixed(2) : x.toFixed(1)) + "×";
+const axis = (svg, x0, y, sc, T, step = 100) => {
+  el("line", { x1: x0, y1: y, x2: x0 + T * sc, y2: y, stroke: "var(--rule)", "stroke-width": 2 }, svg);
+  for (let t = 0; t <= T; t += step) { el("line", { x1: x0 + t * sc, y1: y, x2: x0 + t * sc, y2: y + 8, stroke: "var(--faint)", "stroke-width": 2 }, svg); el("text", { x: x0 + t * sc, y: y + 34, class: "tick", "text-anchor": "middle" }, svg, t + " s"); }
+};
+
+// ---------- Scene T: one cup run, each design added in turn (stages.json, shifted like the blog) ----------
+const T = { x0: 300, sc: 1480 / 700, ry: 330, h: 74, gap: 24 };
+T.ay = T.ry + T.h + T.gap;
+const svgT = $("svgT");
+el("text", { x: T.x0 - 22, y: T.ry + 34, class: "lab", "text-anchor": "end" }, svgT, "ROBOT");
+el("text", { x: T.x0 - 22, y: T.ry + 58, class: "lab2", "text-anchor": "end" }, svgT, "moving / idle");
+el("text", { x: T.x0 - 22, y: T.ay + 34, class: "lab", "text-anchor": "end" }, svgT, "AGENT");
+el("text", { x: T.x0 - 22, y: T.ay + 58, class: "lab2", "text-anchor": "end" }, svgT, "model / tools");
+axis(svgT, T.x0, T.ay + T.h + 22, T.sc, 700);
+const cpT = el("clipPath", { id: "cpT" }, el("defs", {}, svgT));
+const clipT = el("rect", { x: T.x0 - 10, y: T.ry - 40, width: 0, height: 2 * T.h + T.gap + 80 }, cpT);
+const gT = el("g", { "clip-path": "url(#cpT)" }, svgT);
+const bgR = el("rect", { x: T.x0, y: T.ry, height: T.h, fill: "var(--idle)" }, gT);
+const bgA = el("rect", { x: T.x0, y: T.ay, height: T.h, fill: "var(--idle)" }, gT);
+const maps = ST.map(s => ({ ag: new Map(s.agent.map(a => [a[3], a])), rb: new Map(s.robot.map(r => [r[2], r])) }));
+const agEls = new Map(), rbEls = new Map();
+ST.forEach((s, si) => s.agent.forEach(a => {
+  if (agEls.has(a[3])) return;
+  const e = a[2] === "r" ? el("path", { d: TRI, fill: "var(--rep)" }, gT) : el("rect", { y: T.ay, height: T.h, fill: KC[a[2]] }, gT);
+  e.isRep = a[2] === "r"; agEls.set(a[3], e);
+}));
+ST[0].robot.forEach(r => rbEls.set(r[2], el("rect", { y: T.ry, height: T.h, fill: "var(--robot)" }, gT)));
+// where a removed block collapses to: the start of the next block that survives into the next stage
+const collapse = [];
+for (let i = 0; i < ST.length - 1; i++) {
+  const m = new Map(), B = maps[i + 1]; let next = ST[i + 1].wall;
+  for (let j = ST[i].agent.length - 1; j >= 0; j--) { const k = ST[i].agent[j][3]; if (B.ag.has(k)) next = B.ag.get(k)[0]; else m.set(k, next); }
+  collapse.push(m);
+}
+const ghost = el("line", { y1: T.ry - 14, y2: T.ay + T.h + 10, stroke: "var(--faint)", "stroke-width": 2, "stroke-dasharray": "6 6", x1: T.x0 + VAN * T.sc, x2: T.x0 + VAN * T.sc }, svgT);
+const ghostL = el("text", { x: T.x0 + VAN * T.sc, y: T.ry - 24, class: "tick", "text-anchor": "middle" }, svgT, "vanilla");
+const doneL = el("line", { y1: T.ry - 14, y2: T.ay + T.h + 10, stroke: "var(--fg)", "stroke-width": 3 }, svgT);
+const doneT = el("text", { y: T.ry - 24, class: "val", "text-anchor": "middle" }, svgT, "");
+
+function drawT(u) {
+  const i = Math.min(Math.floor(u), ST.length - 1), p = i < ST.length - 1 ? u - i : 0;
+  const A = maps[i], B = i < ST.length - 1 ? maps[i + 1] : null, cm = collapse[i];
+  const wall = B ? lerp(ST[i].wall, ST[i + 1].wall, p) : ST[i].wall;
+  bgR.setAttribute("width", wall * T.sc); bgA.setAttribute("width", wall * T.sc);
+  for (const [k, e] of agEls) {
+    const a = A.ag.get(k), b = B ? B.ag.get(k) : null; let t0, t1, op = 1;
+    if (a && b) { t0 = lerp(a[0], b[0], p); t1 = lerp(a[1], b[1], p); }
+    else if (a && !B) { t0 = a[0]; t1 = a[1]; }
+    else if (a) { const c = cm.get(k); t0 = lerp(a[0], c, p); t1 = lerp(a[1], c, p); op = 1 - p; }
+    else if (b) { t0 = b[0]; t1 = b[1]; op = p; }
+    else { e.style.display = "none"; continue; }
+    e.style.display = ""; e.setAttribute("opacity", op.toFixed(3));
+    if (e.isRep) e.setAttribute("transform", `translate(${(T.x0 + t0 * T.sc).toFixed(1)},${T.ay - 3})`);
+    else { e.setAttribute("x", (T.x0 + t0 * T.sc).toFixed(2)); e.setAttribute("width", Math.max((t1 - t0) * T.sc, 0.7).toFixed(2)); }
+  }
+  for (const [k, e] of rbEls) {
+    const a = A.rb.get(k), b = B ? B.rb.get(k) : a;
+    const t0 = lerp(a[0], b[0], p), t1 = lerp(a[1], b[1], p);
+    e.setAttribute("x", (T.x0 + t0 * T.sc).toFixed(2)); e.setAttribute("width", Math.max((t1 - t0) * T.sc, 0.7).toFixed(2));
+  }
+  const x = T.x0 + wall * T.sc;
+  doneL.setAttribute("x1", x); doneL.setAttribute("x2", x); doneT.setAttribute("x", x); doneT.textContent = Math.round(wall) + " s";
+  const v = f => B ? lerp(ST[i][f], ST[i + 1][f], p) : ST[i][f];
+  $("cWall").querySelector(".v").textContent = Math.round(wall) + " s";
+  $("cReq").querySelector(".v").textContent = Math.round(v("req"));
+  $("cMov").querySelector(".v").textContent = Math.round(v("moving")) + "%";
+  $("cHid").querySelector(".v").textContent = Math.round(v("hidden")) + " s";
+  const sp = VAN / wall;
+  $("counter").querySelector(".n").textContent = fmtX(sp);
+  return wall;
+}
+
+// ---------- Scene C: vanilla vs pipelining ----------
+function staticLanes(svg, s, x0, y, sc, h, gap, id) {
+  const cr = el("rect", { x: x0 - 10, y: y - 20, width: 0, height: 2 * h + gap + 30 }, el("clipPath", { id }, el("defs", {}, svg)));
+  const g = el("g", { "clip-path": `url(#${id})` }, svg), ay = y + h + gap;
+  el("rect", { x: x0, y, width: s.wall * sc, height: h, fill: "var(--idle)" }, g);
+  el("rect", { x: x0, y: ay, width: s.wall * sc, height: h, fill: "var(--idle)" }, g);
+  s.robot.forEach(([a, b]) => el("rect", { x: x0 + a * sc, y, width: Math.max((b - a) * sc, .7), height: h, fill: "var(--robot)" }, g));
+  s.agent.forEach(([a, b, k]) => { if (k === "r") el("path", { d: TRI, fill: "var(--rep)", transform: `translate(${x0 + a * sc},${ay - 2}) scale(.8)` }, g); else el("rect", { x: x0 + a * sc, y: ay, width: Math.max((b - a) * sc, .7), height: h, fill: KC[k] }, g); });
+  el("text", { x: x0 - 14, y: y + 30, class: "lab2", "text-anchor": "end", style: "font-size:19px" }, svg, "robot");
+  el("text", { x: x0 - 14, y: ay + 30, class: "lab2", "text-anchor": "end", style: "font-size:19px" }, svg, "agent");
+  return cr;
+}
+const Cg = { x0: 540, sc: 1240 / 700 }, svgC = $("svgC");
+const clipC1 = staticLanes(svgC, ST[0], Cg.x0, 420, Cg.sc, 46, 14, "cc1");
+const clipC2 = staticLanes(svgC, ST[5], Cg.x0, 630, Cg.sc, 46, 14, "cc2");
+const valC1 = el("text", { x: Cg.x0 + ST[0].wall * Cg.sc + 16, y: 486, class: "val" }, svgC, "667 s");
+const valC2 = el("text", { x: Cg.x0 + ST[5].wall * Cg.sc + 16, y: 696, class: "val", style: "fill:var(--robot)" }, svgC, "204 s");
+axis(svgC, Cg.x0, 790, Cg.sc, 700);
+
+// ---------- Scene R: the three real runs ----------
+const TW = 552, TG = 48, TL = (1920 - 3 * TW - 2 * TG) / 2, LH = 20;
+const tiles = D.runs.map((r, j) => {
+  const d = document.createElement("div"); d.className = "tile"; d.style.left = (TL + j * (TW + TG)) + "px";
+  d.innerHTML = `<div class="v"><img alt=""><div class="clock">0:00</div><div class="spd">${r.speed}&times; &middot; no cuts</div></div>`;
+  $("tiles").appendChild(d);
+  const svg = el("svg", { width: TW, height: 2 * LH + 6 + 4 }, d), sc = TW / r.T;
+  const cr = el("rect", { x: 0, y: 0, width: 0, height: 60 }, el("clipPath", { id: "ct" + j }, el("defs", {}, svg)));
+  const g = el("g", { "clip-path": `url(#ct${j})` }, svg);
+  el("rect", { x: 0, y: 0, width: TW, height: LH, fill: "var(--idle)" }, svg);
+  el("rect", { x: 0, y: LH + 6, width: TW, height: LH, fill: "var(--idle)" }, svg);
+  svg.appendChild(g);
+  r.robot.forEach(([a, b, ok]) => el("rect", { x: Math.max(a, 0) * sc, y: 0, width: Math.max((b - Math.max(a, 0)) * sc, 1), height: LH, fill: ok ? "var(--robot)" : "var(--bad)" }, g));
+  r.agent.forEach(([a, b, k]) => el("rect", { x: a * sc, y: LH + 6, width: Math.max((b - a) * sc, .6), height: LH, fill: k === "w" ? "var(--think)" : "var(--tool)" }, g));
+  const ph = el("line", { y1: -2, y2: 2 * LH + 8, stroke: "var(--fg)", "stroke-width": 2 }, svg);
+  const nm = document.createElement("div"); nm.className = "nm"; nm.textContent = r.name; d.appendChild(nm);
+  const st = document.createElement("div"); st.className = "st"; st.innerHTML = `${Math.round(r.T)} s &middot; ${r.actions} actions &middot; robot moving <b>${r.moving}%</b>`; d.appendChild(st);
+  return { r, d, img: d.querySelector("img"), clock: d.querySelector(".clock"), cr, ph, sc };
+});
+const legR = document.createElement("div"); legR.className = "legend"; legR.style.cssText = "right:84px;top:150px;font-size:21px;gap:24px";
+legR.innerHTML = `<span><i style="background:var(--robot)"></i>robot moving</span><span><i style="background:var(--think)"></i>model</span><span><i style="background:var(--tool)"></i>tool call</span>`;
+$("R").appendChild(legR);
+const mmss = s => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
+
+// ---------- timeline ----------
+const MS = [15.6, 16.95, 18.3, 19.65, 21.0], MD = [0.85, 0.85, 0.85, 0.85, 1.25];
+const R0 = 27.9;
+const DUR = 41.6;
+async function setImg(img, src) { if (!img.getAttribute("src") || !img.getAttribute("src").endsWith(src)) { img.src = src; await img.decode(); } }
+
+const HOLD = 0.7;   // extra reading time on "But they are slow."
+async function render(t0) {
+  const t = t0 <= 8.4 ? t0 : (t0 < 8.4 + HOLD ? 8.4 : t0 - HOLD);
+  const vidOn = t < 9.6;
+  if (vidOn) await setImg($("bg"), `opening/f${String(Math.min(Math.floor(t * 30) + 1, 172)).padStart(3, "0")}.jpg`);
+  show("vid", vidOn ? 1 : 0);
+  $("zoom").style.transform = `scale(${1 + 0.4 * ramp(t, 5.9, 7.1)})`;
+  $("hl").style.opacity = ramp(t, 5.95, 6.3);
+  $("hl").style.setProperty("--spot", (0.62 * ramp(t, 5.9, 6.5)).toFixed(3));
+  $("dim").style.opacity = win(t, 0, 0.4, 4.4, 4.9);
+  show("credit", win(t, 0, 0.4, 8.6, 9.1));
+  show("t1", win(t, 0.3, 0.9, 4.2, 4.6), 20 * (1 - ramp(t, 0.3, 0.9)));
+  show("t2", win(t, 4.75, 5.25, 8.6, 9.0), 20 * (1 - ramp(t, 4.75, 5.25)));
+  $("t2").querySelector(".sub").style.opacity = ramp(t, 6.2, 6.7);
+  show("dark", ramp(t, 8.8, 9.3));
+  show("t3", win(t, 9.4, 10.0, 11.5, 11.9), 24 * (1 - ramp(t, 9.4, 10.0)));
+
+  // T
+  const oT = win(t, 11.9, 12.3, 23.1, 23.4); show("T", oT);
+  if (oT > 0) {
+    let u = 0, s = 0;
+    MS.forEach((m, k) => { if (t >= m) { u = k + ease((t - m) / MD[k]); s = k + 1; } });
+    const wallNow = drawT(u);
+    clipT.setAttribute("width", 1500 * ramp(t, 12.2, 14.0));
+    const st = ST[s];
+    $("tTitle").textContent = st.title; $("tSub").textContent = st.sub;
+    $("tPill").textContent = st.kind === "measured" ? "real run" : "modelled";
+    $("tPill").className = "pill " + (st.kind === "measured" ? "real" : "mod");
+    const to = s > 0 ? ramp(t, MS[s - 1], MS[s - 1] + 0.3) : 1;
+    $("T").querySelector(".title").style.opacity = to;
+    $("T").querySelector(".title").style.transform = `translateY(${10 * (1 - to)}px)`;
+    const reveal = ramp(t, 13.9, 14.2);
+    [doneL, doneT].forEach(e => e.style.opacity = reveal);
+    ghost.style.opacity = ramp(t, 15.6, 15.9);
+    ghostL.style.opacity = ramp(t, 15.6, 15.9) * cl(((VAN - wallNow) * T.sc - 80) / 40);
+    $("T").querySelector(".cards").style.opacity = ramp(t, 14.0, 14.35);
+    $("counter").style.opacity = ramp(t, 14.0, 14.35);
+    $("counter").querySelector(".n").style.color = s === 5 ? "var(--robot)" : "var(--fg)";
+    $("cMov").style.borderColor = (t >= 14.3 && t < 15.6) || s === 5 ? "var(--robot)" : "transparent";
+    $("cHid").style.borderColor = s === 5 ? "var(--robot)" : "transparent";
+    $("cReq").style.borderColor = s >= 1 && s <= 4 ? "rgba(179,166,255,.55)" : "transparent";
+    show("noteT1", win(t, 14.35, 14.7, 15.4, 15.6));
+    show("noteT2", win(t, 21.9, 22.2, 23.1, 23.4));
+  }
+
+  // C
+  const oC = win(t, 23.4, 23.7, 26.9, 27.2); show("C", oC);
+  if (oC > 0) {
+    $("C").querySelector(".head").style.transform = `scale(${0.92 + 0.08 * ramp(t, 23.4, 23.9)})`;
+    const w = 1260 * ramp(t, 23.8, 25.0);
+    clipC1.setAttribute("width", w); clipC2.setAttribute("width", w);
+    valC1.style.opacity = valC2.style.opacity = ramp(t, 24.9, 25.2);
+  }
+
+  // R
+  const oR = win(t, 27.2, 27.5, 37.6, 37.9); show("R", oR);
+  if (oR > 0) {
+    for (const k of tiles) {
+      const tr = cl((t - R0) * k.r.speed, 0, k.r.T);
+      await setImg(k.img, `res/${k.r.run}/${String(Math.floor(tr / k.r.speed * 30) + 1).padStart(4, "0")}.jpg`);
+      const done = tr >= k.r.T - 1e-6;
+      k.clock.textContent = done ? `${mmss(tr)} done` : mmss(tr);
+      k.clock.className = "clock" + (done ? " done" : "");
+      k.cr.setAttribute("width", tr * k.sc); k.ph.setAttribute("x1", tr * k.sc); k.ph.setAttribute("x2", tr * k.sc);
+      k.ph.style.opacity = done ? 0 : 1;
+    }
+    show("rBottom", ramp(t, 35.2, 35.6), 12 * (1 - ramp(t, 35.2, 35.6)));
+  }
+
+  show("end", ramp(t, 37.9, 38.4), 16 * (1 - ramp(t, 37.9, 38.4)));
+}
+window.render = render; window.DUR = DUR;
+</script>
+</body></html>

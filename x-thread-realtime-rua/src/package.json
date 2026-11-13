@@ -1,0 +1,8 @@
+{
+  "name": "realtime-rua-launch-tools",
+  "private": true,
+  "description": "Scripts that build the realtime-rua X thread's media and preview pages",
+  "dependencies": {
+    "puppeteer-core": "^23.11.1"
+  }
+}

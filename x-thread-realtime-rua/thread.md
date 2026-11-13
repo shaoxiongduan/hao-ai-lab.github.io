@@ -4,8 +4,8 @@ Post from @haoailab. Each post's media file is in this folder. Text between the 
 
 Before posting:
 - The blog link assumes the post is live at haoailab.com/blogs/realtime-rua/. The main video's end card shows the same address.
-- Check the @handles (@AnthropicAI, @OpenAI) and add the authors' handles if they want to be tagged.
-- Posts 1, 2, 3, 4 and 7 run 290 to 500 characters, like the lab's recent threads. Anything over 280 needs the account's long-post (Premium) feature.
+- Check the @OpenAI handle and add the authors' handles if they want to be tagged.
+- Posts 1, 2, 3, 4 and 7 run 290 to 530 characters, like the lab's recent threads. Anything over 280 needs the account's long-post (Premium) feature.
 
 ---
 (1/7) Robot-use agents can now control real robots. But they are slow: the arm stands still while the model thinks.
@@ -16,8 +16,6 @@ We made the same agent (GPT-6 Astra in @OpenAI Codex) run much closer to real ti
 - robot moving 84% of the time, up from 24%
 
 Blog: https://haoailab.com/blogs/realtime-rua/
-
-Opening clip: @AnthropicAI's Claude Fable 5.2 launch video
 ---
 Media: `01-main-video.mp4`
 
@@ -26,7 +24,7 @@ Media: `01-main-video.mp4`
 
 Our early towel-folding runs took 13 to 37 minutes. In one of the longest, the model took 78% of the wall time, and the robot moved for only a quarter of the run.
 ---
-Media: `02-fig4-where-the-time-went.png`
+Media: `02-benchmark-vs-real-robot.png`
 
 ---
 (3/7) For astra with low reasoning effort, most of it is per-request overhead, paid on every tool-call round trip.
@@ -36,7 +34,7 @@ So we merged round trips:
 - code runs as soon as it's written; the agent checks its plan while the arm moves, instead of spending an extra turn
 - we keep context short, pruning old images into text notes
 ---
-Media: `03-fig11-fewer-requests.png`
+Media: `03-merged-round-trips.png`
 
 ---
 (4/7) Then we pipelined thinking and motion: the robot moves while the model thinks.
@@ -66,6 +64,6 @@ We also treated Codex and Astra as a black box. With open models served for robo
 
 Blog: https://haoailab.com/blogs/realtime-rua/
 
-By Shaoxiong Duan, Yang Yuanbo, Junda Chen, Yulun Wu and Hao Zhang
+By Shaoxiong Duan, Yang Yuanbo, Junda Chen, Quanquan Peng, Xiaolong Wang and Hao Zhang
 ---
 Media: none

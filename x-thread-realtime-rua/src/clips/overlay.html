@@ -1,0 +1,45 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=block" rel="stylesheet">
+<style>
+html,body{margin:0;background:transparent}
+#s{position:relative;width:1280px;height:720px;font-family:"Noto Sans";overflow:hidden}
+.cv{position:absolute;background:#151a22}
+.t{position:absolute;white-space:nowrap;line-height:1}
+.cap{font-weight:700;font-size:13.5px;color:#eef3fb}
+.sub{font-weight:400;font-size:10.5px;color:#868d99}
+.cap2{font-weight:700;font-size:11.5px;color:#eef3fb}
+.lab{font-weight:600;font-size:14.5px;color:#eef3fb}
+.csub{font-weight:400;font-size:12px;color:#9097a2}
+.pill{position:absolute;top:72px;right:37px;height:25px;border-radius:12.5px;background:#23293a;color:#ecf1fb;font-weight:600;font-size:13.5px;line-height:25px;padding:0 11px 0 10px;white-space:nowrap}
+</style></head><body><div id="s"></div>
+<script>
+// Text is placed by baseline: a span's baseline sits at top + ascent; we measure the ascent and shift.
+const q = new URLSearchParams(location.hash.slice(1));
+const mode = q.get('mode'), speed = q.get('speed');
+const S = document.getElementById('s');
+function cover(x0, y0, x1, y1) { const d = document.createElement('div'); d.className = 'cv'; Object.assign(d.style, {left: x0+'px', top: y0+'px', width: (x1-x0)+'px', height: (y1-y0)+'px'}); S.appendChild(d); }
+function text(cls, s, x, base) {
+  const d = document.createElement('span'); d.className = 't ' + cls; d.textContent = s; d.style.left = x + 'px'; d.style.top = '0px'; S.appendChild(d);
+  // with line-height:1 the baseline is at (ascent of the font box); measure with a zero-size inline-block probe
+  const pr = document.createElement('span'); pr.style.cssText = 'display:inline-block;width:0;height:0;vertical-align:baseline'; d.appendChild(pr);
+  const off = pr.getBoundingClientRect().top - d.getBoundingClientRect().top;
+  d.style.top = (base - off) + 'px';
+}
+function lanes(dy) {
+  cover(26, 541 + dy, 104, 558 + dy); text('sub', 'actions', 28, 551.2 + dy);
+  cover(26, 611 + dy, 120, 630 + dy); text('cap2', 'WAITING', 28, 623.2 + dy);
+}
+document.fonts.ready.then(() => {
+  if (mode === 'dash') {
+    cover(1146, 68, 1250, 100);
+    const p = document.createElement('div'); p.className = 'pill'; p.textContent = speed; S.appendChild(p);
+    cover(1096, 154, 1250, 178);
+    lanes(0);
+  } else {
+    cover(377, 349, 622, 370); text('lab', 'actions', 380, 364);
+    cover(663, 348, 908, 391); text('lab', 'most waiting', 666, 364); text('csub', 'actions at once', 666, 384.5);
+    lanes(6);
+  }
+  document.title = 'ready';
+});
+</script></body></html>

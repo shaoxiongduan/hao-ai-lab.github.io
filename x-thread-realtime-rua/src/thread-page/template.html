@@ -1,0 +1,104 @@
+<title>realtime-rua X Thread</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one feed-width column; a numbered rail on the left joins the posts in order, like a thread.
+   Colours borrow the clips' own lanes: teal for the robot, violet for the model. */
+:root {
+  --bg: #f2f4f8; --surface: #ffffff; --ink: #141922; --muted: #5a6374; --rule: #dce1ea;
+  --teal: #10856b; --violet: #6a52dc; --amber: #a86a12; --chip: #e9ecf3;
+  --f-ui: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0d1016; --surface: #151a22; --ink: #e7ecf4; --muted: #8b93a3; --rule: #262d3a;
+  --teal: #3fd0aa; --violet: #a796ff; --amber: #f0b44a; --chip: #1e2430; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0d1016; --surface: #151a22; --ink: #e7ecf4; --muted: #8b93a3; --rule: #262d3a;
+  --teal: #3fd0aa; --violet: #a796ff; --amber: #f0b44a; --chip: #1e2430; color-scheme: dark }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-ui); font-size: 15px; line-height: 1.5 }
+.wrap { max-width: 680px; margin: 0 auto; padding-block: 40px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 28px }
+.eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--violet); margin: 0 0 8px }
+h1 { font-size: clamp(26px, 5vw, 34px); line-height: 1.15; font-weight: 800; margin: 0; text-wrap: balance; letter-spacing: -.01em }
+.stats { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 0; padding: 0; list-style: none }
+.stats li { font-family: var(--f-mono); font-size: 12.5px; background: var(--chip); color: var(--muted); border-radius: 999px; padding: 3px 10px; font-variant-numeric: tabular-nums }
+.stats b { color: var(--ink); font-weight: 500 }
+.notes { border: 1px solid var(--rule); border-radius: 12px; padding: 14px 18px; background: var(--surface) }
+.notes h2 { font-size: 13px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; margin: 0 0 6px; color: var(--muted) }
+.notes ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; color: var(--muted) }
+.notes code { font-family: var(--f-mono); font-size: 12.5px; color: var(--ink) }
+.thread { display: grid; gap: 0 }
+.post { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 0 14px }
+.rail { position: relative; display: flex; justify-content: center }
+.rail::before { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; transform: translateX(-50%); background: var(--rule) }
+.post:first-child .rail::before { top: 18px }
+.post:last-child .rail::before { bottom: auto; height: 18px }
+.num { position: relative; margin-top: 4px; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--surface); border: 2px solid var(--violet); color: var(--violet); font-family: var(--f-mono); font-size: 13px; font-weight: 500 }
+.card { background: var(--surface); border: 1px solid var(--rule); border-radius: 14px; padding: 16px 18px 12px; margin-bottom: 18px; min-width: 0; display: grid; gap: 12px }
+.ph { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px }
+.who b { font-weight: 700 }
+.handle { color: var(--muted) }
+.count { font-family: var(--f-mono); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; display: inline-flex; align-items: baseline; gap: 6px; flex-wrap: wrap }
+.tn { color: var(--ink); font-weight: 500 }
+.len { border-radius: 999px; padding: 1px 8px; font-size: 11.5px }
+.len.ok { color: var(--teal); background: color-mix(in srgb, var(--teal) 12%, transparent) }
+.len.long { color: var(--amber); background: color-mix(in srgb, var(--amber) 12%, transparent) }
+.text { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 16px; line-height: 1.5 }
+.text a { color: var(--violet); text-decoration: none }
+.text a:hover, .text a:focus-visible { text-decoration: underline }
+.at { color: var(--violet) }
+.media { margin: 0; display: grid; gap: 6px }
+.media video, .media img { display: block; width: 100%; max-width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--rule); background: #000 }
+.media img { background: var(--surface) }
+.media figcaption, .nomedia { font-family: var(--f-mono); font-size: 12px; color: var(--muted); margin: 0 }
+.pf { display: flex; justify-content: flex-end; border-top: 1px solid var(--rule); padding-top: 10px }
+.copy { font: 600 13px var(--f-ui); color: var(--ink); background: var(--chip); border: 1px solid var(--rule); border-radius: 999px; padding: 5px 14px; cursor: pointer }
+.copy:hover { border-color: var(--violet) }
+.copy:focus-visible { outline: 2px solid var(--violet); outline-offset: 2px }
+.copy.done { color: var(--teal); border-color: var(--teal) }
+@media (max-width: 480px) {
+  .post { grid-template-columns: 28px minmax(0, 1fr); gap: 0 10px }
+  .num { width: 24px; height: 24px; font-size: 11.5px }
+  .card { padding: 14px 14px 10px }
+  .text { font-size: 15px }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important } }
+</style>
+
+<main class="wrap">
+  <header>
+    <p class="eyebrow">Draft thread · not posted</p>
+    <h1>Getting Robot-Use Agents to Run in Real Time</h1>
+    <ul class="stats">
+      <li><b>__NPOSTS__</b> posts</li>
+      <li><b>__NVID__</b> videos</li>
+      <li><b>__NIMG__</b> figures</li>
+      <li>longest post <b>__LONGEST__</b> chars</li>
+    </ul>
+  </header>
+
+  <section class="notes" aria-labelledby="notes-h">
+    <h2 id="notes-h">Before posting</h2>
+    <ul>__NOTES__</ul>
+  </section>
+
+  <section class="thread" aria-label="Posts in order">__POSTS__
+  </section>
+</main>
+
+<script>
+document.querySelectorAll('.copy').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const el = document.getElementById(btn.dataset.for);
+    const text = el.innerText;
+    const done = () => { btn.textContent = 'Copied'; btn.classList.add('done'); setTimeout(() => { btn.textContent = 'Copy text'; btn.classList.remove('done'); }, 1600); };
+    const fallback = () => { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'Selected, press ⌘C'; };
+    try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
+  });
+});
+</script>
