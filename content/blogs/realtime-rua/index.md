@@ -23,16 +23,15 @@ summary = "Robot-use agents score well on benchmarks whose simulators wait for t
 :root{--r-bg:#ffffff;--r-fg:#17191f;--r-muted:#5d6472;--r-faint:#8a909c;--r-rule:#e5e7ec;--r-panel:#f6f7f9;--r-think:#6c5bd4;--r-think-soft:#c9c1f2;--r-tool:#d8902a;--r-tool-soft:#f2d9ae;--r-robot:#1c9a86;--r-robot-soft:#bfe5dd;--r-idle:#eceef2;--r-bad:#d4553f;--r-link:#3c56c9;--r-note-bg:#fff7e6;--r-note-fg:#7a5410}
 body.dark{--r-bg:#1d1e20;--r-fg:#e7e9ee;--r-muted:#a3a9b5;--r-faint:#7c8290;--r-rule:#33363d;--r-panel:#25272b;--r-think:#9b8cf0;--r-think-soft:#4a4180;--r-tool:#e8a94a;--r-tool-soft:#6b5228;--r-robot:#3cc0aa;--r-robot-soft:#1f5a50;--r-idle:#2c2f36;--r-bad:#ec7a64;--r-link:#8ea3ff;--r-note-bg:#2e2615;--r-note-fg:#f0cf8a}
 .post-content figure.rua-wide,.post-content figure.rua-fig-plain{margin:28px 0 30px}
-@media (min-width:1000px){.post-content figure.rua-wide{margin-left:-80px;margin-right:-80px}}
 .post-content .rua-fig{border:1px solid var(--r-rule);border-radius:8px;padding:14px;overflow-x:auto;background:var(--r-bg);margin:0}
 .post-content .rua-fig svg{display:block;width:100%;height:auto;min-width:560px;margin:0}
-.post-content .rua-fig.rua-narrow svg{min-width:0}
+.post-content .rua-fig.rua-narrow svg{min-width:0;max-width:640px;margin:0 auto}
 .post-content .rua-fig svg text{font-family:inherit;fill:var(--r-fg)}
-.post-content .rua-fig svg .sm{font-size:11px;fill:var(--r-muted)}
-.post-content .rua-fig svg .xs{font-size:10px;fill:var(--r-faint)}
-.post-content .rua-fig svg .lb{font-size:12.5px}
-.post-content .rua-fig svg .lbb{font-size:12.5px;font-weight:600}
-.post-content .rua-fig svg .mn{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px}
+.post-content .rua-fig svg .sm{font-size:12px;fill:var(--r-muted)}
+.post-content .rua-fig svg .xs{font-size:11px;fill:var(--r-faint)}
+.post-content .rua-fig svg .lb{font-size:13px}
+.post-content .rua-fig svg .lbb{font-size:13px;font-weight:600}
+.post-content .rua-fig svg .mn{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px}
 .post-content figure figcaption{font-size:.88em;font-weight:400;color:var(--secondary);margin-top:10px;line-height:1.5;text-align:left}
 .post-content .rua-legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.82em;color:var(--secondary);margin-top:10px}
 .post-content .rua-legend span{display:inline-flex;align-items:center;gap:6px}
@@ -63,10 +62,10 @@ Benchmarks like RoboDojo don't capture this. Their evaluation loop is synchronou
 
 <figure class="rua-wide">
 <div class="rua-fig">
-<svg viewBox="0 0 860 210" role="img" aria-label="In simulation the world pauses while the agent thinks; in the real world the robot idles.">
+<svg viewBox="0 0 860 198" role="img" aria-label="In simulation the world pauses while the agent thinks; in the real world the robot idles.">
   <text x="0" y="22" class="lbb">Benchmark simulator</text>
   <text x="0" y="40" class="sm">the world waits for the agent</text>
-  <g transform="translate(180,12)">
+  <g transform="translate(170,12)">
     <rect x="0" y="0" width="70" height="26" rx="3" fill="var(--r-think)"/><text x="35" y="17" text-anchor="middle" class="sm" style="fill:#fff">think</text>
     <rect x="72" y="0" width="60" height="26" rx="3" fill="var(--r-robot)"/><text x="102" y="17" text-anchor="middle" class="sm" style="fill:#fff">act</text>
     <rect x="134" y="0" width="110" height="26" rx="3" fill="var(--r-think)"/><text x="189" y="17" text-anchor="middle" class="sm" style="fill:#fff">think</text>
@@ -76,12 +75,12 @@ Benchmarks like RoboDojo don't capture this. Their evaluation loop is synchronou
     <line x1="0" y1="40" x2="460" y2="40" stroke="var(--r-rule)"/>
     <text x="0" y="64" class="xs">sim clock</text>
     <rect x="72" y="46" width="60" height="5" fill="var(--r-robot)"/><rect x="246" y="46" width="60" height="5" fill="var(--r-robot)"/><rect x="400" y="46" width="60" height="5" fill="var(--r-robot)"/>
-    <text x="480" y="17" class="sm">time that counts:<tspan dx="4" class="lbb" style="font-size:11px">only the acts</tspan></text>
+    <text x="476" y="17" class="sm">time that counts:<tspan dx="4" class="lbb" style="font-size:12px">only the acts</tspan></text>
   </g>
   <line x1="0" y1="100" x2="860" y2="100" stroke="var(--r-rule)" stroke-dasharray="3 4"/>
   <text x="0" y="132" class="lbb">Real robot</text>
   <text x="0" y="150" class="sm">the clock never stops</text>
-  <g transform="translate(180,122)">
+  <g transform="translate(170,122)">
     <rect x="0" y="0" width="70" height="26" rx="3" fill="var(--r-think)"/>
     <rect x="72" y="0" width="60" height="26" rx="3" fill="var(--r-robot)"/>
     <rect x="134" y="0" width="110" height="26" rx="3" fill="var(--r-think)"/>
@@ -93,8 +92,8 @@ Benchmarks like RoboDojo don't capture this. Their evaluation loop is synchronou
     <rect x="0" y="46" width="460" height="5" fill="var(--r-idle)"/>
     <rect x="0" y="46" width="70" height="5" fill="var(--r-bad)" opacity=".55"/><rect x="134" y="46" width="110" height="5" fill="var(--r-bad)" opacity=".55"/><rect x="308" y="46" width="90" height="5" fill="var(--r-bad)" opacity=".55"/>
     <rect x="72" y="46" width="60" height="5" fill="var(--r-robot)"/><rect x="246" y="46" width="60" height="5" fill="var(--r-robot)"/><rect x="400" y="46" width="60" height="5" fill="var(--r-robot)"/>
-    <text x="480" y="17" class="sm">time that counts:<tspan dx="4" class="lbb" style="font-size:11px">all of it</tspan></text>
-    <text x="480" y="34" class="sm">the robot idles while the model thinks</text>
+    <text x="476" y="17" class="sm">time that counts:<tspan dx="4" class="lbb" style="font-size:12px">all of it</tspan></text>
+    <text x="476" y="34" class="sm">the robot idles while the model thinks</text>
   </g>
 </svg>
 </div>
@@ -119,7 +118,7 @@ Like PyRUA-Lean [[6]](#r6), we use code as the action interface: the robot is a 
 
 <figure class="rua-wide">
 <div class="rua-fig">
-<svg viewBox="0 0 860 230" role="img" aria-label="Harness: model writes code that runs in a persistent Python kernel, which talks to the robot server and the cameras; reports flow back to the model.">
+<svg viewBox="0 20 860 182" role="img" aria-label="Harness: model writes code that runs in a persistent Python kernel, which talks to the robot server and the cameras; reports flow back to the model.">
   <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--r-muted)"/></marker></defs>
   <rect x="10" y="60" width="170" height="96" rx="6" fill="var(--r-panel)" stroke="var(--r-think)" stroke-width="1.5"/>
   <text x="95" y="98" text-anchor="middle" class="lbb">Model</text>
@@ -157,7 +156,7 @@ Our early towel-folding runs on the real robot took between 13 and 37 minutes. F
 
 <figure class="rua-wide">
 <div class="rua-fig">
-<svg id="f3" viewBox="0 0 860 170" role="img" aria-label="Time breakdown of an early towel run"></svg>
+<svg id="f3" viewBox="0 8 860 162" role="img" aria-label="Time breakdown of an early towel run"></svg>
 </div>
 <figcaption><b>Figure 4.</b> Where the time went in an early towel-folding run. The summary hold is the API holding each response until its reasoning summary was written; we turned summaries off for later runs. TTFT is estimated as model time minus decoding, which includes the hidden reasoning tokens.</figcaption>
 </figure>
@@ -176,7 +175,7 @@ Since every request has a fixed cost, we looked for requests that were predictab
 
 <figure class="rua-wide">
 <div class="rua-fig">
-<svg id="f4" viewBox="0 0 860 200" role="img" aria-label="Round trips for one action before and after"></svg>
+<svg id="f4" viewBox="0 10 860 158" role="img" aria-label="Round trips for one action before and after"></svg>
 </div>
 <figcaption><b>Figure 5.</b> One action and the look after it (illustrative). Before: the model polls for the result, reads each camera image in its own request, then asks for the robot state. After: all of it comes back in one report.</figcaption>
 </figure>
@@ -193,7 +192,7 @@ A robot agent looks at a lot of images, and as they pile up in the context, TTFT
 
 <figure class="rua-wide">
 <div class="rua-fig">
-<svg viewBox="0 0 860 200" role="img" aria-label="Image pruning: old images become text notes, newest images stay">
+<svg viewBox="0 2 860 189" role="img" aria-label="Image pruning: old images become text notes, newest images stay">
   <text x="0" y="30" class="lbb">Before</text>
   <g transform="translate(90,12)">
     <rect x="0" y="0" width="110" height="30" rx="3" fill="var(--r-panel)" stroke="var(--r-rule)"/><text x="55" y="19" text-anchor="middle" class="sm">prompt + API</text>
@@ -215,7 +214,7 @@ A robot agent looks at a lot of images, and as they pile up in the context, TTFT
 
 <figure>
 <div class="rua-fig rua-narrow">
-<svg id="f5" viewBox="0 0 640 220" role="img" aria-label="TTFT after 45 four-camera looks"></svg>
+<svg id="f5" viewBox="0 10 640 208" role="img" aria-label="TTFT after 45 four-camera looks"></svg>
 </div>
 <figcaption><b>Figure 7.</b> TTFT after 45 four-camera looks in one conversation. Tiling the four views into one image helps, and a smaller grid helps more.</figcaption>
 </figure>
@@ -238,7 +237,7 @@ The timing of feedback turned out to matter (Figure 8). The report for one actio
 
 <figure class="rua-wide">
 <div class="rua-fig">
-<svg viewBox="0 0 860 250" role="img" aria-label="How the queue overlaps model time with robot motion">
+<svg viewBox="0 20 860 227" role="img" aria-label="How the queue overlaps model time with robot motion">
   <defs><marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--r-muted)"/></marker></defs>
   <text x="0" y="46" class="lbb">Robot</text>
   <text x="0" y="62" class="xs">runs the queue</text>
@@ -266,7 +265,7 @@ The timing of feedback turned out to matter (Figure 8). The report for one actio
 
 <figure class="rua-wide">
 <div class="rua-fig">
-<svg id="f6" viewBox="0 0 860 300" role="img" aria-label="Agent and robot lanes for the same work in three harnesses"></svg>
+<svg id="f6" viewBox="0 7 860 293" role="img" aria-label="Agent and robot lanes for the same work in three harnesses"></svg>
 </div>
 <div class="rua-legend"><span><i style="background:var(--r-think-soft)"></i>TTFT</span><span><i style="background:var(--r-think)"></i>generating</span><span><i style="background:var(--r-tool)"></i>tool / image read</span><span><i style="background:var(--r-robot)"></i>robot moving</span></div>
 <figcaption><b>Figure 9.</b> The same cup task in three harnesses, on one time axis. Top: a vanilla agent loop. Middle: sections 1–4, without the queue. Bottom: with the queue (the real run). Model time barely changes from middle to bottom; most of it now happens while the arm moves. The top two rows are replays of the real run, explained under Results. Excludes the agent's initial reading of the robot API code.</figcaption>
@@ -282,7 +281,7 @@ Cutting round trips raised the robot's moving share from a median of 29% to 52%,
 
 <figure class="rua-wide">
 <div class="rua-fig">
-<svg id="f9" viewBox="0 0 860 250" role="img" aria-label="Real towel runs before and after the queue"></svg>
+<svg id="f9" viewBox="0 0 860 219" role="img" aria-label="Real towel runs before and after the queue"></svg>
 </div>
 <figcaption><b>Figure 10.</b> Real towel-folding runs, grouped by harness version. Filled dots finished the task; hollow dots were stopped early. Time to finish counts only finished runs. Vertical bars are medians. Excludes the agent's initial reading of the robot API code.</figcaption>
 </figure>
@@ -330,7 +329,7 @@ Hiding the model's time behind motion is not the same as making the agent fast. 
 
 <figure class="rua-wide">
 <div class="rua-fig">
-<svg viewBox="0 0 860 170" role="img" aria-label="Latency from observation to action">
+<svg viewBox="0 8 860 162" role="img" aria-label="Latency from observation to action">
   <defs><marker id="ar3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--r-muted)"/></marker></defs>
   <rect x="110" y="40" width="640" height="26" rx="3" fill="var(--r-robot-soft)"/>
   <text x="0" y="58" class="lbb">World</text>
@@ -356,7 +355,7 @@ This is also why the queue helps some tasks much more than others. Lifting three
 
 <figure class="rua-wide">
 <div class="rua-fig">
-<svg id="f8" viewBox="0 0 860 190" role="img" aria-label="Towel run lanes with long gaps"></svg>
+<svg id="f8" viewBox="0 1 860 161" role="img" aria-label="Towel run lanes with long gaps"></svg>
 </div>
 <figcaption><b>Figure 13.</b> Part of the crumpled-towel run where the queue didn't help. The robot waits while the agent looks before folding, and again while it re-plans after a sweep went wrong.</figcaption>
 </figure>
