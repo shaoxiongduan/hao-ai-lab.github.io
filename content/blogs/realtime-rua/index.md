@@ -11,7 +11,7 @@ summary = "Robot-use agents score well on benchmarks whose simulators wait for t
 [cover]
   image = "img/thumbnail.jpg"
   relative = true
-  alt = "Two robot arms and a crumpled towel next to the headline result: towel folding about 3x faster, from 18 to 6 minutes"
+  alt = "Two robot arms over red cups, with the headline result: 3.3x faster, from 11 minutes to 3.4"
   hiddenInSingle = true
 [socialIcons]
   [[socialIcons.icon]]
