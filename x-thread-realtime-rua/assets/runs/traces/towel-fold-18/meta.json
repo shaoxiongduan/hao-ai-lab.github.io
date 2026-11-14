@@ -1,0 +1,691 @@
+{
+ "schema": "robotapi.agent-run.v1",
+ "tag": "towel-fold-18",
+ "task": "fold_towel",
+ "real": true,
+ "staggered": true,
+ "playbook": false,
+ "look_every_s": 0.0,
+ "towel": {
+  "w_cm": null,
+  "h_cm": null,
+  "colour": "blue"
+ },
+ "sim": null,
+ "instruction": "A blue towel lies on the table between the two arms, partly folded over. Spread it out flat, then fold it once in half, edge to edge. Leave it lying folded on the table, then call r.finish() with a short summary.\n\nGeneral advice (use your judgement):\n- Grasping cloth: bring the open fingers to a place where cloth ends up between them just by moving toward it, then close. On a raised edge or fold, come down from above with the fingers across it; on a corner lying flat, scoop: tilt the hand so the lower finger slides in under the cloth. Prefer corners that are easy to reach. Check the point cloud and a ghost of the planned pose first, and the wrist camera after closing (a close on nothing ends near 3 mm wide).\n- Spreading: grab two adjacent corners of one edge and pull back toward you, so the towel drags out flat. Don't swing or throw it.\n- Folding: carry the two corners of one edge over onto the opposite two, lower them there and release. Check the result in the cameras and fix it if it is off.\n- Keep the towel in the middle of the table where both arms reach well, each hand on its own side.",
+ "agent": "codex",
+ "clock": "real",
+ "repo": {
+  "commit": "fd8023e9d016eef7b32ca51a6f745f9810a39e0a",
+  "branch": "shao/planning-fix",
+  "dirty": [
+   "M docs/AGENT_PLAYBOOK.md",
+   " M docs/MANUAL.md",
+   " M docs/REAL_CELL.md",
+   " M robot/__init__.py",
+   " M robot/kernel.py",
+   " M robot/viz.py",
+   " M robot/watch.py",
+   " M robotd/backends/base.py",
+   " M robotd/backends/mujoco_sim.py",
+   " M robotd/backends/yam_i2rt.py",
+   " M robotd/core/controller.py",
+   " M robotd/core/kinematics.py",
+   " M robotd/core/recorder.py",
+   " M robotd/robots/yam_station/description.py",
+   " M robotd/robots/yam_station/scene.py",
+   " M robotd/server.py",
+   " M scripts/run_log.py",
+   " M tests/test_speed_api.py",
+   "?? tests/test_planning.py",
+   "?? tests/test_settle_bias.py"
+  ]
+ },
+ "host": "YAM",
+ "codex": {
+  "version": "codex-cli 0.165.0",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "medium",
+  "service_tier": "ultrafast",
+  "login": "/home/shao/.codex",
+  "argv": [
+   "/opt/codex/bin/codex",
+   "app-server",
+   "--stdio"
+  ],
+  "config": "model = \"gpt-6-astra\"\nmodel_reasoning_effort = \"medium\"\nmodel_reasoning_summary = \"none\"\nservice_tier = \"ultrafast\"\napproval_policy = \"never\"\nsandbox_mode = \"danger-full-access\"\nweb_search = \"disabled\"\n\n[features]\napps = false\nplugins = false\nremote_plugin = false\nbrowser_use = false\nbrowser_use_external = false\nin_app_browser = false\ncomputer_use = false\nimage_generation = false\ndaemon_auto_start = false\ntool_suggest = false\nmemories = false\n\n[skills]\ninclude_instructions = false\n\n[skills.bundled]\nenabled = false\n\n[shell_environment_policy]\ninherit = \"all\"\nexclude = [\"HTTPS_PROXY\", \"HTTP_PROXY\", \"ALL_PROXY\", \"https_proxy\", \"http_proxy\", \"all_proxy\"]\n",
+  "prompt": "Do the task described in AGENTS.md.",
+  "steering": {
+   "inbox": "steer/inbox.jsonl",
+   "linger_s": 60.0
+  },
+  "reasoning_summary": "none",
+  "prune": {
+   "after_images": 20,
+   "keep": 4
+  }
+ },
+ "sandbox": {
+  "kind": "bwrap, one layer",
+  "bwrap": "/usr/bin/bwrap",
+  "network": "egress-proxy",
+  "egress_allow": [
+   "chatgpt.com",
+   "api.openai.com",
+   "auth.openai.com"
+  ],
+  "argv": "sandbox/bwrap.json",
+  "why_one_layer": "AppArmor here: no bwrap inside another sandbox (module docstring)",
+  "model_files": [
+   "/home/shao/robot-api-real/i2rt/i2rt/robot_models/arm/yam/v1/assets/base.stl",
+   "/home/shao/robot-api-real/i2rt/i2rt/robot_models/arm/yam/v1/assets/gripper.stl",
+   "/home/shao/robot-api-real/i2rt/i2rt/robot_models/arm/yam/v1/assets/link1.stl",
+   "/home/shao/robot-api-real/i2rt/i2rt/robot_models/arm/yam/v1/assets/link2.stl",
+   "/home/shao/robot-api-real/i2rt/i2rt/robot_models/arm/yam/v1/assets/link3.stl",
+   "/home/shao/robot-api-real/i2rt/i2rt/robot_models/arm/yam/v1/assets/link4.stl",
+   "/home/shao/robot-api-real/i2rt/i2rt/robot_models/arm/yam/v1/assets/link5.stl",
+   "/home/shao/robot-api-real/i2rt/i2rt/robot_models/arm/yam/v1/assets/tip_left.stl",
+   "/home/shao/robot-api-real/i2rt/i2rt/robot_models/arm/yam/v1/assets/tip_right.stl",
+   "/home/shao/robot-api-real/i2rt/i2rt/robot_models/station/assets/d405_top.stl",
+   "/home/shao/robot-api-real/i2rt/i2rt/robot_models/station/assets/d405_wrist_linear_4310.stl",
+   "/home/shao/robot-api-real/robot-api-planning/.cache/yam_station/a88b47a0c3adaf0d/yam_left.urdf",
+   "/home/shao/robot-api-real/robot-api-planning/.cache/yam_station/a88b47a0c3adaf0d/yam_right.urdf",
+   "/home/shao/robot-api-real/robot-api-planning/.cache/yam_station/a88b47a0c3adaf0d/yam_station.urdf",
+   "/home/shao/robot-api-real/robot-api-planning/.cache/yam_station/a88b47a0c3adaf0d/yam_station.xml"
+  ]
+ },
+ "robotd": {
+  "addr": "tcp:127.0.0.1:7410",
+  "record": "/home/shao/robot-api-real/runs/loop-34",
+  "requests_offset": 1140923,
+  "camera_addr": "tcp:127.0.0.1:7412",
+  "health_start": {
+   "target_ms": 4.0,
+   "window_s": 5.0,
+   "period_ms": {
+    "p50": 4.0,
+    "p99": 4.21,
+    "max": 18.48
+   },
+   "work_ms": {
+    "mean": 0.901,
+    "p99": 2.58,
+    "max": 4.42
+   },
+   "lock_ms": {
+    "p99": 0.01,
+    "max": 0.03
+   },
+   "busy_pct": 22.5,
+   "late_window": 3,
+   "stalls_window": 0,
+   "late": 3,
+   "stalls": 0,
+   "worst_ms": 18.5,
+   "phases_ms": {
+    "read": {
+     "mean": 0.041,
+     "p99": 0.093,
+     "max": 0.149
+    },
+    "measure": {
+     "mean": 0.463,
+     "p99": 1.587,
+     "max": 3.961
+    },
+    "references": {
+     "mean": 0.016,
+     "p99": 0.037,
+     "max": 0.067
+    },
+    "fence": {
+     "mean": 0.146,
+     "p99": 0.402,
+     "max": 2.704
+    },
+    "feedforward": {
+     "mean": 0.134,
+     "p99": 0.452,
+     "max": 2.722
+    },
+    "guards": {
+     "mean": 0.046,
+     "p99": 0.116,
+     "max": 0.213
+    },
+    "conditions": {
+     "mean": 0.001,
+     "p99": 0.003,
+     "max": 0.008
+    },
+    "write": {
+     "mean": 0.044,
+     "p99": 0.098,
+     "max": 0.179
+    },
+    "record": {
+     "mean": 0.007,
+     "p99": 0.018,
+     "max": 0.031
+    }
+   },
+   "slowest_tick": {
+    "ago_s": 0.13,
+    "lock_ms": 0.0,
+    "work_ms": 4.42,
+    "phases_ms": {
+     "measure": 3.95
+    }
+   },
+   "stall_log": [],
+   "gc": {
+    "collections": {
+     "0": 7,
+     "2": 1
+    },
+    "total_ms": 14.1,
+    "over_2ms": [
+     [
+      11.0,
+      13.8,
+      2,
+      89
+     ]
+    ]
+   }
+  },
+  "health_end": {
+   "target_ms": 4.0,
+   "window_s": 5.0,
+   "period_ms": {
+    "p50": 4.0,
+    "p99": 4.26,
+    "max": 6.51
+   },
+   "work_ms": {
+    "mean": 1.079,
+    "p99": 3.08,
+    "max": 6.49
+   },
+   "lock_ms": {
+    "p99": 0.01,
+    "max": 0.03
+   },
+   "busy_pct": 27.0,
+   "late_window": 2,
+   "stalls_window": 0,
+   "late": 33,
+   "stalls": 0,
+   "worst_ms": 18.5,
+   "phases_ms": {
+    "read": {
+     "mean": 0.047,
+     "p99": 0.124,
+     "max": 0.329
+    },
+    "measure": {
+     "mean": 0.545,
+     "p99": 1.689,
+     "max": 5.218
+    },
+    "references": {
+     "mean": 0.078,
+     "p99": 0.394,
+     "max": 0.589
+    },
+    "fence": {
+     "mean": 0.145,
+     "p99": 0.429,
+     "max": 2.275
+    },
+    "feedforward": {
+     "mean": 0.152,
+     "p99": 0.589,
+     "max": 1.087
+    },
+    "guards": {
+     "mean": 0.042,
+     "p99": 0.117,
+     "max": 0.299
+    },
+    "conditions": {
+     "mean": 0.008,
+     "p99": 0.033,
+     "max": 0.069
+    },
+    "write": {
+     "mean": 0.049,
+     "p99": 0.121,
+     "max": 0.379
+    },
+    "record": {
+     "mean": 0.008,
+     "p99": 0.025,
+     "max": 0.062
+    }
+   },
+   "slowest_tick": {
+    "ago_s": 2.5,
+    "lock_ms": 0.01,
+    "work_ms": 6.49,
+    "phases_ms": {
+     "measure": 5.22
+    }
+   },
+   "stall_log": [],
+   "gc": {
+    "collections": {
+     "0": 10,
+     "2": 1
+    },
+    "total_ms": 14.9,
+    "over_2ms": [
+     [
+      230.1,
+      13.8,
+      2,
+      89
+     ]
+    ]
+   }
+  }
+ },
+ "arms_start": {
+  "fault": null,
+  "parked": null,
+  "busy": {}
+ },
+ "limits": {
+  "wall_s": 900.0,
+  "memory_gb": 4,
+  "process_memory_gb": 3
+ },
+ "state": "done",
+ "started_utc": "2026-11-11T01:49:57Z",
+ "ended_utc": "2026-11-11T01:53:36Z",
+ "notes": [],
+ "before": {
+  "camera": "top",
+  "colour": "blue",
+  "pixels": 78675,
+  "area_m2": 0.05955,
+  "height_m": 0.0306,
+  "centre_xy": [
+   0.523,
+   0.177
+  ],
+  "table_z": 0.0038,
+  "points": 27243
+ },
+ "agent_started_utc": "2026-11-11T01:49:57Z",
+ "agent_ended_utc": "2026-11-11T01:53:29Z",
+ "agent_wall_s": 211.9,
+ "end_reason": "agent_done",
+ "agent_exit_code": 0,
+ "codex_thread_id": "01a1c84e-0d22-78f3-9fc0-29ff378279a7",
+ "codex_events": 253,
+ "codex_turns": 2,
+ "codex_usage": {
+  "input_tokens": 7364241,
+  "cached_input_tokens": 7060224,
+  "output_tokens": 9970
+ },
+ "codex_errors": [],
+ "operator_messages": [],
+ "codex_compactions": 0,
+ "program_events": [
+  {
+   "wall": 1794361845.109,
+   "text": "[action approach_corners] started (the arms were holding)\n[queue] running #1 approach_corners: 0.0 s in, command 0\n[queue] empty behind it: as #1 approach_corners ends the arms stop until the next action is queued",
+   "delivered_as": "steer"
+  },
+  {
+   "wall": 1794361857.949,
+   "text": "[action approach_corners] done in 12.8 s\n[queue] started: pinch_and_test (#2; it had waited 8.3 s)\n[queue] running #2 pinch_and_test: 0.0 s in, command 1 (gripper)\n[queue] empty behind it: as #2 pinch_and_test ends the arms stop until the next action is queued\n[state] left xyz=[0.569, 0.350, 0.040] grip=91.0mm; right xyz=[0.524, -0.131, 0.039] grip=90.9mm (stalled: holding something)\n[view] after-approach_corners: /workspace/.robot/views/after-approach_corners.png\n[views] [\"/workspace/.robot/views/after-approach_corners.png\"]",
+   "delivered_as": "steer",
+   "images": [
+    "/workspace/.robot/events/sent/1794361857906-0002-action-approach_corners-0.png"
+   ]
+  },
+  {
+   "wall": 1794361868.877,
+   "text": "[action pinch_and_test] done in 10.9 s\n[queue] empty, nothing running: the arms hold until you queue the next action\n[state] left xyz=[0.560, 0.345, 0.061] grip=2.8mm (closed on nothing); right xyz=[0.516, -0.135, 0.061] grip=3.1mm (closed on nothing)\n[view] after-pinch_and_test: /workspace/.robot/views/after-pinch_and_test.png\n[marks towel] 1:(0.547,0.319,0.250) 2:(0.488,0.356,0.107) 3:(0.414,0.211,0.024) 4:(0.395,0.079,0.016) 5:(0.441,-0.035,0.122) 6:(0.329,-0.054,0.145) 7:(0.442,-0.043,0.123) 8:(0.445,-0.143,0.084) 9:(0.695,-0.141,0.019) 10:(1.028,0.024,-0.251) 11:(0.535,0.315,0.210) 12:(0.654,0.230,0.019) 13:(0.642,0.087,0.042) 14:(0.660,-0.059,0.015) 15:(0.494,0.223,0.027) 16:(0.489,0.088,0.038) 17:(0.454,-0.037,0.115)\n[views] [\"/workspace/.robot/views/after-pinch_and_test.png\"]",
+   "delivered_as": "steer",
+   "images": [
+    "/workspace/.robot/events/sent/1794361868803-0003-action-pinch_and_test-0.png"
+   ]
+  },
+  {
+   "wall": 1794361872.288,
+   "text": "[action spread] started (the arms were holding)\n[queue] running #3 spread: 0.0 s in, command 1 (move_to)\n[queue] empty behind it: as #3 spread ends the arms stop until the next action is queued",
+   "delivered_as": "steer"
+  },
+  {
+   "wall": 1794361879.93,
+   "text": "[action spread] done in 7.5 s\n[queue] started: lower_edge (#4; it had waited 2.5 s)\n[queue] running #4 lower_edge: 0.0 s in, command 1 (move_to)\n[queue] empty behind it: as #4 lower_edge ends the arms stop until the next action is queued\n[state] left xyz=[0.298, 0.368, 0.058] grip=3.0mm (closed on nothing); right xyz=[0.301, -0.218, 0.056] grip=3.1mm (closed on nothing)\n[view] after-spread: /workspace/.robot/views/after-spread.png\n[marks towel] 1:(0.655,0.427,0.014) 2:(0.215,0.369,0.099) 3:(0.305,-0.147,0.087) 4:(0.188,-0.181,0.230) 5:(0.678,-0.209,0.012) 6:(0.655,0.371,0.016) 7:(0.654,0.230,0.019) 8:(0.653,0.087,0.023) 9:(0.648,-0.056,0.035) 10:(0.663,-0.209,0.013) 11:(0.498,0.359,0.018) 12:(0.500,0.225,0.014) 13:(0.496,0.088,0.022) 14:(0.500,-0.051,0.015) 15:(0.500,-0.194,0.014) 16:(0.350,0.342,0.039) 17:(0.357,0.220,0.012) 18:(0.348,0.089,0.038) 19:(0.353,-0.044,0.016) 20:(0.345,-0.173,0.037)\n[views] [\"/workspace/.robot/views/after-spread.png\"]",
+   "delivered_as": "steer",
+   "images": [
+    "/workspace/.robot/events/sent/1794361879909-0005-action-spread-0.png"
+   ]
+  },
+  {
+   "wall": 1794361883.443,
+   "text": "[action lower_edge] done in 3.5 s\n[queue] empty, nothing running: the arms hold until you queue the next action\n[state] left xyz=[0.292, 0.369, 0.030] grip=3.1mm (closed on nothing); right xyz=[0.300, -0.220, 0.035] grip=3.1mm (closed on nothing)\n[view] after-lower_edge: /workspace/.robot/views/after-lower_edge.png\n[marks towel] 1:(0.653,0.427,0.015) 2:(0.179,0.319,0.248) 3:(0.310,0.083,0.035) 4:(0.199,-0.189,0.253) 5:(0.685,-0.218,0.009) 6:(0.657,0.372,0.012) 7:(0.654,0.230,0.019) 8:(0.650,0.087,0.028) 9:(0.649,-0.057,0.033) 10:(0.663,-0.209,0.013) 11:(0.497,0.358,0.021) 12:(0.498,0.224,0.019) 13:(0.496,0.088,0.022) 14:(0.500,-0.052,0.013) 15:(0.499,-0.193,0.017) 16:(0.355,0.347,0.021) 17:(0.356,0.220,0.014) 18:(0.349,0.089,0.035) 19:(0.353,-0.044,0.016) 20:(0.350,-0.178,0.020)\n[views] [\"/workspace/.robot/views/after-lower_edge.png\"]",
+   "delivered_as": "steer",
+   "images": [
+    "/workspace/.robot/events/sent/1794361883419-0006-action-lower_edge-0.png"
+   ]
+  },
+  {
+   "wall": 1794361887.554,
+   "text": "[action flatten] started (the arms were holding)\n[queue] running #5 flatten: 0.0 s in, command 1 (move_to)\n[queue] empty behind it: as #5 flatten ends the arms stop until the next action is queued",
+   "delivered_as": "steer"
+  },
+  {
+   "wall": 1794361892.268,
+   "text": "[action flatten] done in 4.5 s\n[queue] empty, nothing running: the arms hold until you queue the next action\n[state] left xyz=[0.265, 0.402, 0.026] grip=3.1mm (closed on nothing); right xyz=[0.271, -0.243, 0.027] grip=3.0mm (closed on nothing)\n[view] after-flatten: /workspace/.robot/views/after-flatten.png\n[marks towel] 1:(0.263,0.420,0.249) 2:(0.158,0.348,0.244) 3:(0.271,-0.175,0.054) 4:(0.178,-0.228,0.074) 5:(0.176,-0.252,0.250) 6:(0.661,-0.238,0.010) 7:(0.636,0.429,0.013) 8:(0.282,0.405,0.088) 9:(0.660,0.231,0.010) 10:(0.655,0.087,0.020) 11:(0.497,0.358,0.020) 12:(0.499,0.225,0.016) 13:(0.499,0.088,0.016) 14:(0.498,-0.051,0.017) 15:(0.353,0.345,0.028) 16:(0.357,0.220,0.012) 17:(0.356,0.089,0.010) 18:(0.354,-0.044,0.014) 19:(0.210,0.313,0.114) 20:(0.184,-0.218,0.215)\n[views] [\"/workspace/.robot/views/after-flatten.png\"]",
+   "delivered_as": "steer",
+   "images": [
+    "/workspace/.robot/events/sent/1794361892201-0008-action-flatten-0.png"
+   ]
+  },
+  {
+   "wall": 1794361903.6,
+   "text": "[action fold_arc] started (the arms were holding)\n[queue] running #6 fold_arc: 0.0 s in, command 1 (move_to)\n[queue] waiting 1: #7 fold_across\n[queue] 2 of 3 places free",
+   "delivered_as": "steer"
+  },
+  {
+   "wall": 1794361909.32,
+   "text": "[action fold_arc] done in 5.5 s\n[queue] started: fold_across (#7; it had waited 5.5 s)\n[queue] running #7 fold_across: 0.0 s in, command 1 (move_to)\n[queue] empty behind it: as #7 fold_across ends the arms stop until the next action is queued\n[state] left xyz=[0.421, 0.406, 0.214] grip=3.1mm (closed on nothing); right xyz=[0.421, -0.229, 0.206] grip=3.0mm (closed on nothing)\n[view] after-fold_arc: /workspace/.robot/views/after-fold_arc.png\n[marks towel] 1:(0.631,0.435,0.017) 2:(0.523,0.380,0.008) 3:(0.399,0.355,0.175) 4:(0.416,-0.133,0.074) 5:(0.545,-0.259,0.010) 6:(0.662,-0.243,0.009) 7:(0.659,0.087,0.015) 8:(0.413,0.306,0.206) 9:(0.413,0.198,0.206) 10:(0.417,0.089,0.196) 11:(0.480,-0.045,0.058) 12:(0.419,-0.141,0.193)\n[views] [\"/workspace/.robot/views/after-fold_arc.png\"]",
+   "delivered_as": "steer",
+   "images": [
+    "/workspace/.robot/events/sent/1794361909224-0010-action-fold_arc-0.png"
+   ]
+  },
+  {
+   "wall": 1794361909.624,
+   "text": "[action fold_across] InvalidCommand: left: target unreachable (closest IK solution misses by 5.7 mm) (line 451 of /opt/robot-api/robot/__init__.py)\n[action fold_across] error InvalidCommand: left: target unreachable (closest IK solution misses by 5.7 mm) after 0.3 s\n[queue] empty, nothing running: the arms hold until you queue the next action\n[state] left xyz=[0.426, 0.407, 0.215] grip=3.1mm (closed on nothing); right xyz=[0.427, -0.228, 0.213] grip=3.0mm (closed on nothing)\n[view] after-fold_across: /workspace/.robot/views/after-fold_across.png\n[marks towel] 1:(0.584,0.441,0.002) 2:(0.527,0.384,0.013) 3:(0.442,0.397,0.080) 4:(0.414,0.076,0.054) 5:(0.420,-0.176,0.123) 6:(0.555,-0.261,0.010) 7:(0.662,-0.242,0.011) 8:(0.647,0.430,0.015) 9:(0.660,0.087,0.013) 10:(0.426,0.314,0.177) 11:(0.419,0.200,0.192) 12:(0.418,0.089,0.194) 13:(0.430,-0.029,0.167) 14:(0.425,-0.145,0.179)\n[views] [\"/workspace/.robot/views/after-fold_across.png\"]",
+   "delivered_as": "steer",
+   "images": [
+    "/workspace/.robot/events/sent/1794361909550-0011-action-fold_across-0.png"
+   ]
+  },
+  {
+   "wall": 1794361913.637,
+   "text": "[action across_revised] started (the arms were holding)\n[queue] running #8 across_revised: 0.0 s in, command 0\n[queue] empty behind it: as #8 across_revised ends the arms stop until the next action is queued",
+   "delivered_as": "steer"
+  },
+  {
+   "wall": 1794361920.265,
+   "text": "[action across_revised] done in 6.5 s\n[queue] started: land_fold (#9; it had waited 2.5 s)\n[queue] running #9 land_fold: 0.0 s in, command 1 (move_to)\n[queue] empty behind it: as #9 land_fold ends the arms stop until the next action is queued\n[state] left xyz=[0.604, 0.411, 0.079] grip=3.1mm (closed on nothing); right xyz=[0.638, -0.231, 0.093] grip=3.0mm (closed on nothing)\n[view] after-across_revised: /workspace/.robot/views/after-across_revised.png\n[marks towel] 1:(0.538,-0.218,0.250) 2:(0.554,0.377,0.228) 3:(0.492,0.388,0.251) 4:(0.455,0.395,0.026) 5:(0.483,-0.263,0.023) 6:(0.565,0.329,0.161) 7:(0.653,0.230,0.021) 8:(0.654,0.087,0.022) 9:(0.491,0.354,0.034) 10:(0.495,0.224,0.025) 11:(0.494,0.088,0.026) 12:(0.492,-0.049,0.032) 13:(0.488,-0.186,0.041)\n[views] [\"/workspace/.robot/views/after-across_revised.png\"]",
+   "delivered_as": "steer",
+   "images": [
+    "/workspace/.robot/events/sent/1794361920261-0013-action-across_revised-0.png"
+   ]
+  },
+  {
+   "wall": 1794361921.523,
+   "text": "[look 1]\n[state] left xyz=[0.604, 0.411, 0.078] grip=3.1mm (closed on nothing); right xyz=[0.641, -0.231, 0.096] grip=3.0mm (closed on nothing)\n[view] look-1: /workspace/.robot/views/look-1.png\n[queue] running #9 land_fold: 1.4 s in, command 1 (move_to)\n[queue] empty behind it: as #9 land_fold ends the arms stop until the next action is queued\n[views] [\"/workspace/.robot/views/look-1.png\"]",
+   "delivered_as": "steer",
+   "images": [
+    "/workspace/.robot/events/sent/1794361921513-0014-action-land_fold-0.png"
+   ]
+  },
+  {
+   "wall": 1794361924.835,
+   "text": "[action land_fold] done in 4.5 s\n[queue] empty, nothing running: the arms hold until you queue the next action\n[state] left xyz=[0.610, 0.413, 0.044] grip=3.1mm (closed on nothing); right xyz=[0.651, -0.230, 0.062] grip=3.0mm (closed on nothing)\n[view] after-land_fold: /workspace/.robot/views/after-land_fold.png\n[marks towel] 1:(0.465,-0.263,0.249) 2:(0.585,-0.226,0.245) 3:(0.649,0.006,0.026) 4:(0.561,0.400,0.248) 5:(0.444,0.436,0.248) 6:(0.453,0.367,0.021) 7:(0.428,-0.171,0.069) 8:(0.512,0.409,0.246) 9:(0.654,0.230,0.019) 10:(0.658,0.087,0.016) 11:(0.655,-0.058,0.022) 12:(0.518,-0.252,0.248) 13:(0.492,0.355,0.032) 14:(0.495,0.224,0.024) 15:(0.493,0.088,0.029) 16:(0.490,-0.048,0.036) 17:(0.490,-0.187,0.036)\n[views] [\"/workspace/.robot/views/after-land_fold.png\"]",
+   "delivered_as": "steer",
+   "images": [
+    "/workspace/.robot/events/sent/1794361924738-0015-action-land_fold-0.png"
+   ]
+  },
+  {
+   "wall": 1794361932.36,
+   "text": "[action release_fold] started (the arms were holding)\n[queue] running #10 release_fold: 0.0 s in, command 1 (gripper)\n[queue] empty behind it: as #10 release_fold ends the arms stop until the next action is queued",
+   "delivered_as": "steer"
+  },
+  {
+   "wall": 1794361940.589,
+   "text": "[action release_fold] done in 8.1 s\n[queue] started: clear_view (#11; it had waited 3.1 s)\n[queue] running #11 clear_view: 0.0 s in, command 1 (move_to)\n[queue] empty behind it: as #11 clear_view ends the arms stop until the next action is queued\n[state] left xyz=[0.523, 0.406, 0.175] grip=74.9mm; right xyz=[0.521, -0.225, 0.171] grip=75.0mm\n[view] after-release_fold: /workspace/.robot/views/after-release_fold.png\n[views] [\"/workspace/.robot/views/after-release_fold.png\"]",
+   "delivered_as": "steer",
+   "images": [
+    "/workspace/.robot/events/sent/1794361940497-0017-action-release_fold-0.png"
+   ]
+  },
+  {
+   "wall": 1794361945.005,
+   "text": "[action clear_view] done in 4.5 s\n[queue] empty, nothing running: the arms hold until you queue the next action\n[state] left xyz=[0.325, 0.307, 0.213] grip=74.9mm; right xyz=[0.312, -0.212, 0.224] grip=75.0mm\n[view] after-clear_view: /workspace/.robot/views/after-clear_view.png\n[views] [\"/workspace/.robot/views/after-clear_view.png\"]",
+   "delivered_as": "steer",
+   "images": [
+    "/workspace/.robot/events/sent/1794361944960-0018-action-clear_view-0.png"
+   ]
+  }
+ ],
+ "codex_threads": [
+  "01a1c84c-2c68-74c1-8974-eea50717062d",
+  "01a1c84e-0d22-78f3-9fc0-29ff378279a7"
+ ],
+ "codex_prunes": [
+  {
+   "wall": 1794361920.265,
+   "from_thread": "01a1c84c-2c68-74c1-8974-eea50717062d",
+   "images_since": 20,
+   "reason": "images",
+   "to_thread": "01a1c84e-0d22-78f3-9fc0-29ff378279a7",
+   "items": 122,
+   "images_removed": 15,
+   "bytes": 5511880,
+   "took_s": 1.15
+  }
+ ],
+ "action_pushes": [
+  {
+   "file": "1794361845017-0001-action-approach_corners.json",
+   "written": 1794361845.018,
+   "delivered": 1794361845.109,
+   "how": "steer",
+   "report_s": 0.0,
+   "t1": 1794361845.018
+  },
+  {
+   "file": "1794361857906-0002-action-approach_corners.json",
+   "written": 1794361857.907,
+   "delivered": 1794361857.949,
+   "how": "steer",
+   "report_s": 0.09,
+   "t1": 1794361857.817
+  },
+  {
+   "file": "1794361868803-0003-action-pinch_and_test.json",
+   "written": 1794361868.804,
+   "delivered": 1794361868.878,
+   "how": "steer",
+   "report_s": 0.12,
+   "t1": 1794361868.685
+  },
+  {
+   "file": "1794361872274-0004-action-spread.json",
+   "written": 1794361872.275,
+   "delivered": 1794361872.288,
+   "how": "steer",
+   "report_s": 0.0,
+   "t1": 1794361872.275
+  },
+  {
+   "file": "1794361879909-0005-action-spread.json",
+   "written": 1794361879.91,
+   "delivered": 1794361879.93,
+   "how": "steer",
+   "report_s": 0.13,
+   "t1": 1794361879.777
+  },
+  {
+   "file": "1794361883419-0006-action-lower_edge.json",
+   "written": 1794361883.42,
+   "delivered": 1794361883.443,
+   "how": "steer",
+   "report_s": 0.13,
+   "t1": 1794361883.289
+  },
+  {
+   "file": "1794361887547-0007-action-flatten.json",
+   "written": 1794361887.547,
+   "delivered": 1794361887.554,
+   "how": "steer",
+   "report_s": 0.0,
+   "t1": 1794361887.547
+  },
+  {
+   "file": "1794361892201-0008-action-flatten.json",
+   "written": 1794361892.202,
+   "delivered": 1794361892.268,
+   "how": "steer",
+   "report_s": 0.14,
+   "t1": 1794361892.057
+  },
+  {
+   "file": "1794361903594-0009-action-fold_arc.json",
+   "written": 1794361903.595,
+   "delivered": 1794361903.6,
+   "how": "steer",
+   "report_s": 0.0,
+   "t1": 1794361903.595
+  },
+  {
+   "file": "1794361909224-0010-action-fold_arc.json",
+   "written": 1794361909.224,
+   "delivered": 1794361909.321,
+   "how": "steer",
+   "report_s": 0.12,
+   "t1": 1794361909.101
+  },
+  {
+   "file": "1794361909550-0011-action-fold_across.json",
+   "written": 1794361909.551,
+   "delivered": 1794361909.624,
+   "how": "steer",
+   "report_s": 0.14,
+   "t1": 1794361909.412
+  },
+  {
+   "file": "1794361913590-0012-action-across_revised.json",
+   "written": 1794361913.59,
+   "delivered": 1794361913.637,
+   "how": "steer",
+   "report_s": 0.0,
+   "t1": 1794361913.59
+  },
+  {
+   "file": "1794361920261-0013-action-across_revised.json",
+   "written": 1794361920.261,
+   "delivered": 1794361920.265,
+   "how": "steer",
+   "report_s": 0.15,
+   "t1": 1794361920.106
+  },
+  {
+   "file": "1794361921513-0014-action-land_fold.json",
+   "written": 1794361921.513,
+   "delivered": 1794361921.523,
+   "how": "steer",
+   "report_s": 0.07,
+   "t1": 1794361921.513
+  },
+  {
+   "file": "1794361924738-0015-action-land_fold.json",
+   "written": 1794361924.738,
+   "delivered": 1794361924.835,
+   "how": "steer",
+   "report_s": 0.12,
+   "t1": 1794361924.617
+  },
+  {
+   "file": "1794361932293-0016-action-release_fold.json",
+   "written": 1794361932.294,
+   "delivered": 1794361932.36,
+   "how": "steer",
+   "report_s": 0.0,
+   "t1": 1794361932.294
+  },
+  {
+   "file": "1794361940497-0017-action-release_fold.json",
+   "written": 1794361940.498,
+   "delivered": 1794361940.589,
+   "how": "steer",
+   "report_s": 0.09,
+   "t1": 1794361940.405
+  },
+  {
+   "file": "1794361944960-0018-action-clear_view.json",
+   "written": 1794361944.96,
+   "delivered": 1794361945.005,
+   "how": "steer",
+   "report_s": 0.05,
+   "t1": 1794361944.906
+  }
+ ],
+ "program_host": {
+  "log": "logs/program-host.jsonl",
+  "started": 0,
+  "stopped_at_end": []
+ },
+ "park_end": {
+  "ok": true,
+  "ids": [
+   68,
+   69,
+   70,
+   71
+  ],
+  "s": 5.5
+ },
+ "arms_end": {
+  "fault": null,
+  "parked": {
+   "reason": "the operator parked the arms",
+   "t": 223.3424370639841,
+   "operator": true
+  },
+  "busy": {}
+ },
+ "witness": {
+  "frames": 22,
+  "period_s": 10.0,
+  "errors": []
+ },
+ "memory": {
+  "cap_process_gb": 3,
+  "cap_total_gb": 4,
+  "period_s": 2.0,
+  "samples": 105,
+  "peak_sandbox_gb": 1.0,
+  "peak_process_gb": 0.59,
+  "peak_process": "python: /home/shao/robot-api-real/.venv/bin/python -m robot.kernel --serve",
+  "kills": [],
+  "errors": [],
+  "log": "logs/memory.jsonl"
+ },
+ "wall_s": 219.7,
+ "finished": {
+  "wall": 1794361947.7750149,
+  "summary": "Spread the blue towel flat, folded it once in half edge to edge, and left it folded on the table with both hands clear.",
+  "ok": true
+ },
+ "check": {
+  "success": null,
+  "area_m2": 0.05228,
+  "height_m": 0.0483,
+  "note": "no towel size given, so no coverage threshold: the operator judges from the witness frames"
+ },
+ "video": {
+  "path": "video-4x.mp4",
+  "bytes": 738898,
+  "every_s": 0.5,
+  "speed": 4.0
+ },
+ "camera_streams": {
+  "dir": "cameras",
+  "fps": 6.0,
+  "bytes": 87801323
+ }
+}

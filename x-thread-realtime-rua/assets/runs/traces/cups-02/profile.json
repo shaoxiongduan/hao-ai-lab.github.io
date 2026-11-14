@@ -1,0 +1,80 @@
+{
+ "run": "cups-02",
+ "wall_s": 272.4,
+ "responses": 60,
+ "model_s": 186.8,
+ "first_token_s_est": 137.5,
+ "decode_s_est": 49.4,
+ "tool_s": 21.8,
+ "robot_moving_s": 153.4,
+ "robot_moving_while_model_s": 136.5,
+ "images_viewed": 24,
+ "round_trips_after_errors": 5,
+ "median_step_s": 2.59,
+ "by_kind": {
+  "capture or render views": {
+   "n": 23,
+   "model_s": 70.6,
+   "exposed_s": 26.4
+  },
+  "other": {
+   "n": 10,
+   "model_s": 35.1,
+   "exposed_s": 8.5
+  },
+  "read files": {
+   "n": 4,
+   "model_s": 8.6,
+   "exposed_s": 6.8
+  },
+  "move the robot": {
+   "n": 15,
+   "model_s": 54.1,
+   "exposed_s": 5.2
+  },
+  "wait on a running command": {
+   "n": 2,
+   "model_s": 3.4,
+   "exposed_s": 2.0
+  },
+  "message only": {
+   "n": 3,
+   "model_s": 5.3,
+   "exposed_s": 1.4
+  },
+  "look up 3D points or IK": {
+   "n": 3,
+   "model_s": 9.7,
+   "exposed_s": 0.0
+  }
+ },
+ "output_tokens": 13921,
+ "reasoning_tokens": 4554,
+ "context_tokens_median": 80230,
+ "threads": 3,
+ "prunes": [
+  {
+   "wall": 1794358414.951,
+   "from_thread": "01a1c816-efc1-7fb1-9a47-6550ac0dc038",
+   "images_since": 20,
+   "reason": "images",
+   "to_thread": "01a1c818-907f-7140-8235-df29ed9536c0",
+   "items": 100,
+   "images_removed": 16,
+   "bytes": 2953762,
+   "took_s": 1.11
+  },
+  {
+   "wall": 1794358510.249,
+   "from_thread": "01a1c818-907f-7140-8235-df29ed9536c0",
+   "images_since": 20,
+   "reason": "images",
+   "to_thread": "01a1c81a-04c4-73a2-9798-cb429a6a02e0",
+   "items": 192,
+   "images_removed": 20,
+   "bytes": 3765264,
+   "took_s": 0.87
+  }
+ ],
+ "reasoning_summary": "none"
+}

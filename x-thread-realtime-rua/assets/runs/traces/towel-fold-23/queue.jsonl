@@ -1,0 +1,84 @@
+{"wall": 1794363602.2083, "event": "started", "id": 1, "name": "smooth_first", "running": 1, "waiting": []}
+{"wall": 1794363605.7714, "event": "ended", "id": 1, "name": "smooth_first", "status": "error InvalidCommand: separation: the goal puts the arms 0.8 cm apart (left_link4-left_link5 and right_link4-right_link5); the arms are kept at least 2 cm apart after 3.5 s", "ok": false, "t0": 1794363602.208, "t1": 1794363605.716, "commands": 3, "running": null, "waiting": []}
+{"wall": 1794363608.2158, "event": "started", "id": 2, "name": "smooth_first", "running": 2, "waiting": []}
+{"wall": 1794363615.3665, "event": "queued", "id": 3, "name": "smooth_far", "behind": 2, "timeout": 120.0, "replace_from": null, "running": 2, "waiting": [3]}
+{"wall": 1794363623.2759, "event": "started", "id": 3, "name": "smooth_far", "running": 3, "waiting": []}
+{"wall": 1794363623.3894, "event": "ended", "id": 2, "name": "smooth_first", "status": "done in 15.1 s", "ok": true, "t0": 1794363608.216, "t1": 1794363623.276, "commands": 6, "running": 3, "waiting": []}
+{"wall": 1794363626.3201, "event": "queued", "id": 4, "name": "smooth_outer", "behind": 3, "timeout": 120.0, "replace_from": null, "running": 3, "waiting": [4]}
+{"wall": 1794363638.3901, "event": "started", "id": 4, "name": "smooth_outer", "running": 4, "waiting": []}
+{"wall": 1794363638.5207, "event": "ended", "id": 3, "name": "smooth_far", "status": "done in 15.1 s", "ok": true, "t0": 1794363623.276, "t1": 1794363638.39, "commands": 4, "running": 4, "waiting": []}
+{"wall": 1794363643.3426, "event": "queued", "id": 5, "name": "smooth_near", "behind": 4, "timeout": 120.0, "replace_from": null, "running": 4, "waiting": [5]}
+{"wall": 1794363654.5052, "event": "started", "id": 5, "name": "smooth_near", "running": 5, "waiting": []}
+{"wall": 1794363654.6687, "event": "ended", "id": 4, "name": "smooth_outer", "status": "done in 16.1 s", "ok": true, "t0": 1794363638.39, "t1": 1794363654.505, "commands": 4, "running": 5, "waiting": []}
+{"wall": 1794363660.2156, "event": "queued", "id": 6, "name": "smooth_center", "behind": 5, "timeout": 120.0, "replace_from": null, "running": 5, "waiting": [6]}
+{"wall": 1794363666.9253, "event": "queued", "id": 7, "name": "prepare_corners", "behind": 5, "timeout": 120.0, "replace_from": null, "running": 5, "waiting": [6, 7]}
+{"wall": 1794363669.5476, "event": "started", "id": 6, "name": "smooth_center", "running": 6, "waiting": [7]}
+{"wall": 1794363669.6989, "event": "ended", "id": 5, "name": "smooth_near", "status": "done in 15.0 s", "ok": true, "t0": 1794363654.505, "t1": 1794363669.548, "commands": 4, "running": 6, "waiting": [7]}
+{"wall": 1794363685.5921, "event": "started", "id": 7, "name": "prepare_corners", "running": 7, "waiting": []}
+{"wall": 1794363685.7108, "event": "ended", "id": 6, "name": "smooth_center", "status": "done in 16.0 s", "ok": true, "t0": 1794363669.548, "t1": 1794363685.592, "commands": 4, "running": 7, "waiting": []}
+{"wall": 1794363694.0154, "event": "ended", "id": 7, "name": "prepare_corners", "status": "done in 8.3 s", "ok": true, "t0": 1794363685.592, "t1": 1794363693.9, "commands": 3, "running": null, "waiting": []}
+{"wall": 1794363700.0695, "event": "started", "id": 8, "name": "recenter", "running": 8, "waiting": []}
+{"wall": 1794363700.0703, "event": "queued", "id": 9, "name": "restore_center", "behind": 8, "timeout": 120.0, "replace_from": null, "running": 8, "waiting": [9]}
+{"wall": 1794363719.8553, "event": "started", "id": 9, "name": "restore_center", "running": 9, "waiting": []}
+{"wall": 1794363720.0803, "event": "ended", "id": 8, "name": "recenter", "status": "done in 19.8 s", "ok": true, "t0": 1794363700.07, "t1": 1794363719.855, "commands": 6, "running": 9, "waiting": []}
+{"wall": 1794363724.8177, "event": "queued", "id": 10, "name": "corner_approach", "behind": 9, "timeout": 120.0, "replace_from": null, "running": 9, "waiting": [10]}
+{"wall": 1794363730.3661, "event": "queued", "id": 11, "name": "lower_outside", "behind": 9, "timeout": 120.0, "replace_from": null, "running": 9, "waiting": [10, 11]}
+{"wall": 1794363732.3834, "event": "started", "id": 10, "name": "corner_approach", "running": 10, "waiting": [11]}
+{"wall": 1794363732.5325, "event": "ended", "id": 9, "name": "restore_center", "status": "done in 12.5 s", "ok": true, "t0": 1794363719.855, "t1": 1794363732.383, "commands": 3, "running": 10, "waiting": [11]}
+{"wall": 1794363740.1326, "event": "started", "id": 11, "name": "lower_outside", "running": 11, "waiting": []}
+{"wall": 1794363740.3282, "event": "ended", "id": 10, "name": "corner_approach", "status": "done in 7.7 s", "ok": true, "t0": 1794363732.383, "t1": 1794363740.133, "commands": 3, "running": 11, "waiting": []}
+{"wall": 1794363744.7841, "event": "ended", "id": 11, "name": "lower_outside", "status": "done in 4.5 s", "ok": true, "t0": 1794363740.133, "t1": 1794363744.651, "commands": 1, "running": null, "waiting": []}
+{"wall": 1794363751.2875, "event": "started", "id": 12, "name": "insert_corners", "running": 12, "waiting": []}
+{"wall": 1794363756.9695, "event": "ended", "id": 12, "name": "insert_corners", "status": "done in 5.5 s", "ok": true, "t0": 1794363751.288, "t1": 1794363756.804, "commands": 1, "running": null, "waiting": []}
+{"wall": 1794363762.2754, "event": "started", "id": 13, "name": "grip_and_test", "running": 13, "waiting": []}
+{"wall": 1794363779.1199, "event": "ended", "id": 13, "name": "grip_and_test", "status": "done in 16.7 s", "ok": true, "t0": 1794363762.275, "t1": 1794363778.968, "commands": 3, "running": null, "waiting": []}
+{"wall": 1794363783.3246, "event": "started", "id": 14, "name": "spread_held_edge", "running": 14, "waiting": []}
+{"wall": 1794363783.3254, "event": "queued", "id": 15, "name": "lay_flat_held", "behind": 14, "timeout": 120.0, "replace_from": null, "running": 14, "waiting": [15]}
+{"wall": 1794363790.3479, "event": "started", "id": 15, "name": "lay_flat_held", "running": 15, "waiting": []}
+{"wall": 1794363790.4905, "event": "ended", "id": 14, "name": "spread_held_edge", "status": "done in 7.0 s", "ok": true, "t0": 1794363783.325, "t1": 1794363790.348, "commands": 3, "running": 15, "waiting": []}
+{"wall": 1794363797.0286, "event": "ended", "id": 15, "name": "lay_flat_held", "status": "done in 6.5 s", "ok": true, "t0": 1794363790.348, "t1": 1794363796.863, "commands": 1, "running": null, "waiting": []}
+{"wall": 1794363820.9185, "event": "started", "id": 16, "name": "fold_lift", "running": 16, "waiting": []}
+{"wall": 1794363820.9191, "event": "queued", "id": 17, "name": "fold_over", "behind": 16, "timeout": 120.0, "replace_from": null, "running": 16, "waiting": [17]}
+{"wall": 1794363820.9192, "event": "queued", "id": 18, "name": "fold_lower", "behind": 16, "timeout": 120.0, "replace_from": null, "running": 16, "waiting": [17, 18]}
+{"wall": 1794363829.9459, "event": "started", "id": 17, "name": "fold_over", "running": 17, "waiting": [18]}
+{"wall": 1794363830.1109, "event": "ended", "id": 16, "name": "fold_lift", "status": "done in 9.0 s", "ok": true, "t0": 1794363820.918, "t1": 1794363829.946, "commands": 2, "running": 17, "waiting": [18]}
+{"wall": 1794363835.4599, "event": "started", "id": 18, "name": "fold_lower", "running": 18, "waiting": []}
+{"wall": 1794363835.6198, "event": "ended", "id": 17, "name": "fold_over", "status": "done in 5.5 s", "ok": true, "t0": 1794363829.946, "t1": 1794363835.46, "commands": 1, "running": 18, "waiting": []}
+{"wall": 1794363840.1398, "event": "ended", "id": 18, "name": "fold_lower", "status": "done in 4.5 s", "ok": true, "t0": 1794363835.46, "t1": 1794363839.979, "commands": 1, "running": null, "waiting": []}
+{"wall": 1794363846.215, "event": "started", "id": 19, "name": "release_fold", "running": 19, "waiting": []}
+{"wall": 1794363858.54, "event": "queued", "id": 20, "name": "smooth_fold_center", "behind": 19, "timeout": 120.0, "replace_from": null, "running": 19, "waiting": [20]}
+{"wall": 1794363858.7474, "event": "started", "id": 20, "name": "smooth_fold_center", "running": 20, "waiting": []}
+{"wall": 1794363858.8794, "event": "ended", "id": 19, "name": "release_fold", "status": "done in 12.5 s", "ok": true, "t0": 1794363846.215, "t1": 1794363858.747, "commands": 4, "running": 20, "waiting": []}
+{"wall": 1794363879.974, "event": "ended", "id": 20, "name": "smooth_fold_center", "status": "done in 21.1 s", "ok": true, "t0": 1794363858.747, "t1": 1794363879.804, "commands": 7, "running": null, "waiting": []}
+{"wall": 1794363887.6893, "event": "started", "id": 21, "name": "sweep_upper_layer", "running": 21, "waiting": []}
+{"wall": 1794363901.8662, "event": "look", "running": 21, "waiting": []}
+{"wall": 1794363908.4869, "event": "ended", "id": 21, "name": "sweep_upper_layer", "status": "done in 20.6 s", "ok": true, "t0": 1794363887.689, "t1": 1794363908.292, "commands": 5, "running": null, "waiting": []}
+{"wall": 1794363928.7439, "event": "started", "id": 22, "name": "approach_hem", "running": 22, "waiting": []}
+{"wall": 1794363933.3656, "event": "queued", "id": 23, "name": "pinch_hem", "behind": 22, "timeout": 120.0, "replace_from": null, "running": 22, "waiting": [23]}
+{"wall": 1794363939.8677, "event": "started", "id": 23, "name": "pinch_hem", "running": 23, "waiting": []}
+{"wall": 1794363940.2592, "event": "ended", "id": 22, "name": "approach_hem", "status": "done in 11.1 s", "ok": true, "t0": 1794363928.744, "t1": 1794363939.868, "commands": 4, "running": 23, "waiting": []}
+{"wall": 1794363951.5454, "event": "queued", "id": 24, "name": "align_hem", "behind": 23, "timeout": 120.0, "replace_from": null, "running": 23, "waiting": [24]}
+{"wall": 1794363952.5199, "event": "started", "id": 24, "name": "align_hem", "running": 24, "waiting": []}
+{"wall": 1794363952.7038, "event": "ended", "id": 23, "name": "pinch_hem", "status": "done in 12.7 s", "ok": true, "t0": 1794363939.868, "t1": 1794363952.52, "commands": 3, "running": 24, "waiting": []}
+{"wall": 1794363961.4456, "event": "queued", "id": 25, "name": "release_hem", "behind": 24, "timeout": 120.0, "replace_from": null, "running": 24, "waiting": [25]}
+{"wall": 1794363962.5363, "event": "started", "id": 25, "name": "release_hem", "running": 25, "waiting": []}
+{"wall": 1794363962.7576, "event": "ended", "id": 24, "name": "align_hem", "status": "done in 10.0 s", "ok": true, "t0": 1794363952.52, "t1": 1794363962.536, "commands": 2, "running": 25, "waiting": []}
+{"wall": 1794363975.1582, "event": "ended", "id": 25, "name": "release_hem", "status": "done in 12.5 s", "ok": true, "t0": 1794363962.536, "t1": 1794363975.0, "commands": 4, "running": null, "waiting": []}
+{"wall": 1794363982.6388, "event": "started", "id": 26, "name": "approach_folded_corners", "running": 26, "waiting": []}
+{"wall": 1794363988.1012, "event": "queued", "id": 27, "name": "grip_folded_corners", "behind": 26, "timeout": 120.0, "replace_from": null, "running": 26, "waiting": [27]}
+{"wall": 1794363997.9136, "event": "started", "id": 27, "name": "grip_folded_corners", "running": 27, "waiting": []}
+{"wall": 1794363998.1246, "event": "ended", "id": 26, "name": "approach_folded_corners", "status": "done in 15.3 s", "ok": true, "t0": 1794363982.639, "t1": 1794363997.914, "commands": 5, "running": 27, "waiting": []}
+{"wall": 1794364011.9884, "event": "ended", "id": 27, "name": "grip_folded_corners", "status": "done in 13.9 s", "ok": true, "t0": 1794363997.914, "t1": 1794364011.836, "commands": 3, "running": null, "waiting": []}
+{"wall": 1794364018.6593, "event": "started", "id": 28, "name": "lift_fold_evenly", "running": 28, "waiting": []}
+{"wall": 1794364023.1845, "event": "queued", "id": 29, "name": "move_settle_forward", "behind": 28, "timeout": 120.0, "replace_from": null, "running": 28, "waiting": [29]}
+{"wall": 1794364025.1757, "event": "started", "id": 29, "name": "move_settle_forward", "running": 29, "waiting": []}
+{"wall": 1794364025.3262, "event": "ended", "id": 28, "name": "lift_fold_evenly", "status": "done in 6.5 s", "ok": true, "t0": 1794364018.659, "t1": 1794364025.176, "commands": 1, "running": 29, "waiting": []}
+{"wall": 1794364029.8317, "event": "ended", "id": 29, "name": "move_settle_forward", "status": "done in 4.5 s", "ok": true, "t0": 1794364025.176, "t1": 1794364029.688, "commands": 1, "running": null, "waiting": []}
+{"wall": 1794364030.08, "event": "started", "id": 30, "name": "tension_fold", "running": 30, "waiting": []}
+{"wall": 1794364030.0804, "event": "queued", "id": 31, "name": "lower_settled_fold", "behind": 30, "timeout": 120.0, "replace_from": null, "running": 30, "waiting": [31]}
+{"wall": 1794364034.5926, "event": "started", "id": 31, "name": "lower_settled_fold", "running": 31, "waiting": []}
+{"wall": 1794364034.745, "event": "ended", "id": 30, "name": "tension_fold", "status": "done in 4.5 s", "ok": true, "t0": 1794364030.08, "t1": 1794364034.593, "commands": 1, "running": 31, "waiting": []}
+{"wall": 1794364039.0635, "event": "queued", "id": 32, "name": "release_settled_fold", "behind": 31, "timeout": 120.0, "replace_from": null, "running": 31, "waiting": [32]}
+{"wall": 1794364049.1314, "event": "started", "id": 32, "name": "release_settled_fold", "running": 32, "waiting": []}
+{"wall": 1794364049.1843, "event": "ended", "id": 31, "name": "lower_settled_fold", "status": "done in 14.5 s", "ok": true, "t0": 1794364034.593, "t1": 1794364049.131, "commands": 3, "running": 32, "waiting": []}
+{"wall": 1794364062.0784, "event": "ended", "id": 32, "name": "release_settled_fold", "status": "done in 12.8 s", "ok": true, "t0": 1794364049.131, "t1": 1794364061.969, "commands": 4, "running": null, "waiting": []}

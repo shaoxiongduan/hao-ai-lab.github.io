@@ -1,15 +1,19 @@
 #!/bin/bash
 # Build the thread's main video (01-main-video.mp4).
-# make.sh <opening footage.mp4> <run data folder> <work dir> <out.mp4>
-#   opening footage: Anthropic's "Claude Fable 5.2 controls physical robot arms" (YouTube 54Oajk23wbI) at 1080p.
-#     Only its first 5.9 s are used. It is not in this repo.
-#   run data folder: stages.json, plus <run>-lanes.json and <run>-front.mp4 for cups-02, towel-fold-18
-#     and towel-fold-23 (robot-api's demo data).
+# make.sh <work dir> <out.mp4> [opening footage.mp4] [run data folder]
+#   opening footage: defaults to ../../assets/opening/fable52-opening.mp4, the first 6.2 s of Anthropic's
+#     "Claude Fable 5.2 controls physical robot arms" (YouTube 54Oajk23wbI, 1080p). Only 5.9 s are used.
+#   run data folder: defaults to ../../assets/runs, a copy of robot-api's docs/demos (branch shao/dsk-real):
+#     <run>-front.mp4 for cups-02, towel-fold-18 and towel-fold-23, with stages.json and <run>-lanes.json
+#     in data/. A flat folder with all seven files also works.
 set -euo pipefail
 here=$(cd "$(dirname "$0")" && pwd)
-src=$1; dsk=$2
-work=$(mkdir -p "$3" && cd "$3" && pwd)
-out=$(cd "$(dirname "$4")" && pwd)/$(basename "$4")
+assets=$here/../../assets
+work=$(mkdir -p "$1" && cd "$1" && pwd)
+out=$(cd "$(dirname "$2")" && pwd)/$(basename "$2")
+src=${3:-$assets/opening/fable52-opening.mp4}
+dsk=${4:-$assets/runs}
+data=$dsk; [ -f "$dsk/stages.json" ] || data=$dsk/data
 
 # Opening: the first 5.9 s of the footage as frames.
 mkdir -p "$work/opening"
@@ -26,7 +30,7 @@ towel-fold-23 18.5 60
 EOF
 
 # Lane data (the committed data.json is this step's output), then the page with the data inlined.
-python3 -I "$here/prep.py" "$dsk" "$work/data.json"
+python3 -I "$here/prep.py" "$data" "$work/data.json"
 python3 -I -c "import sys; s = open(sys.argv[1]).read(); d = open(sys.argv[2]).read(); open(sys.argv[3], 'w').write(s.replace('__DATA__', d))" \
   "$here/main-video.html" "$work/data.json" "$work/main-video-built.html"
 

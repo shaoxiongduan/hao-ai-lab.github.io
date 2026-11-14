@@ -1,0 +1,41 @@
+{
+ "check": {
+  "success": null,
+  "area_m2": 0.0523,
+  "height_m": 0.0435,
+  "note": "no towel size given, so no coverage threshold: the operator judges from the witness frames"
+ },
+ "after": {
+  "camera": "top",
+  "colour": "blue",
+  "pixels": 70316,
+  "area_m2": 0.0523,
+  "height_m": 0.0435,
+  "centre_xy": [
+   0.424,
+   0.202
+  ],
+  "table_z": 0.0023,
+  "points": 24410
+ },
+ "before": {
+  "camera": "top",
+  "colour": "blue",
+  "pixels": 68657,
+  "area_m2": 0.0351,
+  "height_m": 0.0396,
+  "centre_xy": [
+   0.504,
+   0.111
+  ],
+  "table_z": 0.0036,
+  "points": 16636
+ },
+ "finished": {
+  "wall": 1794364064.483055,
+  "summary": "Spread the towel, folded it once in half, and left it on the table. The edges are approximately aligned, with some wrinkles remaining.",
+  "ok": true
+ },
+ "operator_verdict": null,
+ "evaluated_utc": "2026-11-11T02:28:56Z"
+}

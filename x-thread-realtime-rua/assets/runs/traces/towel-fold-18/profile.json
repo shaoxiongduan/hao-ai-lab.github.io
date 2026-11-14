@@ -1,0 +1,69 @@
+{
+ "run": "towel-fold-18",
+ "wall_s": 211.9,
+ "responses": 44,
+ "model_s": 139.2,
+ "first_token_s_est": 104.8,
+ "decode_s_est": 34.5,
+ "tool_s": 9.8,
+ "robot_moving_s": 68.7,
+ "robot_moving_while_model_s": 64.8,
+ "images_viewed": 13,
+ "round_trips_after_errors": 11,
+ "median_step_s": 2.25,
+ "by_kind": {
+  "capture or render views": {
+   "n": 10,
+   "model_s": 36.9,
+   "exposed_s": 23.9
+  },
+  "move the robot": {
+   "n": 10,
+   "model_s": 48.2,
+   "exposed_s": 20.7
+  },
+  "read files": {
+   "n": 14,
+   "model_s": 24.9,
+   "exposed_s": 18.7
+  },
+  "other": {
+   "n": 2,
+   "model_s": 9.2,
+   "exposed_s": 6.4
+  },
+  "look up 3D points or IK": {
+   "n": 1,
+   "model_s": 3.2,
+   "exposed_s": 3.2
+  },
+  "message only": {
+   "n": 3,
+   "model_s": 5.3,
+   "exposed_s": 1.4
+  },
+  "wait on a running command": {
+   "n": 4,
+   "model_s": 11.4,
+   "exposed_s": 0.2
+  }
+ },
+ "output_tokens": 9719,
+ "reasoning_tokens": 3392,
+ "context_tokens_median": 156492,
+ "threads": 2,
+ "prunes": [
+  {
+   "wall": 1794361920.265,
+   "from_thread": "01a1c84c-2c68-74c1-8974-eea50717062d",
+   "images_since": 20,
+   "reason": "images",
+   "to_thread": "01a1c84e-0d22-78f3-9fc0-29ff378279a7",
+   "items": 122,
+   "images_removed": 15,
+   "bytes": 5511880,
+   "took_s": 1.15
+  }
+ ],
+ "reasoning_summary": "none"
+}

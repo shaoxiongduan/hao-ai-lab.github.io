@@ -1,0 +1,42 @@
+{"wall": 1794358336.2232, "event": "started", "id": 1, "name": "lift_left_cup", "running": 1, "waiting": []}
+{"wall": 1794358341.9661, "event": "queued", "id": 2, "name": "lift_right_cup", "behind": 1, "timeout": 120.0, "replace_from": null, "running": 1, "waiting": [2]}
+{"wall": 1794358350.4942, "event": "started", "id": 2, "name": "lift_right_cup", "running": 2, "waiting": []}
+{"wall": 1794358350.639, "event": "ended", "id": 1, "name": "lift_left_cup", "status": "done in 14.3 s", "ok": true, "t0": 1794358336.223, "t1": 1794358350.494, "commands": 5, "running": 2, "waiting": []}
+{"wall": 1794358354.5284, "event": "queued", "id": 3, "name": "replace_ball_cup", "behind": 2, "timeout": 120.0, "replace_from": null, "running": 2, "waiting": [3]}
+{"wall": 1794358359.5053, "event": "queued", "id": 4, "name": "lift_center_cup", "behind": 2, "timeout": 120.0, "replace_from": null, "running": 2, "waiting": [3, 4]}
+{"wall": 1794358364.1946, "event": "queued", "id": 5, "name": "park_right_cup", "behind": 2, "timeout": 120.0, "replace_from": null, "running": 2, "waiting": [3, 4, 5]}
+{"wall": 1794358364.9155, "event": "started", "id": 3, "name": "replace_ball_cup", "running": 3, "waiting": [4, 5]}
+{"wall": 1794358365.0211, "event": "ended", "id": 2, "name": "lift_right_cup", "status": "done in 14.4 s", "ok": true, "t0": 1794358350.494, "t1": 1794358364.915, "commands": 5, "running": 3, "waiting": [4, 5]}
+{"wall": 1794358374.0105, "event": "started", "id": 4, "name": "lift_center_cup", "running": 4, "waiting": [5]}
+{"wall": 1794358374.0704, "event": "ended", "id": 3, "name": "replace_ball_cup", "status": "done in 9.1 s", "ok": true, "t0": 1794358364.915, "t1": 1794358374.01, "commands": 3, "running": 4, "waiting": [5]}
+{"wall": 1794358377.3874, "event": "queued", "id": 6, "name": "park_center_cup", "behind": 4, "timeout": 120.0, "replace_from": null, "running": 4, "waiting": [5, 6]}
+{"wall": 1794358384.9352, "event": "queued", "id": 7, "name": "view_pear", "behind": 4, "timeout": 120.0, "replace_from": null, "running": 4, "waiting": [5, 6, 7]}
+{"wall": 1794358387.4522, "event": "look", "running": 4, "waiting": [5, 6, 7]}
+{"wall": 1794358388.326, "event": "started", "id": 5, "name": "park_right_cup", "running": 5, "waiting": [6, 7]}
+{"wall": 1794358388.377, "event": "ended", "id": 4, "name": "lift_center_cup", "status": "done in 14.3 s", "ok": true, "t0": 1794358374.01, "t1": 1794358388.326, "commands": 4, "running": 5, "waiting": [6, 7]}
+{"wall": 1794358402.2461, "event": "started", "id": 6, "name": "park_center_cup", "running": 6, "waiting": [7]}
+{"wall": 1794358402.3194, "event": "ended", "id": 5, "name": "park_right_cup", "status": "done in 13.9 s", "ok": true, "t0": 1794358388.326, "t1": 1794358402.246, "commands": 4, "running": 6, "waiting": [7]}
+{"wall": 1794358406.6051, "event": "queued", "id": 8, "name": "grasp_pear", "behind": 6, "timeout": 120.0, "replace_from": null, "running": 6, "waiting": [7, 8]}
+{"wall": 1794358416.0666, "event": "look", "running": 6, "waiting": [7, 8]}
+{"wall": 1794358416.2672, "event": "started", "id": 7, "name": "view_pear", "running": 7, "waiting": [8]}
+{"wall": 1794358416.3364, "event": "ended", "id": 6, "name": "park_center_cup", "status": "done in 14.0 s", "ok": true, "t0": 1794358402.246, "t1": 1794358416.267, "commands": 4, "running": 7, "waiting": [8]}
+{"wall": 1794358420.7818, "event": "started", "id": 8, "name": "grasp_pear", "running": 8, "waiting": []}
+{"wall": 1794358420.8416, "event": "ended", "id": 7, "name": "view_pear", "status": "done in 4.5 s", "ok": true, "t0": 1794358416.267, "t1": 1794358420.782, "commands": 1, "running": 8, "waiting": []}
+{"wall": 1794358427.5427, "event": "queued", "id": 9, "name": "pick_empty_cup", "behind": 8, "timeout": 120.0, "replace_from": null, "running": 8, "waiting": [9]}
+{"wall": 1794358433.0943, "event": "started", "id": 9, "name": "pick_empty_cup", "running": 9, "waiting": []}
+{"wall": 1794358433.1467, "event": "ended", "id": 8, "name": "grasp_pear", "status": "done in 12.3 s", "ok": true, "t0": 1794358420.782, "t1": 1794358433.094, "commands": 4, "running": 9, "waiting": []}
+{"wall": 1794358437.6315, "event": "queued", "id": 10, "name": "transfer_pear", "behind": 9, "timeout": 120.0, "replace_from": null, "running": 9, "waiting": [10]}
+{"wall": 1794358443.9741, "event": "started", "id": 10, "name": "transfer_pear", "running": 10, "waiting": []}
+{"wall": 1794358444.0242, "event": "ended", "id": 9, "name": "pick_empty_cup", "status": "done in 10.9 s", "ok": true, "t0": 1794358433.094, "t1": 1794358443.974, "commands": 3, "running": 10, "waiting": []}
+{"wall": 1794358445.9233, "event": "queued", "id": 11, "name": "hover_empty_cup", "behind": 10, "timeout": 120.0, "replace_from": null, "running": 10, "waiting": [11]}
+{"wall": 1794358458.6187, "event": "look", "running": 10, "waiting": [11]}
+{"wall": 1794358464.9978, "event": "started", "id": 11, "name": "hover_empty_cup", "running": 11, "waiting": []}
+{"wall": 1794358465.1092, "event": "ended", "id": 10, "name": "transfer_pear", "status": "done in 21.0 s", "ok": true, "t0": 1794358443.974, "t1": 1794358464.998, "commands": 5, "running": 11, "waiting": []}
+{"wall": 1794358470.6736, "event": "ended", "id": 11, "name": "hover_empty_cup", "status": "done in 5.5 s", "ok": true, "t0": 1794358464.998, "t1": 1794358470.51, "commands": 1, "running": null, "waiting": []}
+{"wall": 1794358481.8611, "event": "started", "id": 12, "name": "lower_cup_check", "running": 12, "waiting": []}
+{"wall": 1794358486.4782, "event": "ended", "id": 12, "name": "lower_cup_check", "status": "done in 4.5 s", "ok": true, "t0": 1794358481.861, "t1": 1794358486.366, "commands": 1, "running": null, "waiting": []}
+{"wall": 1794358494.9245, "event": "started", "id": 13, "name": "seat_cup", "running": 13, "waiting": []}
+{"wall": 1794358499.5692, "event": "ended", "id": 13, "name": "seat_cup", "status": "done in 4.5 s", "ok": true, "t0": 1794358494.925, "t1": 1794358499.434, "commands": 1, "running": null, "waiting": []}
+{"wall": 1794358503.5862, "event": "started", "id": 14, "name": "release_cup", "running": 14, "waiting": []}
+{"wall": 1794358511.1293, "event": "look", "running": 14, "waiting": []}
+{"wall": 1794358513.8306, "event": "ended", "id": 14, "name": "release_cup", "status": "done in 10.1 s", "ok": true, "t0": 1794358503.586, "t1": 1794358513.722, "commands": 3, "running": null, "waiting": []}

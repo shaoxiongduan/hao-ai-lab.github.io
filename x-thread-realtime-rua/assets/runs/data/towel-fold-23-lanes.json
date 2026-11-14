@@ -1,0 +1,2269 @@
+{
+ "schema": "robotapi.demo-lanes.v1",
+ "run": "towel-fold-23",
+ "task": "Smooth a crumpled towel, fold it in half",
+ "instruction": "A blue towel lies on the table between the two arms, partly folded over. Spread it out flat, then fold it once in half, edge to edge. Leave it lying folded on the table, then call r.finish() with a short summary.\n\nSuggested plan (use your judgement on the details):\n1. Smooth it out first, without grasping: press the closed fingertips lightly down on the cloth (a few mm into it) near a fold or a bunched-up edge and drag outward along the table; friction pulls the cloth flat. Use both hands, each on its own side, moving apart. Lift off, move, and press again until the towel lies flat with its corners showing.\n2. Then grab two adjacent corners of one edge by scooping: tilt the hand so the lower finger lies nearly flat on the table just outside the corner, slide it in under the cloth toward the corner's free edge (line=True), then close. Check the point cloud and a ghost of the planned pose before, and the wrist camera after closing (a close on nothing ends near 3 mm wide).\n3. Fold: carry those two corners over onto the opposite two, lower them there and release. Check the result in the cameras and fix it if it is off.\nDon't swing or throw it. Keep the towel in the middle of the table where both arms reach well.",
+ "model": "gpt-6-astra",
+ "reasoning_effort": "medium",
+ "service_tier": "ultrafast",
+ "codex_version": "codex-cli 0.165.0",
+ "video_speed": 3.0,
+ "wall0_unix": 1794363562.0,
+ "t_end": 506.09,
+ "turns": [
+  [
+   2.035,
+   178.398
+  ],
+  [
+   179.296,
+   339.08
+  ],
+  [
+   339.865,
+   450.066
+  ],
+  [
+   450.85,
+   505.09
+  ]
+ ],
+ "robot_actions": [
+  {
+   "id": 1,
+   "name": "smooth_first",
+   "t0": 40.208,
+   "t1": 43.716,
+   "ok": false,
+   "status": "error InvalidCommand: separation: the goal puts the arms 0.8 cm apart (left_link4-left_link5 and right_link4-right_link5); the arms are kept at least 2 cm apart after 3.5 s",
+   "queued_t": 40.208,
+   "commands": 3
+  },
+  {
+   "id": 2,
+   "name": "smooth_first",
+   "t0": 46.216,
+   "t1": 61.276,
+   "ok": true,
+   "status": "done in 15.1 s",
+   "queued_t": 46.216,
+   "commands": 6
+  },
+  {
+   "id": 3,
+   "name": "smooth_far",
+   "t0": 61.276,
+   "t1": 76.39,
+   "ok": true,
+   "status": "done in 15.1 s",
+   "queued_t": 53.367,
+   "commands": 4
+  },
+  {
+   "id": 4,
+   "name": "smooth_outer",
+   "t0": 76.39,
+   "t1": 92.505,
+   "ok": true,
+   "status": "done in 16.1 s",
+   "queued_t": 64.32,
+   "commands": 4
+  },
+  {
+   "id": 5,
+   "name": "smooth_near",
+   "t0": 92.505,
+   "t1": 107.548,
+   "ok": true,
+   "status": "done in 15.0 s",
+   "queued_t": 81.343,
+   "commands": 4
+  },
+  {
+   "id": 6,
+   "name": "smooth_center",
+   "t0": 107.548,
+   "t1": 123.592,
+   "ok": true,
+   "status": "done in 16.0 s",
+   "queued_t": 98.216,
+   "commands": 4
+  },
+  {
+   "id": 7,
+   "name": "prepare_corners",
+   "t0": 123.592,
+   "t1": 131.9,
+   "ok": true,
+   "status": "done in 8.3 s",
+   "queued_t": 104.925,
+   "commands": 3
+  },
+  {
+   "id": 8,
+   "name": "recenter",
+   "t0": 138.07,
+   "t1": 157.855,
+   "ok": true,
+   "status": "done in 19.8 s",
+   "queued_t": 138.07,
+   "commands": 6
+  },
+  {
+   "id": 9,
+   "name": "restore_center",
+   "t0": 157.855,
+   "t1": 170.383,
+   "ok": true,
+   "status": "done in 12.5 s",
+   "queued_t": 138.07,
+   "commands": 3
+  },
+  {
+   "id": 10,
+   "name": "corner_approach",
+   "t0": 170.383,
+   "t1": 178.133,
+   "ok": true,
+   "status": "done in 7.7 s",
+   "queued_t": 162.818,
+   "commands": 3
+  },
+  {
+   "id": 11,
+   "name": "lower_outside",
+   "t0": 178.133,
+   "t1": 182.651,
+   "ok": true,
+   "status": "done in 4.5 s",
+   "queued_t": 168.366,
+   "commands": 1
+  },
+  {
+   "id": 12,
+   "name": "insert_corners",
+   "t0": 189.288,
+   "t1": 194.804,
+   "ok": true,
+   "status": "done in 5.5 s",
+   "queued_t": 189.288,
+   "commands": 1
+  },
+  {
+   "id": 13,
+   "name": "grip_and_test",
+   "t0": 200.275,
+   "t1": 216.968,
+   "ok": true,
+   "status": "done in 16.7 s",
+   "queued_t": 200.276,
+   "commands": 3
+  },
+  {
+   "id": 14,
+   "name": "spread_held_edge",
+   "t0": 221.325,
+   "t1": 228.348,
+   "ok": true,
+   "status": "done in 7.0 s",
+   "queued_t": 221.325,
+   "commands": 3
+  },
+  {
+   "id": 15,
+   "name": "lay_flat_held",
+   "t0": 228.348,
+   "t1": 234.863,
+   "ok": true,
+   "status": "done in 6.5 s",
+   "queued_t": 221.326,
+   "commands": 1
+  },
+  {
+   "id": 16,
+   "name": "fold_lift",
+   "t0": 258.918,
+   "t1": 267.946,
+   "ok": true,
+   "status": "done in 9.0 s",
+   "queued_t": 258.919,
+   "commands": 2
+  },
+  {
+   "id": 17,
+   "name": "fold_over",
+   "t0": 267.946,
+   "t1": 273.46,
+   "ok": true,
+   "status": "done in 5.5 s",
+   "queued_t": 258.919,
+   "commands": 1
+  },
+  {
+   "id": 18,
+   "name": "fold_lower",
+   "t0": 273.46,
+   "t1": 277.979,
+   "ok": true,
+   "status": "done in 4.5 s",
+   "queued_t": 258.919,
+   "commands": 1
+  },
+  {
+   "id": 19,
+   "name": "release_fold",
+   "t0": 284.215,
+   "t1": 296.747,
+   "ok": true,
+   "status": "done in 12.5 s",
+   "queued_t": 284.215,
+   "commands": 4
+  },
+  {
+   "id": 20,
+   "name": "smooth_fold_center",
+   "t0": 296.747,
+   "t1": 317.804,
+   "ok": true,
+   "status": "done in 21.1 s",
+   "queued_t": 296.54,
+   "commands": 7
+  },
+  {
+   "id": 21,
+   "name": "sweep_upper_layer",
+   "t0": 325.689,
+   "t1": 346.292,
+   "ok": true,
+   "status": "done in 20.6 s",
+   "queued_t": 325.689,
+   "commands": 5
+  },
+  {
+   "id": 22,
+   "name": "approach_hem",
+   "t0": 366.744,
+   "t1": 377.868,
+   "ok": true,
+   "status": "done in 11.1 s",
+   "queued_t": 366.744,
+   "commands": 4
+  },
+  {
+   "id": 23,
+   "name": "pinch_hem",
+   "t0": 377.868,
+   "t1": 390.52,
+   "ok": true,
+   "status": "done in 12.7 s",
+   "queued_t": 371.366,
+   "commands": 3
+  },
+  {
+   "id": 24,
+   "name": "align_hem",
+   "t0": 390.52,
+   "t1": 400.536,
+   "ok": true,
+   "status": "done in 10.0 s",
+   "queued_t": 389.546,
+   "commands": 2
+  },
+  {
+   "id": 25,
+   "name": "release_hem",
+   "t0": 400.536,
+   "t1": 413.0,
+   "ok": true,
+   "status": "done in 12.5 s",
+   "queued_t": 399.446,
+   "commands": 4
+  },
+  {
+   "id": 26,
+   "name": "approach_folded_corners",
+   "t0": 420.639,
+   "t1": 435.914,
+   "ok": true,
+   "status": "done in 15.3 s",
+   "queued_t": 420.639,
+   "commands": 5
+  },
+  {
+   "id": 27,
+   "name": "grip_folded_corners",
+   "t0": 435.914,
+   "t1": 449.836,
+   "ok": true,
+   "status": "done in 13.9 s",
+   "queued_t": 426.101,
+   "commands": 3
+  },
+  {
+   "id": 28,
+   "name": "lift_fold_evenly",
+   "t0": 456.659,
+   "t1": 463.176,
+   "ok": true,
+   "status": "done in 6.5 s",
+   "queued_t": 456.659,
+   "commands": 1
+  },
+  {
+   "id": 29,
+   "name": "move_settle_forward",
+   "t0": 463.176,
+   "t1": 467.688,
+   "ok": true,
+   "status": "done in 4.5 s",
+   "queued_t": 461.185,
+   "commands": 1
+  },
+  {
+   "id": 30,
+   "name": "tension_fold",
+   "t0": 468.08,
+   "t1": 472.593,
+   "ok": true,
+   "status": "done in 4.5 s",
+   "queued_t": 468.08,
+   "commands": 1
+  },
+  {
+   "id": 31,
+   "name": "lower_settled_fold",
+   "t0": 472.593,
+   "t1": 487.131,
+   "ok": true,
+   "status": "done in 14.5 s",
+   "queued_t": 468.081,
+   "commands": 3
+  },
+  {
+   "id": 32,
+   "name": "release_settled_fold",
+   "t0": 487.131,
+   "t1": 499.969,
+   "ok": true,
+   "status": "done in 12.8 s",
+   "queued_t": 477.064,
+   "commands": 4
+  }
+ ],
+ "agent": [
+  {
+   "t0": 0.0,
+   "t1": 2.035,
+   "state": "idle"
+  },
+  {
+   "t0": 2.035,
+   "t1": 4.725,
+   "state": "thinking"
+  },
+  {
+   "t0": 4.725,
+   "t1": 4.822,
+   "state": "tool",
+   "kind": "reading files",
+   "tool": "exec",
+   "cmd": "find /opt/robot-api -type f -not -path '*/__pycache__/*' | sort"
+  },
+  {
+   "t0": 4.822,
+   "t1": 6.232,
+   "state": "thinking"
+  },
+  {
+   "t0": 6.232,
+   "t1": 6.306,
+   "state": "tool",
+   "kind": "reading files",
+   "tool": "exec",
+   "cmd": "wc -l /opt/robot-api/robot/*.py /opt/robot-api/robotd/core/*.py"
+  },
+  {
+   "t0": 6.306,
+   "t1": 8.06,
+   "state": "thinking"
+  },
+  {
+   "t0": 8.06,
+   "t1": 8.105,
+   "state": "tool",
+   "kind": "reading files",
+   "tool": "exec",
+   "cmd": "sed -n '380,637p' /opt/robot-api/robot/__init__.py; cat /opt/robot-api/robotd/core/{floor,estimator,separation,conditions}.py"
+  },
+  {
+   "t0": 8.105,
+   "t1": 9.506,
+   "state": "thinking"
+  },
+  {
+   "t0": 9.506,
+   "t1": 9.565,
+   "state": "tool",
+   "kind": "reading files",
+   "tool": "exec",
+   "cmd": "cat /opt/robot-api/robot/kernel.py /opt/robot-api/robot/watch.py /opt/robot-api/robot/recording.py"
+  },
+  {
+   "t0": 9.565,
+   "t1": 10.814,
+   "state": "thinking"
+  },
+  {
+   "t0": 10.814,
+   "t1": 10.876,
+   "state": "tool",
+   "kind": "reading files",
+   "tool": "exec",
+   "cmd": "cat /opt/robot-api/robotd/core/{kinematics,references,recorder}.py; sed -n '1,700p' /opt/robot-api/robotd/core/controller.py"
+  },
+  {
+   "t0": 10.876,
+   "t1": 12.551,
+   "state": "thinking"
+  },
+  {
+   "t0": 12.551,
+   "t1": 12.597,
+   "state": "tool",
+   "kind": "reading files",
+   "tool": "exec",
+   "cmd": "sed -n '701,1400p' /opt/robot-api/robotd/core/controller.py"
+  },
+  {
+   "t0": 12.597,
+   "t1": 14.486,
+   "state": "thinking"
+  },
+  {
+   "t0": 14.486,
+   "t1": 14.532,
+   "state": "tool",
+   "kind": "reading files",
+   "tool": "exec",
+   "cmd": "sed -n '1401,2324p' /opt/robot-api/robotd/core/controller.py"
+  },
+  {
+   "t0": 14.532,
+   "t1": 15.919,
+   "state": "thinking"
+  },
+  {
+   "t0": 15.919,
+   "t1": 15.972,
+   "state": "tool",
+   "kind": "looking at cameras",
+   "tool": "exec",
+   "cmd": "sed -n '1,700p' /opt/robot-api/robot/viz.py"
+  },
+  {
+   "t0": 15.972,
+   "t1": 17.145,
+   "state": "thinking"
+  },
+  {
+   "t0": 17.145,
+   "t1": 17.192,
+   "state": "tool",
+   "kind": "looking at cameras",
+   "tool": "exec",
+   "cmd": "sed -n '701,1452p' /opt/robot-api/robot/viz.py"
+  },
+  {
+   "t0": 17.192,
+   "t1": 18.802,
+   "state": "thinking"
+  },
+  {
+   "t0": 18.802,
+   "t1": 18.845,
+   "state": "tool",
+   "kind": "reading files",
+   "tool": "exec",
+   "cmd": "cat /opt/robot-api/robot/runner.py; sed -n '450,920p' /opt/robot-api/robot/kernel.py"
+  },
+  {
+   "t0": 18.845,
+   "t1": 20.998,
+   "state": "thinking"
+  },
+  {
+   "t0": 20.998,
+   "t1": 21.654,
+   "state": "tool",
+   "kind": "looking at cameras",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect()\\nprint(r.state().summary())\\nprint(r.description)\\nviz.show_cameras('initial',r,width=960)\\nPY"
+  },
+  {
+   "t0": 21.654,
+   "t1": 23.452,
+   "state": "thinking"
+  },
+  {
+   "t0": 23.452,
+   "t1": 23.5,
+   "state": "tool",
+   "kind": "reading files",
+   "tool": "exec",
+   "cmd": "sed -n '1,295p' /opt/robot-api/robotd/core/controller.py; sed -n '250,365p' /opt/robot-api/robotd/core/references.py; cat /opt/robot-api/robotd/core/recorder.py"
+  },
+  {
+   "t0": 23.5,
+   "t1": 25.439,
+   "state": "thinking"
+  },
+  {
+   "t0": 25.439,
+   "t1": 25.664,
+   "state": "tool",
+   "kind": "looking at cameras",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect()\\nf=r.cameras()['front']\\ndef blue(f):\\n h=cv2.cvtColor(f.rgb,cv2.COLOR_RGB2HSV)\\n return (h[:,:,0]>85)&(h[:,:,0"
+  },
+  {
+   "t0": 25.664,
+   "t1": 27.491,
+   "state": "thinking"
+  },
+  {
+   "t0": 27.491,
+   "t1": 27.541,
+   "state": "tool",
+   "kind": "reading files",
+   "tool": "exec",
+   "cmd": "cat /opt/robot-api/robotd/core/recorder.py; sed -n '295,355p' /opt/robot-api/robotd/core/controller.py; sed -n '1790,1895p' /opt/robot-api/robotd/core/controlle"
+  },
+  {
+   "t0": 27.541,
+   "t1": 31.363,
+   "state": "thinking"
+  },
+  {
+   "t0": 31.363,
+   "t1": 32.312,
+   "state": "tool",
+   "kind": "looking at cameras",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect()\\ndef down(x,y,z): return robot.pose([x,y,z],rpy=[np.pi,0,np.pi])\\nA={'left':down(.45,.09,.12),'right':down(.45,"
+  },
+  {
+   "t0": 32.312,
+   "t1": 34.509,
+   "state": "thinking"
+  },
+  {
+   "t0": 34.509,
+   "t1": 34.774,
+   "state": "tool",
+   "kind": "queueing an action",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect()\\nA={a:T.copy() for a,T in A.items()}\\nfor T in A.values(): T[2,3]=.07\\nprint(r.move(A,ee=list(A),duration=3,dry"
+  },
+  {
+   "t0": 34.774,
+   "t1": 36.635,
+   "state": "thinking"
+  },
+  {
+   "t0": 36.635,
+   "t1": 38.09,
+   "state": "tool",
+   "kind": "checking reach / IK",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect()\\ndef press(x,y,z): return robot.pose([x,y,z],rpy=[np.pi,-.35,np.pi])\\nA={a:press(.45,y,.09) for a,y in [('left'"
+  },
+  {
+   "t0": 38.09,
+   "t1": 40.13,
+   "state": "thinking"
+  },
+  {
+   "t0": 40.13,
+   "t1": 40.24,
+   "state": "tool",
+   "kind": "queueing an action",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect()\\ndef press(x,y,z): return robot.pose([x,y,z],rpy=[np.pi,.45,np.pi])\\nA={a:press(.45,y,.09) for a,y in [('left',"
+  },
+  {
+   "t0": 40.24,
+   "t1": 46.152,
+   "state": "thinking"
+  },
+  {
+   "t0": 46.152,
+   "t1": 46.22,
+   "state": "tool",
+   "kind": "moving the robot",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect()\\nA={a:press(.45,y,.09) for a,y in [('left',.135),('right',-.16)]}\\nS={a:press(.45,y,.012) for a,y in [('left',."
+  },
+  {
+   "t0": 46.22,
+   "t1": 47.917,
+   "state": "thinking"
+  },
+  {
+   "t0": 47.917,
+   "t1": 47.926,
+   "state": "tool",
+   "kind": "waiting on a command",
+   "tool": "wait",
+   "cmd": "{\"cell_id\":\"19\",\"yield_time_ms\":1,\"max_tokens\":1500}"
+  },
+  {
+   "t0": 47.926,
+   "t1": 50.336,
+   "state": "thinking"
+  },
+  {
+   "t0": 50.336,
+   "t1": 50.634,
+   "state": "tool",
+   "kind": "looking at cameras",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect()\\ndef far(x,y,z): return robot.pose([x,y,z],rpy=[np.pi,.85,np.pi])\\nF={a:far(.58,y,.022) for a,y in [('left',.13"
+  },
+  {
+   "t0": 50.634,
+   "t1": 53.316,
+   "state": "thinking"
+  },
+  {
+   "t0": 53.316,
+   "t1": 53.397,
+   "state": "tool",
+   "kind": "queueing an action",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\ndef smooth_far(r):\\n r.move({a:far(.58,T[1,3],.12) for a,T in F.items()},ee=list(F),duration=3)\\n r.move(F,ee=list(F),line=True,d"
+  },
+  {
+   "t0": 53.397,
+   "t1": 55.693,
+   "state": "thinking"
+  },
+  {
+   "t0": 55.693,
+   "t1": 55.868,
+   "state": "tool",
+   "kind": "looking at cameras",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect()\\nfrom robotd.core.floor import GripperFloor\\nm=viz._model(r.description['files']['mjcf']).m\\nfloor=GripperFloor"
+  },
+  {
+   "t0": 55.868,
+   "t1": 57.449,
+   "state": "thinking"
+  },
+  {
+   "t0": 57.449,
+   "t1": 57.534,
+   "state": "tool",
+   "kind": "moving the robot",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nfor T in list(F.values())+list(FE.values()):T[2,3]=.009\\nr=robot.connect()\\nprint(r.move(F,ee=list(F),duration=3,dry_run=True))\\n"
+  },
+  {
+   "t0": 57.534,
+   "t1": 59.712,
+   "state": "thinking"
+  },
+  {
+   "t0": 59.712,
+   "t1": 60.186,
+   "state": "tool",
+   "kind": "looking at cameras",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect()\\nT=far(.65,.13,.009)\\nv=viz.View3D(r,center=T,radius=.10,size=(320,240));v.ghost('left',T,width=.003);v.show('o"
+  },
+  {
+   "t0": 60.186,
+   "t1": 64.276,
+   "state": "thinking"
+  },
+  {
+   "t0": 64.276,
+   "t1": 64.349,
+   "state": "tool",
+   "kind": "queueing an action",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\ndef smooth_outer(r):\\n start={a:far(.66,y,.10) for a,y in [('left',.13),('right',-.13)]}\\n contact={a:far(.66,y,.009) for a,y in "
+  },
+  {
+   "t0": 64.349,
+   "t1": 68.355,
+   "state": "thinking"
+  },
+  {
+   "t0": 68.355,
+   "t1": 68.433,
+   "state": "tool",
+   "kind": "looking at cameras",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect()\\nst=r.state()\\ng=viz._posed_arm(r,r.description,st,'left',press(.45,.2,.1),None,.06,None,'gripper')\\nprint('jaw"
+  },
+  {
+   "t0": 68.433,
+   "t1": 73.553,
+   "state": "thinking"
+  },
+  {
+   "t0": 73.553,
+   "t1": 74.251,
+   "state": "tool",
+   "kind": "checking reach / IK",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect()\\ndef scoop(x,y,z,ang=0):\\n a=np.array([np.cos(ang),0,-np.sin(ang)])\\n j=np.array([np.sin(ang),0,np.cos(ang)])\\n"
+  },
+  {
+   "t0": 74.251,
+   "t1": 81.167,
+   "state": "thinking"
+  },
+  {
+   "t0": 81.167,
+   "t1": 81.383,
+   "state": "tool",
+   "kind": "queueing an action",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect()\\nN={a:press(.49,y,.009) for a,y in [('left',.13),('right',-.14)]}\\nNE={a:press(.30,y,.009) for a,y in [('left',"
+  },
+  {
+   "t0": 81.383,
+   "t1": 83.56,
+   "state": "thinking"
+  },
+  {
+   "t0": 83.56,
+   "t1": 84.426,
+   "state": "tool",
+   "kind": "checking reach / IK",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect()\\nfor arm,y in [('left',.25),('right',-.28)]:\\n ts=[scoop(x,y,z,.3) for x,z in [(.25,.12),(.25,.053),(.35,.053),"
+  },
+  {
+   "t0": 84.426,
+   "t1": 87.316,
+   "state": "thinking"
+  },
+  {
+   "t0": 87.316,
+   "t1": 89.341,
+   "state": "tool",
+   "kind": "checking reach / IK",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect()\\nfor arm,y in [('left',.25),('right',-.28)]:\\n ts=[]\\n for ang in [.3,.45,.6]:\\n  for x in [.27,.29,.31]:\\n   T"
+  },
+  {
+   "t0": 89.341,
+   "t1": 91.549,
+   "state": "thinking"
+  },
+  {
+   "t0": 91.549,
+   "t1": 92.073,
+   "state": "tool",
+   "kind": "looking at cameras",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect()\\nG=scoop(.335,.25,.045,.6)\\nv=viz.View3D(r,center=G,radius=.10,size=(320,240));v.ghost('left',G,width=.094);v.s"
+  },
+  {
+   "t0": 92.073,
+   "t1": 98.157,
+   "state": "thinking"
+  },
+  {
+   "t0": 98.157,
+   "t1": 98.246,
+   "state": "tool",
+   "kind": "queueing an action",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\ndef review(poses,name,width=.094):\\n r=robot.connect();fs=r.cameras();st=r.state();tiles=[]\\n o=viz.Overlay(r,'front',frame=fs['f"
+  },
+  {
+   "t0": 98.246,
+   "t1": 102.354,
+   "state": "thinking"
+  },
+  {
+   "t0": 102.354,
+   "t1": 102.447,
+   "state": "tool",
+   "kind": "moving the robot",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect()\\nprint(r.move({'left':press(.34,.34,.13),'right':press(.45,-.01,.10)},ee=['left','right'],duration=3,dry_run=Tr"
+  },
+  {
+   "t0": 102.447,
+   "t1": 104.877,
+   "state": "thinking"
+  },
+  {
+   "t0": 104.877,
+   "t1": 104.955,
+   "state": "tool",
+   "kind": "queueing an action",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nPRE={'left':scoop(.27,.25,.15,.6),'right':scoop(.27,-.28,.15,.6)}\\ndef prepare_corners(r):\\n r.move(PRE,ee=list(PRE),duration=4)\\"
+  },
+  {
+   "t0": 104.955,
+   "t1": 113.086,
+   "state": "thinking"
+  },
+  {
+   "t0": 113.086,
+   "t1": 113.241,
+   "state": "tool",
+   "kind": "checking reach / IK",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect()\\nfor a,y in [('left',.26),('right',-.30)]:\\n ts=[]\\n for ang in [.6,.8,1.0]:\\n  for x in [.21,.24,.27]:\\n   T=s"
+  },
+  {
+   "t0": 113.241,
+   "t1": 117.581,
+   "state": "thinking"
+  },
+  {
+   "t0": 117.581,
+   "t1": 117.664,
+   "state": "tool",
+   "kind": "looking at cameras",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\ndef outline(r,frames,picture=True):\\n f=frames['front'];h=cv2.cvtColor(f.rgb,cv2.COLOR_RGB2HSV)\\n mask=((h[:,:,0]>85)&(h[:,:,0]<1"
+  },
+  {
+   "t0": 117.664,
+   "t1": 119.596,
+   "state": "thinking"
+  },
+  {
+   "t0": 119.596,
+   "t1": 119.68,
+   "state": "tool",
+   "kind": "running code",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nkernel.remove_hook('towel_points')\\ndef outline_hook(r,frames): outline(r,frames,False)\\nkernel.after_motion(outline_hook)\\nPY"
+  },
+  {
+   "t0": 119.68,
+   "t1": 122.069,
+   "state": "thinking"
+  },
+  {
+   "t0": 122.069,
+   "t1": 122.266,
+   "state": "tool",
+   "kind": "looking at cameras",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect();fs=r.cameras();corners=outline(r,fs)\\nPY"
+  },
+  {
+   "t0": 122.266,
+   "t1": 131.168,
+   "state": "thinking"
+  },
+  {
+   "t0": 131.168,
+   "t1": 132.092,
+   "state": "tool",
+   "kind": "checking reach / IK",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect()\\ndef back_scoop(x,y,z,ang=.6):\\n a=np.array([-np.cos(ang),0,-np.sin(ang)]);j=np.array([-np.sin(ang),0,np.cos(an"
+  },
+  {
+   "t0": 132.092,
+   "t1": 134.113,
+   "state": "thinking"
+  },
+  {
+   "t0": 134.113,
+   "t1": 134.152,
+   "state": "tool",
+   "kind": "waiting on a command",
+   "tool": "wait",
+   "cmd": "{\"cell_id\":\"39\",\"yield_time_ms\":1,\"max_tokens\":1500}"
+  },
+  {
+   "t0": 134.152,
+   "t1": 138.023,
+   "state": "thinking"
+  },
+  {
+   "t0": 138.023,
+   "t1": 138.101,
+   "state": "tool",
+   "kind": "queueing an action",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\ndef recenter(r):\\n for a in ['left','right']:r.gripper(a,.003,speed=.05,force=15)\\n start={a:press(.26,y,.10) for a,y in [('left'"
+  },
+  {
+   "t0": 138.101,
+   "t1": 145.706,
+   "state": "thinking"
+  },
+  {
+   "t0": 145.706,
+   "t1": 149.162,
+   "state": "tool",
+   "kind": "checking reach / IK",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect()\\nfor a,y in [('left',.26),('right',-.28)]:\\n ts=[scoop(.65,y,.1,k) for k in [.6,1.,1.3,1.57,1.9,2.2]]\\n print(a"
+  },
+  {
+   "t0": 149.162,
+   "t1": 153.57,
+   "state": "thinking"
+  },
+  {
+   "t0": 153.57,
+   "t1": 153.653,
+   "state": "tool",
+   "kind": "looking at cameras",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\ndef outline_clean(r,frames,picture=False):\\n f=frames['front'];h=cv2.cvtColor(f.rgb,cv2.COLOR_RGB2HSV)\\n o=viz.Overlay(r,'front',"
+  },
+  {
+   "t0": 153.653,
+   "t1": 156.534,
+   "state": "thinking"
+  },
+  {
+   "t0": 156.534,
+   "t1": 156.749,
+   "state": "tool",
+   "kind": "looking at cameras",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect();fs=r.cameras();outline_clean(r,fs,True)\\nPY"
+  },
+  {
+   "t0": 156.749,
+   "t1": 161.898,
+   "state": "thinking"
+  },
+  {
+   "t0": 161.898,
+   "t1": 162.855,
+   "state": "tool",
+   "kind": "queueing an action",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect()\\nGA={a:scoop(.20,y,.12,.6) for a,y in [('left',.255),('right',-.285)]}\\nGG={a:scoop(.285,y,.044,.6) for a,y in "
+  },
+  {
+   "t0": 162.855,
+   "t1": 168.316,
+   "state": "thinking"
+  },
+  {
+   "t0": 168.316,
+   "t1": 168.402,
+   "state": "tool",
+   "kind": "queueing an action",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nGD={a:scoop(.20,T[1,3],.044,.6) for a,T in GA.items()}\\ndef lower_outside(r):\\n r.move(GD,ee=list(GD),line=True,duration=4)\\nkern"
+  },
+  {
+   "t0": 168.402,
+   "t1": 170.528,
+   "state": "thinking"
+  },
+  {
+   "t0": 170.528,
+   "t1": 170.576,
+   "state": "tool",
+   "kind": "checking reach / IK",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect()\\nFL={a:scoop(.29,T[1,3],.14,.6) for a,T in GG.items()}\\nFM={a:scoop(.45,T[1,3],.24,.6) for a,T in GG.items()}\\n"
+  },
+  {
+   "t0": 170.576,
+   "t1": 172.802,
+   "state": "thinking"
+  },
+  {
+   "t0": 172.802,
+   "t1": 172.828,
+   "state": "tool",
+   "kind": "waiting on a command",
+   "tool": "wait",
+   "cmd": "{\"cell_id\":\"46\",\"yield_time_ms\":1,\"max_tokens\":1200}"
+  },
+  {
+   "t0": 172.828,
+   "t1": 177.252,
+   "state": "thinking"
+  },
+  {
+   "t0": 177.252,
+   "t1": 178.374,
+   "state": "tool",
+   "kind": "looking at cameras",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nfor a,y in [('left',.215),('right',-.245)]:\\n GD[a][1,3]=y;GG[a][1,3]=y\\nreview(GG,'updated-corner-grasp')\\nPY"
+  },
+  {
+   "t0": 178.374,
+   "t1": 178.398,
+   "state": "thinking"
+  },
+  {
+   "t0": 178.398,
+   "t1": 179.296,
+   "state": "idle"
+  },
+  {
+   "t0": 179.296,
+   "t1": 189.235,
+   "state": "thinking"
+  },
+  {
+   "t0": 189.235,
+   "t1": 189.318,
+   "state": "tool",
+   "kind": "queueing an action",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect();print(r.state().summary())\\nprint('targets', {a:T[:3,3].tolist() for a,T in GG.items()})\\nfor a in ['left','rig"
+  },
+  {
+   "t0": 189.318,
+   "t1": 199.94,
+   "state": "thinking"
+  },
+  {
+   "t0": 199.94,
+   "t1": 200.303,
+   "state": "tool",
+   "kind": "queueing an action",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect();fs=r.cameras();st=r.state()\\nims=[]\\nfor a in ['left','right']:\\n o=viz.Overlay(r,a+'_wrist',frame=fs[a+'_wrist"
+  },
+  {
+   "t0": 200.303,
+   "t1": 206.228,
+   "state": "thinking"
+  },
+  {
+   "t0": 206.228,
+   "t1": 206.575,
+   "state": "tool",
+   "kind": "looking at cameras",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect()\\nSP={'left':scoop(.27,.275,.22,.6),'right':scoop(.27,-.305,.22,.6)}\\nLAY={a:scoop(.25,T[1,3],.05,.6) for a,T in"
+  },
+  {
+   "t0": 206.575,
+   "t1": 211.792,
+   "state": "thinking"
+  },
+  {
+   "t0": 211.792,
+   "t1": 212.744,
+   "state": "tool",
+   "kind": "looking at cameras",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect();fs=r.cameras();st=r.state();ims=[]\\nfor a,T in SP.items():\\n v=viz.View3D(r,center=T,frames=fs,state=st,radius="
+  },
+  {
+   "t0": 212.744,
+   "t1": 215.311,
+   "state": "thinking"
+  },
+  {
+   "t0": 215.311,
+   "t1": 215.465,
+   "state": "tool",
+   "kind": "looking at cameras",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect();viz.show_cameras('test-lift',r,width=960)\\nPY"
+  },
+  {
+   "t0": 215.465,
+   "t1": 221.276,
+   "state": "thinking"
+  },
+  {
+   "t0": 221.276,
+   "t1": 221.403,
+   "state": "tool",
+   "kind": "queueing an action",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\ndef spread_held_edge(r):\\n for a in ['left','right']:r.gripper(a,.001,speed=.01,force=20)\\n r.move(SP,ee=list(SP),line=True,durat"
+  },
+  {
+   "t0": 221.403,
+   "t1": 251.408,
+   "state": "thinking"
+  },
+  {
+   "t0": 251.408,
+   "t1": 252.308,
+   "state": "tool",
+   "kind": "looking at cameras",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect();fs=r.cameras();st=r.state()\\nF1={a:scoop(.30,T[1,3],.16,.6) for a,T in LAY.items()}\\nF2={'left':scoop(.40,.28,."
+  },
+  {
+   "t0": 252.308,
+   "t1": 258.868,
+   "state": "thinking"
+  },
+  {
+   "t0": 258.868,
+   "t1": 259.043,
+   "state": "tool",
+   "kind": "queueing an action",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\ndef fold_lift(r):\\n r.move(F1,ee=list(F1),line=True,duration=4)\\n r.move(F2,ee=list(F2),line=True,duration=4)\\ndef fold_over(r):\\"
+  },
+  {
+   "t0": 259.043,
+   "t1": 265.124,
+   "state": "thinking"
+  },
+  {
+   "t0": 265.124,
+   "t1": 265.205,
+   "state": "tool",
+   "kind": "moving the robot",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\ndef release_fold(r):\\n for a in ['left','right']:r.gripper(a,.065,speed=.035,force=15)\\n r.move({a:scoop(T[0,3]-.06,T[1,3],.18,.6"
+  },
+  {
+   "t0": 265.205,
+   "t1": 267.588,
+   "state": "thinking"
+  },
+  {
+   "t0": 267.588,
+   "t1": 267.733,
+   "state": "tool",
+   "kind": "looking at cameras",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect();viz.show_cameras('fold-in-progress',r,width=640)\\nPY"
+  },
+  {
+   "t0": 267.733,
+   "t1": 284.17,
+   "state": "thinking"
+  },
+  {
+   "t0": 284.17,
+   "t1": 284.246,
+   "state": "tool",
+   "kind": "running code",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nkernel.queue(release_fold)\\nPY"
+  },
+  {
+   "t0": 284.246,
+   "t1": 292.437,
+   "state": "thinking"
+  },
+  {
+   "t0": 292.437,
+   "t1": 292.776,
+   "state": "tool",
+   "kind": "moving the robot",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect()\\nanchor=press(.40,-.23,.014)\\nstroke0=press(.47,.035,.014)\\nstroke1=press(.565,.035,.014)\\nprint(r.move({'right"
+  },
+  {
+   "t0": 292.776,
+   "t1": 296.229,
+   "state": "thinking"
+  },
+  {
+   "t0": 296.229,
+   "t1": 296.547,
+   "state": "tool",
+   "kind": "queueing an action",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect()\\nprint([(v['ok'],v['why']) for v in r.reachable([stroke1],ee='left',after={'right':anchor})])\\ndef smooth_fold_"
+  },
+  {
+   "t0": 296.547,
+   "t1": 303.814,
+   "state": "thinking"
+  },
+  {
+   "t0": 303.814,
+   "t1": 303.963,
+   "state": "tool",
+   "kind": "checking reach / IK",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect()\\nstroke1=far(.565,.035,.014)\\nprint([(v['ok'],v['why']) for v in r.reachable([stroke1,press(.47,.035,.10)],ee='"
+  },
+  {
+   "t0": 303.963,
+   "t1": 310.449,
+   "state": "thinking"
+  },
+  {
+   "t0": 310.449,
+   "t1": 310.545,
+   "state": "tool",
+   "kind": "checking reach / IK",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect()\\nleft_next=[press(.48,.17,.014),far(.58,.17,.014)]\\nright_next=[press(.48,-.16,.014),far(.565,-.16,.014)]\\nfor "
+  },
+  {
+   "t0": 310.545,
+   "t1": 313.024,
+   "state": "thinking"
+  },
+  {
+   "t0": 313.024,
+   "t1": 313.131,
+   "state": "tool",
+   "kind": "looking at cameras",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect();viz.show_cameras('edge-stroke-check',r,names=['front','left_wrist'],width=800)\\nPY"
+  },
+  {
+   "t0": 313.131,
+   "t1": 325.641,
+   "state": "thinking"
+  },
+  {
+   "t0": 325.641,
+   "t1": 325.719,
+   "state": "tool",
+   "kind": "queueing an action",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nstroke0=press(.405,.025,.012)\\nstroke1=far(.58,.025,.012)\\ndef sweep_upper_layer(r):\\n r.move({'right':press(.40,-.23,.09),'left'"
+  },
+  {
+   "t0": 325.719,
+   "t1": 334.508,
+   "state": "thinking"
+  },
+  {
+   "t0": 334.508,
+   "t1": 335.899,
+   "state": "tool",
+   "kind": "checking reach / IK",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect()\\nchecks=[]\\nfor ang in [.8,1.,1.2,1.4]:\\n T=back_scoop(.45,0,0,ang);T[2,3]=.004-floor.lowest('right',T);checks."
+  },
+  {
+   "t0": 335.899,
+   "t1": 338.859,
+   "state": "thinking"
+  },
+  {
+   "t0": 338.859,
+   "t1": 339.047,
+   "state": "tool",
+   "kind": "looking at cameras",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect();viz.show_cameras('upper-layer-moving',r,names=['front','left_wrist'],width=800)\\nPY"
+  },
+  {
+   "t0": 339.047,
+   "t1": 339.08,
+   "state": "thinking"
+  },
+  {
+   "t0": 339.08,
+   "t1": 339.865,
+   "state": "idle"
+  },
+  {
+   "t0": 339.865,
+   "t1": 353.54,
+   "state": "thinking"
+  },
+  {
+   "t0": 353.54,
+   "t1": 354.471,
+   "state": "tool",
+   "kind": "looking at cameras",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect();f=r.cameras()['front']\\nviz.marks(f,'raised-edge',mask=blue(f),step=25,max_marks=45)\\nfor a,y in [('left',.14),"
+  },
+  {
+   "t0": 354.471,
+   "t1": 362.394,
+   "state": "thinking"
+  },
+  {
+   "t0": 362.394,
+   "t1": 363.228,
+   "state": "tool",
+   "kind": "looking at cameras",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect()\\nRG={'left':scoop(.552,.125,.044,1.0),'right':scoop(.505,-.10,.034,1.2)}\\nfor a,T in RG.items():print(a,[(v['ok"
+  },
+  {
+   "t0": 363.228,
+   "t1": 366.685,
+   "state": "thinking"
+  },
+  {
+   "t0": 366.685,
+   "t1": 366.759,
+   "state": "tool",
+   "kind": "queueing an action",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect()\\nRA={a:T.copy() for a,T in RG.items()}\\nfor T in RA.values():T[2,3]+=.065\\nprint(r.move(RA,ee=list(RA),duration"
+  },
+  {
+   "t0": 366.759,
+   "t1": 368.124,
+   "state": "thinking"
+  },
+  {
+   "t0": 368.124,
+   "t1": 368.141,
+   "state": "tool",
+   "kind": "waiting on a command",
+   "tool": "wait",
+   "cmd": "{\"cell_id\":\"3\",\"yield_time_ms\":1,\"max_tokens\":1200}"
+  },
+  {
+   "t0": 368.141,
+   "t1": 371.321,
+   "state": "thinking"
+  },
+  {
+   "t0": 371.321,
+   "t1": 371.394,
+   "state": "tool",
+   "kind": "queueing an action",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\ndef pinch_hem(r):\\n fs=r.cameras();st=r.state()\\n for a in RG:\\n  v=viz.View3D(r,center=st.ee[a].T,frames=fs,state=st,radius=.08,"
+  },
+  {
+   "t0": 371.394,
+   "t1": 375.771,
+   "state": "thinking"
+  },
+  {
+   "t0": 375.771,
+   "t1": 375.853,
+   "state": "tool",
+   "kind": "checking reach / IK",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect()\\nHEM_HIGH={'left':scoop(.625,.125,.11,.6),'right':scoop(.59,-.10,.10,.6)}\\nHEM_LOW={a:T.copy() for a,T in HEM_H"
+  },
+  {
+   "t0": 375.853,
+   "t1": 377.927,
+   "state": "thinking"
+  },
+  {
+   "t0": 377.927,
+   "t1": 378.305,
+   "state": "tool",
+   "kind": "moving the robot",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect();print(r.move(HEM_HIGH,ee=list(HEM_HIGH),duration=4,dry_run=True))\\no=viz.Overlay(r,'front')\\nfor a in HEM_HIGH:"
+  },
+  {
+   "t0": 378.305,
+   "t1": 380.585,
+   "state": "thinking"
+  },
+  {
+   "t0": 380.585,
+   "t1": 380.656,
+   "state": "tool",
+   "kind": "waiting on a command",
+   "tool": "wait",
+   "cmd": "{\"cell_id\":\"6\",\"yield_time_ms\":1,\"max_tokens\":1400}"
+  },
+  {
+   "t0": 380.656,
+   "t1": 384.087,
+   "state": "thinking"
+  },
+  {
+   "t0": 384.087,
+   "t1": 385.031,
+   "state": "tool",
+   "kind": "moving the robot",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect();fs=r.cameras();st=r.state();ims=[]\\nfor a,T in HEM_LOW.items():\\n v=viz.View3D(r,center=T,frames=fs,state=st,ra"
+  },
+  {
+   "t0": 385.031,
+   "t1": 387.638,
+   "state": "thinking"
+  },
+  {
+   "t0": 387.638,
+   "t1": 387.816,
+   "state": "tool",
+   "kind": "looking at cameras",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect();viz.show_cameras('hem-grip-test',r,width=800)\\nPY"
+  },
+  {
+   "t0": 387.816,
+   "t1": 389.503,
+   "state": "thinking"
+  },
+  {
+   "t0": 389.503,
+   "t1": 389.575,
+   "state": "tool",
+   "kind": "running code",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nkernel.queue(align_hem)\\nPY"
+  },
+  {
+   "t0": 389.575,
+   "t1": 395.03,
+   "state": "thinking"
+  },
+  {
+   "t0": 395.03,
+   "t1": 395.105,
+   "state": "tool",
+   "kind": "moving the robot",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\ndef release_hem(r):\\n for a in HEM_LOW:r.gripper(a,.055,speed=.03,force=15)\\n r.move({a:scoop(T[0,3]-.03,T[1,3],.17,.6) for a,T i"
+  },
+  {
+   "t0": 395.105,
+   "t1": 397.349,
+   "state": "thinking"
+  },
+  {
+   "t0": 397.349,
+   "t1": 397.533,
+   "state": "tool",
+   "kind": "looking at cameras",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect();viz.show_cameras('aligned-edge-check',r,width=800)\\nPY"
+  },
+  {
+   "t0": 397.533,
+   "t1": 399.383,
+   "state": "thinking"
+  },
+  {
+   "t0": 399.383,
+   "t1": 399.475,
+   "state": "tool",
+   "kind": "running code",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nkernel.queue(release_hem)\\nPY"
+  },
+  {
+   "t0": 399.475,
+   "t1": 408.2,
+   "state": "thinking"
+  },
+  {
+   "t0": 408.2,
+   "t1": 408.318,
+   "state": "tool",
+   "kind": "checking reach / IK",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect()\\n# Candidate lift poses for settling the already folded towel.\\nfor a,y in [('left',.30),('right',-.32)]:\\n ts="
+  },
+  {
+   "t0": 408.318,
+   "t1": 413.176,
+   "state": "thinking"
+  },
+  {
+   "t0": 413.176,
+   "t1": 413.227,
+   "state": "tool",
+   "kind": "looking at cameras",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect();fs=r.cameras();outline_clean(r,fs,True)\\nPY"
+  },
+  {
+   "t0": 413.227,
+   "t1": 415.237,
+   "state": "thinking"
+  },
+  {
+   "t0": 415.237,
+   "t1": 415.273,
+   "state": "tool",
+   "kind": "waiting on a command",
+   "tool": "wait",
+   "cmd": "{\"cell_id\":\"14\",\"yield_time_ms\":1,\"max_tokens\":1200}"
+  },
+  {
+   "t0": 415.273,
+   "t1": 419.818,
+   "state": "thinking"
+  },
+  {
+   "t0": 419.818,
+   "t1": 420.655,
+   "state": "tool",
+   "kind": "queueing an action",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect()\\nCG={'left':scoop(.558,.29,.044,.6),'right':scoop(.476,-.30,.044,.6)}\\nCD={'left':scoop(.475,.29,.044,.6),'righ"
+  },
+  {
+   "t0": 420.655,
+   "t1": 422.312,
+   "state": "thinking"
+  },
+  {
+   "t0": 422.312,
+   "t1": 422.355,
+   "state": "tool",
+   "kind": "waiting on a command",
+   "tool": "wait",
+   "cmd": "{\"cell_id\":\"15\",\"yield_time_ms\":1,\"max_tokens\":1000}"
+  },
+  {
+   "t0": 422.355,
+   "t1": 426.054,
+   "state": "thinking"
+  },
+  {
+   "t0": 426.054,
+   "t1": 426.164,
+   "state": "tool",
+   "kind": "queueing an action",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\ndef grip_folded_corners(r):\\n for a in CG:r.gripper(a,.001,speed=.02,force=20)\\n lift={a:T.copy() for a,T in CG.items()}\\n for T "
+  },
+  {
+   "t0": 426.164,
+   "t1": 430.822,
+   "state": "thinking"
+  },
+  {
+   "t0": 430.822,
+   "t1": 432.172,
+   "state": "tool",
+   "kind": "looking at cameras",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect();fs=r.cameras();st=r.state()\\no=viz.Overlay(r,'front',frame=fs['front'],state=st)\\nfor a in SETTLE_UP:\\n o.ghost"
+  },
+  {
+   "t0": 432.172,
+   "t1": 435.965,
+   "state": "thinking"
+  },
+  {
+   "t0": 435.965,
+   "t1": 436.169,
+   "state": "tool",
+   "kind": "looking at cameras",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect();viz.show_cameras('fold-corners-check',r,width=800)\\nPY"
+  },
+  {
+   "t0": 436.169,
+   "t1": 443.938,
+   "state": "thinking"
+  },
+  {
+   "t0": 443.938,
+   "t1": 444.097,
+   "state": "tool",
+   "kind": "moving the robot",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\ndef lift_fold_evenly(r):\\n r.move(SETTLE_UP,ee=list(SETTLE_UP),line=True,duration=6)\\nSETTLE_FRONT={a:scoop(.54,T[1,3],.30,.45) f"
+  },
+  {
+   "t0": 444.097,
+   "t1": 446.647,
+   "state": "thinking"
+  },
+  {
+   "t0": 446.647,
+   "t1": 446.754,
+   "state": "tool",
+   "kind": "checking reach / IK",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect()\\nfor a in SETTLE_FRONT:print(a,[(v['ok'],v['why']) for v in r.reachable([SETTLE_FRONT[a],SETTLE_EDGE[a],SETTLE_"
+  },
+  {
+   "t0": 446.754,
+   "t1": 448.62,
+   "state": "thinking"
+  },
+  {
+   "t0": 448.62,
+   "t1": 448.783,
+   "state": "tool",
+   "kind": "looking at cameras",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect();viz.show_cameras('folded-grip-lift',r,width=800)\\nPY"
+  },
+  {
+   "t0": 448.783,
+   "t1": 450.066,
+   "state": "thinking"
+  },
+  {
+   "t0": 450.066,
+   "t1": 450.85,
+   "state": "idle"
+  },
+  {
+   "t0": 450.85,
+   "t1": 456.614,
+   "state": "thinking"
+  },
+  {
+   "t0": 456.614,
+   "t1": 456.67,
+   "state": "tool",
+   "kind": "running code",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nkernel.queue(lift_fold_evenly)\\nPY"
+  },
+  {
+   "t0": 456.67,
+   "t1": 458.743,
+   "state": "thinking"
+  },
+  {
+   "t0": 458.743,
+   "t1": 458.762,
+   "state": "tool",
+   "kind": "waiting on a command",
+   "tool": "wait",
+   "cmd": "{\"cell_id\":\"1\",\"yield_time_ms\":1,\"max_tokens\":1000}"
+  },
+  {
+   "t0": 458.762,
+   "t1": 461.139,
+   "state": "thinking"
+  },
+  {
+   "t0": 461.139,
+   "t1": 461.213,
+   "state": "tool",
+   "kind": "queueing an action",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\ndef move_settle_forward(r):r.move(SETTLE_FRONT,ee=list(SETTLE_FRONT),line=True,duration=4)\\nkernel.queue(move_settle_forward)\\nde"
+  },
+  {
+   "t0": 461.213,
+   "t1": 468.032,
+   "state": "thinking"
+  },
+  {
+   "t0": 468.032,
+   "t1": 468.039,
+   "state": "tool",
+   "kind": "queueing an action",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nfor poses in [SETTLE_FRONT,SETTLE_EDGE,SETTLE_MID,SETTLE_DOWN]:\\n poses['left'][1,3]=.32;poses['right'][1,3]=-.34\\ndef tension_fo"
+  },
+  {
+   "t0": 468.039,
+   "t1": 471.778,
+   "state": "thinking"
+  },
+  {
+   "t0": 471.778,
+   "t1": 471.906,
+   "state": "tool",
+   "kind": "waiting on a command",
+   "tool": "wait",
+   "cmd": "{\"cell_id\":\"3\",\"yield_time_ms\":1,\"max_tokens\":1000}"
+  },
+  {
+   "t0": 471.906,
+   "t1": 477.014,
+   "state": "thinking"
+  },
+  {
+   "t0": 477.014,
+   "t1": 477.092,
+   "state": "tool",
+   "kind": "queueing an action",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\ndef release_settled_fold(r):\\n for a in SETTLE_DOWN:r.gripper(a,.07,speed=.035,force=15)\\n r.move({a:scoop(.32,T[1,3],.16,.6) for"
+  },
+  {
+   "t0": 477.092,
+   "t1": 481.116,
+   "state": "thinking"
+  },
+  {
+   "t0": 481.116,
+   "t1": 481.23,
+   "state": "tool",
+   "kind": "looking at cameras",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect();viz.show_cameras('settling-fold',r,names=['front','top'],width=800)\\nPY"
+  },
+  {
+   "t0": 481.23,
+   "t1": 485.465,
+   "state": "thinking"
+  },
+  {
+   "t0": 485.465,
+   "t1": 485.54,
+   "state": "tool",
+   "kind": "running code",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nkernel.remove_hook('outline_hook')\\nPY"
+  },
+  {
+   "t0": 485.54,
+   "t1": 491.899,
+   "state": "thinking"
+  },
+  {
+   "t0": 491.899,
+   "t1": 492.036,
+   "state": "tool",
+   "kind": "looking at cameras",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect();viz.show_cameras('final-placement-check',r,names=['front','top'],width=960)\\nPY"
+  },
+  {
+   "t0": 492.036,
+   "t1": 497.895,
+   "state": "thinking"
+  },
+  {
+   "t0": 497.895,
+   "t1": 498.126,
+   "state": "tool",
+   "kind": "looking at cameras",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect();fs=r.cameras();f=fs['front'];mask=blue(f)\\nP=f.points(mask);P=P[(P[:,2]<.08)&(P[:,0]>.25)&(P[:,0]<.7)]\\nrect=cv"
+  },
+  {
+   "t0": 498.126,
+   "t1": 502.428,
+   "state": "thinking"
+  },
+  {
+   "t0": 502.428,
+   "t1": 502.513,
+   "state": "tool",
+   "kind": "finishing",
+   "tool": "exec",
+   "cmd": "python -m robot.kernel <<'PY'\\nr=robot.connect()\\nr.finish('Spread the towel, folded it once in half, and left it on the table. The edges are approximately alig"
+  },
+  {
+   "t0": 502.513,
+   "t1": 505.09,
+   "state": "thinking"
+  },
+  {
+   "t0": 505.09,
+   "t1": 506.09,
+   "state": "idle"
+  }
+ ],
+ "reports": [
+  {
+   "t": 40.299,
+   "kind": "started",
+   "action": "smooth_first",
+   "text": "[action smooth_first] started (the arms were holding)"
+  },
+  {
+   "t": 43.81,
+   "kind": "error",
+   "action": "smooth_first",
+   "text": "[action smooth_first] InvalidCommand: separation: the goal puts the arms 0.8 cm apart (left_link4-left_link5 and right_link4-right_link5); the arms are kept at least 2 cm apart (line 451 of /opt/robot"
+  },
+  {
+   "t": 46.22,
+   "kind": "started",
+   "action": "smooth_first",
+   "text": "[action smooth_first] started (the arms were holding)"
+  },
+  {
+   "t": 61.47,
+   "kind": "done",
+   "action": "smooth_first",
+   "text": "[action smooth_first] done in 15.1 s"
+  },
+  {
+   "t": 76.618,
+   "kind": "done",
+   "action": "smooth_far",
+   "text": "[action smooth_far] done in 15.1 s"
+  },
+  {
+   "t": 92.678,
+   "kind": "done",
+   "action": "smooth_outer",
+   "text": "[action smooth_outer] done in 16.1 s"
+  },
+  {
+   "t": 107.72,
+   "kind": "done",
+   "action": "smooth_near",
+   "text": "[action smooth_near] done in 15.0 s"
+  },
+  {
+   "t": 123.772,
+   "kind": "done",
+   "action": "smooth_center",
+   "text": "[action smooth_center] done in 16.0 s"
+  },
+  {
+   "t": 132.093,
+   "kind": "done",
+   "action": "prepare_corners",
+   "text": "[action prepare_corners] done in 8.3 s"
+  },
+  {
+   "t": 138.112,
+   "kind": "started",
+   "action": "recenter",
+   "text": "[action recenter] started (the arms were holding)"
+  },
+  {
+   "t": 158.123,
+   "kind": "done",
+   "action": "recenter",
+   "text": "[action recenter] done in 19.8 s"
+  },
+  {
+   "t": 170.57,
+   "kind": "done",
+   "action": "restore_center",
+   "text": "[action restore_center] done in 12.5 s"
+  },
+  {
+   "t": 178.392,
+   "kind": "done",
+   "action": "corner_approach",
+   "text": "[action corner_approach] done in 7.7 s"
+  },
+  {
+   "t": 182.81,
+   "kind": "done",
+   "action": "lower_outside",
+   "text": "[action lower_outside] done in 4.5 s"
+  },
+  {
+   "t": 189.326,
+   "kind": "started",
+   "action": "insert_corners",
+   "text": "[action insert_corners] started (the arms were holding)"
+  },
+  {
+   "t": 195.044,
+   "kind": "done",
+   "action": "insert_corners",
+   "text": "[action insert_corners] done in 5.5 s"
+  },
+  {
+   "t": 200.358,
+   "kind": "started",
+   "action": "grip_and_test",
+   "text": "[action grip_and_test] started (the arms were holding)"
+  },
+  {
+   "t": 217.212,
+   "kind": "done",
+   "action": "grip_and_test",
+   "text": "[action grip_and_test] done in 16.7 s"
+  },
+  {
+   "t": 221.424,
+   "kind": "started",
+   "action": "spread_held_edge",
+   "text": "[action spread_held_edge] started (the arms were holding)"
+  },
+  {
+   "t": 228.555,
+   "kind": "done",
+   "action": "spread_held_edge",
+   "text": "[action spread_held_edge] done in 7.0 s"
+  },
+  {
+   "t": 235.08,
+   "kind": "done",
+   "action": "lay_flat_held",
+   "text": "[action lay_flat_held] done in 6.5 s"
+  },
+  {
+   "t": 258.989,
+   "kind": "started",
+   "action": "fold_lift",
+   "text": "[action fold_lift] started (the arms were holding)"
+  },
+  {
+   "t": 268.118,
+   "kind": "done",
+   "action": "fold_lift",
+   "text": "[action fold_lift] done in 9.0 s"
+  },
+  {
+   "t": 273.639,
+   "kind": "done",
+   "action": "fold_over",
+   "text": "[action fold_over] done in 5.5 s"
+  },
+  {
+   "t": 278.154,
+   "kind": "done",
+   "action": "fold_lower",
+   "text": "[action fold_lower] done in 4.5 s"
+  },
+  {
+   "t": 284.27,
+   "kind": "started",
+   "action": "release_fold",
+   "text": "[action release_fold] started (the arms were holding)"
+  },
+  {
+   "t": 296.923,
+   "kind": "done",
+   "action": "release_fold",
+   "text": "[action release_fold] done in 12.5 s"
+  },
+  {
+   "t": 317.994,
+   "kind": "done",
+   "action": "smooth_fold_center",
+   "text": "[action smooth_fold_center] done in 21.1 s"
+  },
+  {
+   "t": 325.722,
+   "kind": "started",
+   "action": "sweep_upper_layer",
+   "text": "[action sweep_upper_layer] started (the arms were holding)"
+  },
+  {
+   "t": 339.968,
+   "kind": "look",
+   "action": null,
+   "text": "[look 1]"
+  },
+  {
+   "t": 346.496,
+   "kind": "done",
+   "action": "sweep_upper_layer",
+   "text": "[action sweep_upper_layer] done in 20.6 s"
+  },
+  {
+   "t": 366.76,
+   "kind": "started",
+   "action": "approach_hem",
+   "text": "[action approach_hem] started (the arms were holding)"
+  },
+  {
+   "t": 378.305,
+   "kind": "done",
+   "action": "approach_hem",
+   "text": "[action approach_hem] done in 11.1 s"
+  },
+  {
+   "t": 390.747,
+   "kind": "done",
+   "action": "pinch_hem",
+   "text": "[action pinch_hem] done in 12.7 s"
+  },
+  {
+   "t": 400.785,
+   "kind": "done",
+   "action": "align_hem",
+   "text": "[action align_hem] done in 10.0 s"
+  },
+  {
+   "t": 413.227,
+   "kind": "done",
+   "action": "release_hem",
+   "text": "[action release_hem] done in 12.5 s"
+  },
+  {
+   "t": 420.655,
+   "kind": "started",
+   "action": "approach_folded_corners",
+   "text": "[action approach_folded_corners] started (the arms were holding)"
+  },
+  {
+   "t": 436.211,
+   "kind": "done",
+   "action": "approach_folded_corners",
+   "text": "[action approach_folded_corners] done in 15.3 s"
+  },
+  {
+   "t": 450.06,
+   "kind": "done",
+   "action": "grip_folded_corners",
+   "text": "[action grip_folded_corners] done in 13.9 s"
+  },
+  {
+   "t": 456.67,
+   "kind": "started",
+   "action": "lift_fold_evenly",
+   "text": "[action lift_fold_evenly] started (the arms were holding)"
+  },
+  {
+   "t": 463.391,
+   "kind": "done",
+   "action": "lift_fold_evenly",
+   "text": "[action lift_fold_evenly] done in 6.5 s"
+  },
+  {
+   "t": 467.908,
+   "kind": "done",
+   "action": "move_settle_forward",
+   "text": "[action move_settle_forward] done in 4.5 s"
+  },
+  {
+   "t": 468.111,
+   "kind": "started",
+   "action": "tension_fold",
+   "text": "[action tension_fold] started (the arms were holding)"
+  },
+  {
+   "t": 472.829,
+   "kind": "done",
+   "action": "tension_fold",
+   "text": "[action tension_fold] done in 4.5 s"
+  },
+  {
+   "t": 487.197,
+   "kind": "done",
+   "action": "lower_settled_fold",
+   "text": "[action lower_settled_fold] done in 14.5 s"
+  },
+  {
+   "t": 500.142,
+   "kind": "done",
+   "action": "release_settled_fold",
+   "text": "[action release_settled_fold] done in 12.8 s"
+  }
+ ],
+ "queue_depth": [
+  [
+   0.0,
+   0
+  ],
+  [
+   53.367,
+   1
+  ],
+  [
+   61.276,
+   0
+  ],
+  [
+   64.32,
+   1
+  ],
+  [
+   76.39,
+   0
+  ],
+  [
+   81.343,
+   1
+  ],
+  [
+   92.505,
+   0
+  ],
+  [
+   98.216,
+   1
+  ],
+  [
+   104.925,
+   2
+  ],
+  [
+   107.548,
+   1
+  ],
+  [
+   123.592,
+   0
+  ],
+  [
+   138.07,
+   1
+  ],
+  [
+   157.855,
+   0
+  ],
+  [
+   162.818,
+   1
+  ],
+  [
+   168.366,
+   2
+  ],
+  [
+   170.384,
+   1
+  ],
+  [
+   178.133,
+   0
+  ],
+  [
+   221.326,
+   1
+  ],
+  [
+   228.348,
+   0
+  ],
+  [
+   258.919,
+   2
+  ],
+  [
+   267.946,
+   1
+  ],
+  [
+   273.46,
+   0
+  ],
+  [
+   296.54,
+   1
+  ],
+  [
+   296.748,
+   0
+  ],
+  [
+   371.366,
+   1
+  ],
+  [
+   377.868,
+   0
+  ],
+  [
+   389.546,
+   1
+  ],
+  [
+   390.52,
+   0
+  ],
+  [
+   399.446,
+   1
+  ],
+  [
+   400.536,
+   0
+  ],
+  [
+   426.101,
+   1
+  ],
+  [
+   435.914,
+   0
+  ],
+  [
+   461.185,
+   1
+  ],
+  [
+   463.176,
+   0
+  ],
+  [
+   468.081,
+   1
+  ],
+  [
+   472.593,
+   0
+  ],
+  [
+   477.064,
+   1
+  ],
+  [
+   487.132,
+   0
+  ]
+ ],
+ "messages": [
+  {
+   "t": 4.497,
+   "text": "I\u2019ll inspect the robot controls and towel, smooth the cloth, then make one edge-to-edge fold and check how it lies."
+  },
+  {
+   "t": 12.256,
+   "text": "I\u2019m checking the motion limits and camera geometry before bringing the fingertips down to the cloth."
+  },
+  {
+   "t": 42.872,
+   "text": "The towel is bunched inward along both sides. I\u2019m making gentle outward strokes with closed fingertips, then I\u2019ll reassess the remaining folds before grasping the corners."
+  },
+  {
+   "t": 101.761,
+   "text": "The side folds have opened substantially. I\u2019m smoothing the remaining central tuck, then I\u2019ll scoop the two near corners and lift them briefly to verify both holds."
+  },
+  {
+   "t": 156.178,
+   "text": "The towel slid toward the arms during smoothing. I\u2019m moving it back toward the center and correcting the central ripple before making the fold."
+  },
+  {
+   "t": 188.281,
+   "text": "The fingertips are just outside the two near corners. I\u2019ll check their actual positions, slide under the cloth, and verify both grips with a short lift."
+  },
+  {
+   "t": 249.517,
+   "text": "Both corners are holding, and lifting and spreading them has opened the central folds. The towel is now spread out on the table. I\u2019ll carry the held edge over in a slow arc and align it with the far edge."
+  },
+  {
+   "t": 295.189,
+   "text": "The towel is folded, but the top edge still sags inward at the center. I\u2019ll hold the lower layer steady and smooth that edge toward the opposite edge."
+  },
+  {
+   "t": 352.861,
+   "text": "The last stroke shifted one side instead of flattening the top layer. I\u2019ll correct that with a direct grip on the raised edge."
+  },
+  {
+   "t": 418.459,
+   "text": "The fold is formed, but the layers are still wrinkled. I\u2019ll lift it by the folded corners so both layers can settle, then lower it gently back onto the table."
+  },
+  {
+   "t": 491.491,
+   "text": "The towel is back on the table in a single fold. I\u2019m releasing the corners and checking the final placement."
+  },
+  {
+   "t": 504.644,
+   "text": "Folded the towel once and left it on the table. Edges are approximately aligned, with some wrinkles remaining. Called `r.finish()`."
+  }
+ ],
+ "totals": {
+  "wall_s": 506.1,
+  "finish_t": 502.5,
+  "robot_moving_s": 361.1,
+  "robot_moving_pct": 71.4,
+  "first_motion_t": 40.2,
+  "robot_moving_pct_first_motion_to_finish": 78.1,
+  "model_thinking_s": 468.5,
+  "tool_s": 32.1,
+  "agent_busy_s": 500.6,
+  "agent_idle_s": 5.5,
+  "overlap_busy_moving_s": 359.5,
+  "overlap_thinking_moving_s": 336.4,
+  "robot_idle_while_agent_busy_s": 141.1,
+  "actions": 32,
+  "actions_failed": 1,
+  "queue_max_depth": 2,
+  "tool_calls": 105,
+  "reports": 46,
+  "turns": 4,
+  "threads": 4
+ }
+}

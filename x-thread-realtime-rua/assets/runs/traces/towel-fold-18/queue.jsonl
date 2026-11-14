@@ -1,0 +1,28 @@
+{"wall": 1794361845.0168, "event": "started", "id": 1, "name": "approach_corners", "running": 1, "waiting": []}
+{"wall": 1794361849.53, "event": "queued", "id": 2, "name": "pinch_and_test", "behind": 1, "timeout": 120.0, "replace_from": null, "running": 1, "waiting": [2]}
+{"wall": 1794361857.8168, "event": "started", "id": 2, "name": "pinch_and_test", "running": 2, "waiting": []}
+{"wall": 1794361857.9068, "event": "ended", "id": 1, "name": "approach_corners", "status": "done in 12.8 s", "ok": true, "t0": 1794361845.017, "t1": 1794361857.817, "commands": 5, "running": 2, "waiting": []}
+{"wall": 1794361868.8036, "event": "ended", "id": 2, "name": "pinch_and_test", "status": "done in 10.9 s", "ok": true, "t0": 1794361857.817, "t1": 1794361868.685, "commands": 3, "running": null, "waiting": []}
+{"wall": 1794361872.2741, "event": "started", "id": 3, "name": "spread", "running": 3, "waiting": []}
+{"wall": 1794361877.3189, "event": "queued", "id": 4, "name": "lower_edge", "behind": 3, "timeout": 120.0, "replace_from": null, "running": 3, "waiting": [4]}
+{"wall": 1794361879.7774, "event": "started", "id": 4, "name": "lower_edge", "running": 4, "waiting": []}
+{"wall": 1794361879.9095, "event": "ended", "id": 3, "name": "spread", "status": "done in 7.5 s", "ok": true, "t0": 1794361872.274, "t1": 1794361879.777, "commands": 1, "running": 4, "waiting": []}
+{"wall": 1794361883.4192, "event": "ended", "id": 4, "name": "lower_edge", "status": "done in 3.5 s", "ok": true, "t0": 1794361879.777, "t1": 1794361883.289, "commands": 1, "running": null, "waiting": []}
+{"wall": 1794361887.5464, "event": "started", "id": 5, "name": "flatten", "running": 5, "waiting": []}
+{"wall": 1794361892.2017, "event": "ended", "id": 5, "name": "flatten", "status": "done in 4.5 s", "ok": true, "t0": 1794361887.546, "t1": 1794361892.057, "commands": 1, "running": null, "waiting": []}
+{"wall": 1794361903.5941, "event": "started", "id": 6, "name": "fold_arc", "running": 6, "waiting": []}
+{"wall": 1794361903.5947, "event": "queued", "id": 7, "name": "fold_across", "behind": 6, "timeout": 120.0, "replace_from": null, "running": 6, "waiting": [7]}
+{"wall": 1794361909.1014, "event": "started", "id": 7, "name": "fold_across", "running": 7, "waiting": []}
+{"wall": 1794361909.2239, "event": "ended", "id": 6, "name": "fold_arc", "status": "done in 5.5 s", "ok": true, "t0": 1794361903.594, "t1": 1794361909.101, "commands": 1, "running": 7, "waiting": []}
+{"wall": 1794361909.5503, "event": "ended", "id": 7, "name": "fold_across", "status": "error InvalidCommand: left: target unreachable (closest IK solution misses by 5.7 mm) after 0.3 s", "ok": false, "t0": 1794361909.101, "t1": 1794361909.412, "commands": 1, "running": null, "waiting": []}
+{"wall": 1794361913.5897, "event": "started", "id": 8, "name": "across_revised", "running": 8, "waiting": []}
+{"wall": 1794361917.6406, "event": "queued", "id": 9, "name": "land_fold", "behind": 8, "timeout": 120.0, "replace_from": null, "running": 8, "waiting": [9]}
+{"wall": 1794361920.1057, "event": "started", "id": 9, "name": "land_fold", "running": 9, "waiting": []}
+{"wall": 1794361920.2608, "event": "ended", "id": 8, "name": "across_revised", "status": "done in 6.5 s", "ok": true, "t0": 1794361913.59, "t1": 1794361920.106, "commands": 1, "running": 9, "waiting": []}
+{"wall": 1794361921.4381, "event": "look", "running": 9, "waiting": []}
+{"wall": 1794361924.7382, "event": "ended", "id": 9, "name": "land_fold", "status": "done in 4.5 s", "ok": true, "t0": 1794361920.106, "t1": 1794361924.617, "commands": 1, "running": null, "waiting": []}
+{"wall": 1794361932.2932, "event": "started", "id": 10, "name": "release_fold", "running": 10, "waiting": []}
+{"wall": 1794361937.2907, "event": "queued", "id": 11, "name": "clear_view", "behind": 10, "timeout": 120.0, "replace_from": null, "running": 10, "waiting": [11]}
+{"wall": 1794361940.4053, "event": "started", "id": 11, "name": "clear_view", "running": 11, "waiting": []}
+{"wall": 1794361940.4975, "event": "ended", "id": 10, "name": "release_fold", "status": "done in 8.1 s", "ok": true, "t0": 1794361932.293, "t1": 1794361940.405, "commands": 3, "running": 11, "waiting": []}
+{"wall": 1794361944.96, "event": "ended", "id": 11, "name": "clear_view", "status": "done in 4.5 s", "ok": true, "t0": 1794361940.405, "t1": 1794361944.906, "commands": 1, "running": null, "waiting": []}
