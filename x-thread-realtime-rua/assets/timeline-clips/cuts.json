@@ -1,0 +1,164 @@
+{
+ "towel-fold-09": {
+  "read_resp": 5,
+  "cut": 18.9,
+  "T": 1932,
+  "T_new": 1913,
+  "hid": 8.5,
+  "hid_new": 8.6,
+  "first_motion": 38.3
+ },
+ "towel-fold-10": {
+  "read_resp": 15,
+  "cut": 35.8,
+  "T": 142,
+  "T_new": 106,
+  "hid": null,
+  "hid_new": null,
+  "first_motion": 47.1
+ },
+ "towel-fold-11": {
+  "read_resp": 14,
+  "cut": 28.1,
+  "T": 2125,
+  "T_new": 2097,
+  "hid": 14.7,
+  "hid_new": 14.9,
+  "first_motion": 44.4
+ },
+ "towel-fold-12": {
+  "read_resp": 4,
+  "cut": 10.0,
+  "T": 689,
+  "T_new": 679,
+  "hid": 0.0,
+  "hid_new": 0.0,
+  "first_motion": 36.3
+ },
+ "towel-fold-13": {
+  "read_resp": 15,
+  "cut": 24.7,
+  "T": 893,
+  "T_new": 868,
+  "hid": 0.3,
+  "hid_new": 0.3,
+  "first_motion": 32.7
+ },
+ "towel-fold-14": {
+  "read_resp": 16,
+  "cut": 24.2,
+  "T": 726,
+  "T_new": 702,
+  "hid": 0.0,
+  "hid_new": 0.0,
+  "first_motion": 33.9
+ },
+ "towel-fold-15": {
+  "read_resp": 17,
+  "cut": 40.9,
+  "T": 1091,
+  "T_new": 1050,
+  "hid": 25.9,
+  "hid_new": 27.8,
+  "first_motion": 52.0
+ },
+ "towel-fold-16": {
+  "read_resp": 1,
+  "cut": 3.7,
+  "T": 353,
+  "T_new": 349,
+  "hid": 62.4,
+  "hid_new": 62.9,
+  "first_motion": 17.4
+ },
+ "towel-fold-17": {
+  "read_resp": 0,
+  "cut": 0.0,
+  "T": 405,
+  "T_new": 405,
+  "hid": 43.0,
+  "hid_new": 43.0,
+  "first_motion": 30.5
+ },
+ "towel-fold-18": {
+  "read_resp": 4,
+  "cut": 8.3,
+  "T": 151,
+  "T_new": 143,
+  "hid": 46.6,
+  "hid_new": 49.0,
+  "first_motion": 48.0
+ },
+ "towel-fold-19": {
+  "read_resp": 6,
+  "cut": 12.5,
+  "T": 198,
+  "T_new": 186,
+  "hid": 48.7,
+  "hid_new": 53.1,
+  "first_motion": 34.7
+ },
+ "towel-fold-21": {
+  "read_resp": 2,
+  "cut": 8.2,
+  "T": 91,
+  "T_new": 83,
+  "hid": null,
+  "hid_new": null,
+  "first_motion": 35.5
+ },
+ "towel-fold-22": {
+  "read_resp": 9,
+  "cut": 16.6,
+  "T": 257,
+  "T_new": 240,
+  "hid": 42.2,
+  "hid_new": 45.0,
+  "first_motion": 35.2
+ },
+ "towel-fold-23": {
+  "read_resp": 10,
+  "cut": 18.8,
+  "T": 501,
+  "T_new": 482,
+  "hid": 71.7,
+  "hid_new": 74.3,
+  "first_motion": 33.6
+ },
+ "towel-fold-24": {
+  "read_resp": 0,
+  "cut": 0.0,
+  "T": 96,
+  "T_new": 96,
+  "hid": null,
+  "hid_new": null,
+  "first_motion": 23.7
+ },
+ "towel-fold-25": {
+  "read_resp": 2,
+  "cut": 6.1,
+  "T": 432,
+  "T_new": 426,
+  "hid": 63.9,
+  "hid_new": 64.8,
+  "first_motion": 31.2
+ },
+ "cups-01": {
+  "read_resp": 1,
+  "cut": 4.1,
+  "T": 121,
+  "T_new": 117,
+  "hid": 61.1,
+  "hid_new": 62.4,
+  "first_motion": 24.4
+ },
+ "cups-02": {
+  "read_resp": 2,
+  "cut": 7.0,
+  "T": 211,
+  "T_new": 204,
+  "hid": 73.1,
+  "hid_new": 75.2,
+  "first_motion": 28.2
+ }
+}

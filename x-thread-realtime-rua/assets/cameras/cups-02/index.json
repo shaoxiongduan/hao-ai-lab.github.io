@@ -1,0 +1,42 @@
+{
+ "start_wall": 1794358308.4511468,
+ "fps": 6.0,
+ "cameras": [
+  "front",
+  "left_wrist",
+  "right_wrist",
+  "top"
+ ],
+ "size": {
+  "front": [
+   640,
+   480
+  ],
+  "left_wrist": [
+   640,
+   480
+  ],
+  "right_wrist": [
+   640,
+   480
+  ],
+  "top": [
+   640,
+   480
+  ]
+ },
+ "files": {
+  "front": "front.mp4",
+  "left_wrist": "left_wrist.mp4",
+  "right_wrist": "right_wrist.mp4",
+  "top": "top.mp4"
+ },
+ "times": "frames.csv",
+ "note": "frame k of every file was read at frames.csv's wall time k; it plays at k / fps s",
+ "rgbd": {
+  "fps": 3.0,
+  "index": "rgbd.jsonl",
+  "dir": "rgbd",
+  "note": "colour and depth (uint16 mm, 0: no reading) of the same grab, with K and T (world <- optical) per camera"
+ }
+}

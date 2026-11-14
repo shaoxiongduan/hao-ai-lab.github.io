@@ -4,7 +4,7 @@
 # make.sh <out dir>
 set -euo pipefail
 here=$(cd "$(dirname "$0")" && pwd)
-img="$here/../../../content/blogs/realtime-rua/img"
+img=${TIMELINE:-$here/../../../content/blogs/realtime-rua/img}   # or TIMELINE=<dir> with re-rendered timeline videos
 out=$(mkdir -p "$1" && cd "$1" && pwd)
 
 node "$here/ovshot.js" "$here/overlay.html" "mode=dash&speed=3.5×%20speed" "$out/dash-cup.png"
